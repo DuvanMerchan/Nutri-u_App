@@ -4,7 +4,7 @@ import {BrowserRouter, Route} from 'react-router-dom'
 function App() {
   return (
     <BrowserRouter>
-    <Route></Route>
+    <Route ></Route>
     </BrowserRouter>
   );
 }
