@@ -1,5 +1,6 @@
 const axios = require ("axios")
 const { API_KEY } = process.env
+import { dietTypes } from '../utils/apispoon'
 
 const getApiRecipes = async() => {
 
@@ -112,10 +113,26 @@ const getApiRecipes = async() => {
 
     }
 
+    const getDietByID = async(id) => {
+        
+        try{
+            const axiosID = await axios.get(dietTypes)
+            const { results } = axiosID
+            
+            let dietName = results?.filter(e => e.id === id)
+            return dietName
+
+        }catch(e){
+            console.log(e)
+        }
+
+    }
+
 
 module.exports = {
     getApiRecipes,
     getApiNameRecipes,
     getApiRecipeByID,
-    getApiIngredientByID
+    getApiIngredientByID,
+    getDietByID
 }
