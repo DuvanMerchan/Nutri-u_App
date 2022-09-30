@@ -1,9 +1,10 @@
+import {BrowserRouter} from 'react-router-dom'
+
 
 function App() {
   return (
-    <div className="App">
-     <h1>nutri-u</h1>
-    </div>
+    <BrowserRouter>
+    </BrowserRouter>
   );
 }
 
