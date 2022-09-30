@@ -91,7 +91,7 @@ const getApiNameRecipes = async(name) => {
 
 const getApiRecipeByID = async(id) => {
 
-    if(id.length > 5){
+    if(id.length > 15){
     
         try {
 
@@ -122,6 +122,7 @@ const getApiRecipeByID = async(id) => {
         dishTypes: recipeApi.dishTypes?.map(ele => ele),
         diets: recipeApi.diets?.map(ele => ele),
         //ingredients: recipeApi.analyzedInstructions[0].steps?.map(ele => ele.ingredients.name): "does not have any ingredient"
+
             }           
                 return recipeData;
         }
@@ -145,7 +146,6 @@ const getApiRecipeByID = async(id) => {
         }
 
     }
-
 
 module.exports = {
     getApiRecipes,
