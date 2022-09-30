@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { recetas } from "../components/recetas";
 
 export const recipesSlice = createSlice({
     name: 'recipes',
@@ -8,7 +9,7 @@ export const recipesSlice = createSlice({
     },
     reducers:{
         getAllRecipes: (state, action)=>{
-            state.recipes = action.payload
+            state.recipes = recetas//action.payload
         },
         getRecipeById: (state, action)=>{
             state.detail = action.payload
