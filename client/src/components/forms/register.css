@@ -1,0 +1,17 @@
+.register-Content{
+    margin-top: 50px;
+    justify-content: center;
+    
+}
+
+
+
+.registerBody{
+    display: flex;
+    max-width: 700px;
+    justify-content: center;
+    background-color: green;
+    margin: auto;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
