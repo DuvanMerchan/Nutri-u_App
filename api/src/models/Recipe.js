@@ -9,18 +9,66 @@ module.exports = (sequelize) => {
             allowNull: false,
             primaryKey: true,
         },
-        title: { 
+
+        name: { 
             type: DataTypes.STRING,
             allowNull: false,
         },
+
+        vegetarian: { 
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+        },
+
+        vegan: { 
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+        },
+
+        glutenFree: { 
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+        },
+
+        dairyFree: { 
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+        },
+
+        veryPopular: { 
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+        },
+
+        healthScore: { 
+            type: DataTypes.FLOAT,
+            allowNull: true,
+        },
+
         image: {
             type: DataTypes.TEXT,
             allowNull: true,
         },
+
         summary: {
-            type: DataTypes.TEXT,
+            type: DataTypes.STRING,
             allowNull: false,
-        }
+        },
+
+        cuisines: { 
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+
+        dishTypes: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+
+        diets: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        }      
     }, {
         timestamps: false,
     });
