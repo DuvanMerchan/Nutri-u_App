@@ -25,7 +25,7 @@ const getApiRecipes = async() => {
                 dishTypes: e.dishTypes?.map(ele => ele),
                 diets: e.diets?.map(ele => ele),
                 ingredients: e.analyzedInstructions[0].steps.map(ele => ele.ingredients.name)
-                    //falta filtrar ingredients
+                    //falta filtrar ingredients//////
             }
        })
 
