@@ -63,12 +63,7 @@ module.exports = (sequelize) => {
         dishTypes: {
             type: DataTypes.STRING,
             allowNull: true,
-        },
-
-        diets: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        }      
+        },      
     }, {
         timestamps: false,
     });
