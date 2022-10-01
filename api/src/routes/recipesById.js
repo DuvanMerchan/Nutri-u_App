@@ -15,3 +15,5 @@ router.get("/recipes/:id", async(req, res) => {
         return res.status(400).json({error: "error getting that specific recipe"})
     }
 })
+
+module.exports = router;

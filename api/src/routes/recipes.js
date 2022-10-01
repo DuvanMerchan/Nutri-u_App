@@ -1,5 +1,5 @@
 const  { Router } = require("express")
-const router = router()
+const router = Router()
 const { getApiRecipes } = require("../controllers/guest.controllers")
 const { getApiNameRecipes } = require("../controllers/guest.controllers")
 
@@ -22,3 +22,5 @@ router.get("/recipes", async (req, res) => {
         }
 
 })
+
+module.exports = router;
