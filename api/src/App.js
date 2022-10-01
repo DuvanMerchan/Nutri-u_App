@@ -11,9 +11,9 @@ const server = express();
 
 server.name = 'API';
 
+server.use(cookieParser());
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
-server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', `http://localhost:${CLIENT_PORT}`); // update to match the domain you will make the request from (FRONT)

@@ -2,6 +2,7 @@ const axios = require ("axios")
 const { API_KEY } = process.env
 const { Recipe, Diet } = require("../db")
 import { dietTypes } from '../utils/apispoon'
+import { dietTypes } from '../utils/apispoon'
 
 
 
