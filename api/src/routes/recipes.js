@@ -3,7 +3,7 @@ const router = Router()
 const { getApiRecipes } = require("../controllers/guest.controllers")
 const { getApiNameRecipes } = require("../controllers/guest.controllers")
 
-router.get("/recipes", async (req, res) => {
+router.get("/", async (req, res) => {
     
         let {name} = req.query;
     
