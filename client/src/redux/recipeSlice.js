@@ -21,7 +21,7 @@ export const recipesSlice = createSlice({
             state.recipes = [...state.recipes, action.payload]
         },
         deleteRecipe: (state, action)=>{
-            state.recipes = state.recipes.filter(r => r.id !== action.payload)
+            state.recipes = action.payload
         },
         orderByRating: (state, action)=>{
             state.recipes = state.recipes.sort((a,b)=> b.rating - a.rating)
