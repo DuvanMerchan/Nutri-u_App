@@ -1,16 +1,14 @@
 const { Router } = require("express");
 const userRoute = require('./users/userfree.js')
+const recipesRoute = require('./recipes')
 // Importar todos los routers;
 
 const router = Router();
 
-const recipes = require("./recipes")
-const recipesId = require("./recipesById")
-
 // Configurar los routers
 
-router.use("/", recipesId)
-router.use("/", recipes)
+
 router.use('/user', userRoute)
+router.use('/recipes', recipesRoute)
 
 module.exports = router;
