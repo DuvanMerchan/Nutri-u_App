@@ -2,11 +2,6 @@ const axios = require ("axios")
 const { API_KEY } = process.env
 const { Recipe, Diet } = require("../db")
 import { dietTypes } from '../utils/apispoon'
-<<<<<<< HEAD
-=======
->>>>>>> main
-
-
 
 const getApiRecipes = async() => {
 
@@ -15,7 +10,7 @@ const getApiRecipes = async() => {
         const axiosResponse = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
         const { results } = axiosResponse.data;
 
-        if(results !== 0 ) {
+        if(results !== 0) {
             let dishRecipe = await results?.map((e) => {
                 return {
                     name: e.title,
@@ -151,10 +146,7 @@ const getApiRecipeByID = async(id) => {
 
     }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> main
     const getDietByID = async(id) => {
         
         try{
@@ -170,10 +162,6 @@ const getApiRecipeByID = async(id) => {
 
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 module.exports = {
     getApiRecipes,
     getApiNameRecipes,
