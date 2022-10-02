@@ -64,6 +64,7 @@ const createRecipe = async (
     cuisines: cuisines ? cuisines : "no cuisines available",
     dishTypes: dishTypes ? dishTypes : "no dish type available",
   });
+  
   const dietType = await Diet.findAll({
       where: { name: diets },
     });
