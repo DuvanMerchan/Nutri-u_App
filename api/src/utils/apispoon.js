@@ -1,5 +1,5 @@
 //--------------------- ALL DIET TYPES ---------------------
-export const dietTypes = [
+const dietTypes = [
     {
         id: 1,
         name: 'Gluten Free',
@@ -52,6 +52,6 @@ export const dietTypes = [
     },
 ];
 
-// module.export = dietTypes;
+module.exports = dietTypes;
 
 //----------------------------------------------------------------------------------------------------
