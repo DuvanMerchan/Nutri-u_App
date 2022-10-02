@@ -14,6 +14,7 @@ const getApiRecipes = async() => {
         if(results !== 0 ) {
             let dishRecipe = await results?.map((e) => {
                 return {
+                    id: e.id,
                     name: e.title,
                     vegetarian: e.vegetarian,
                     vegan: e.vegan,
@@ -50,6 +51,7 @@ const getDBRecipes = async() => {
         })
         let data = dbRecipes.map(e => {
             return {
+                id: e.id,
                 name: e.name,
                 vegetarian: e.vegetarian,
                 vegan: e.vegan,
@@ -76,6 +78,7 @@ const getApiNameRecipes = async(name) => {
         if(results !==0) {
             let dishName = results?.map((el) => {
                 return {
+                    id: e.id,
                     name: el.title,
                     vegetarian: el.vegetarian,
                     vegan: el.vegan,
@@ -114,6 +117,7 @@ const getDBNameRecipes = async(name) => {
         })   
         let data = dbRecipes.map(e => {
             return {
+                id: e.id,
                 name: e.name,
                 vegetarian: e.vegetarian,
                 vegan: e.vegan,
