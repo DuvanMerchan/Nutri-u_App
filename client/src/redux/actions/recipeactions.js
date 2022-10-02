@@ -11,7 +11,7 @@ export const getRecipes = async (dispatch) => {
         let res = await axios.get(`http://${REACT_APP_HOST}/recipes`)
         dispatch(getAllRecipes(res.data))
     }catch(e){
-        console.log(e)
+        console.log(e.message)
     }
 }
 
