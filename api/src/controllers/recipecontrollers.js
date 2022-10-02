@@ -14,20 +14,19 @@ const getApiRecipeByID = async (id) => {
   } else {
     const url = `https://api.spoonacular.com/recipes/${id}/information?&apiKey=${API_KEY}&addRecipeInformation=true&number=100`;
     const recipeApi = await axios.get(url);
-
     const recipeData = {
-      name: recipeApi.title,
-      vegetarian: recipeApi.vegetarian,
-      vegan: recipeApi.vegan,
-      glutenFree: recipeApi.glutenFree,
-      dairyFree: recipeApi.dairyFree,
-      veryPopular: recipeApi.veryPopular,
-      healthScore: recipeApi.healthScore,
-      image: recipeApi.image,
-      summary: recipeApi.summary,
-      cuisines: recipeApi.cuisines?.map((ele) => ele),
-      dishTypes: recipeApi.dishTypes?.map((ele) => ele),
-      diets: recipeApi.diets?.map((ele) => ele),
+      name: recipeApi.data.title,
+      vegetarian: recipeApi.data.vegetarian,
+      vegan: recipeApi.data.vegan,
+      glutenFree: recipeApi.data.glutenFree,
+      dairyFree: recipeApi.data.dairyFree,
+      veryPopular: recipeApi.data.veryPopular,
+      healthScore: recipeApi.data.healthScore,
+      image: recipeApi.data.image,
+      summary: recipeApi.data.summary,
+      // cuisines: recipeApi.data.cuisines?.map((ele) => ele),
+      // dishTypes: recipeApi.data.dishTypes?.map((ele) => ele),
+      diets: recipeApi.data.diets?.map((ele) => ele),
       //ingredients: recipeApi.analyzedInstructions[0].steps?.map(ele => ele.ingredients.name): "does not have any ingredient"
     };
     return recipeData;
@@ -65,6 +64,7 @@ const createRecipe = async (
     cuisines: cuisines ? cuisines : "no cuisines available",
     dishTypes: dishTypes ? dishTypes : "no dish type available",
   });
+  
   const dietType = await Diet.findAll({
       where: { name: diets },
     });
