@@ -1,13 +1,14 @@
 const { Router } = require("express");
 const router = Router();
 const Recipe = require("../db");
-const { getApiRecipeByID } = require("../controllers/recipescontrollers");
-const { createRecipe } = require("../controllers/recipecotrollers");
+const { getApiRecipeByID } = require("../controllers/recipecontrollers");
+const { createRecipe } = require("../controllers/recipecontrollers");
 
 router.get("/:id", async (req, res) => {
   let { id } = req.params;
 
   try {
+    
     return res.status(200).json(await getApiRecipeByID(id));
   } catch (error) {
     return res
