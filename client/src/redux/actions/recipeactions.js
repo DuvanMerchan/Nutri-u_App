@@ -13,7 +13,7 @@ export const getRecipes = ()=> async (dispatch) => {
         let res = await axios.get(`http://localhost:5001/recipes`)
         dispatch(getAllRecipes(res.data))
     }catch(e){
-        console.log(e)
+        console.log(e.message)
     }
 }
 
