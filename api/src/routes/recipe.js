@@ -8,7 +8,7 @@ router.get("/:id", async (req, res) => {
   let { id } = req.params;
 
   try {
-    
+
     return res.status(200).json(await getApiRecipeByID(id));
   } catch (error) {
     return res
@@ -28,8 +28,8 @@ router.post("/", async (req, res) => {
     healthScore,
     image,
     summary,
-    cuisines,
-    dishTypes,
+    // cuisines,
+    // dishTypes,
     diets,
   } = req.body;
 
@@ -58,8 +58,8 @@ router.post("/", async (req, res) => {
       healthScore,
       image,
       summary,
-      cuisines,
-      dishTypes,
+      // cuisines,
+      // dishTypes,
       diets
     );
 
