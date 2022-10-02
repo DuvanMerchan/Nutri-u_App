@@ -1,6 +1,6 @@
 const axios = require ("axios")
 const { API_KEY } = process.env
-const { Recipe, Diet } = require("../../db.js")
+const { Recipe, Diet } = require("../db.js")
 // import  dietTypes  from '../utils/apispoon'
 
 
@@ -70,28 +70,9 @@ const getDBRecipes = async() => {
     }
 }
 
-const getAllInfo = async(req, res) => {
-    try {
-        let data = await getApiRecipes()
-        let dbData = await getDBRecipes()
-        if(!dbData || dbData.length === 0) {
-            if(!data || data.length === 0) {
-                return res.status(404).json({msg: "Oops, we couldn't find any recipes"})
-            }
-            return res.status(200).json(data)
-        }
-        let totalData = [...data, ...dbData]
-        return res.status(200).json(totalData)
-    } catch (error) {
-        console.log(error)
-    }
-}
-
 
 const getApiNameRecipes = async(name) => {
-
     try {
-    
         const axiosName = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${name}&addRecipeInformation=true&number=100&apiKey=${API_KEY}`)
         const { results } = axiosName
     
@@ -120,31 +101,76 @@ const getApiNameRecipes = async(name) => {
     }
 }
 
-// const getApiRecipeByID = async (req, res) => {
 
-//         const { recipeID } = req.params;
-        
-//         try{
-//             if(recipeID){
-//                 let { data } = await axios.get(`https://api.spoonacular.com/recipes/${recipeID}/information?&apiKey=${API_KEY}`)
-//                 if(data.hasOwnProperty('id')) res.json(data)
-//                 else{throw new Error(`We can't find a recipe with id: ${recipeID}`)}
-//             }else{
-//                 throw new Error(`We need an id to search a recipe`)
-//             }
+const getDBNameRecipes = async(name) => {
+    try {
+        const dbRecipes = await Recipe.findAll({
+            where: {
+                name: name
+            },
+            include: [{
+                model: Diet,
+                through: {
+                    attributes: ['name']
+                }
+            }]
+        })
+        let data = dbRecipes.map(e => {
+            return {
+                name: e.name,
+                vegetarian: e.vegetarian,
+                vegan: e.vegan,
+                glutenFree: e.glutenFree,
+                dairyFree: e.dairyFree,
+                veryPopular: e.veryPopular,
+                healthScore: e.healthScore,
+                image: e.image,
+                summary: e.summary,
+                diets: e.diets?.map(ele => ele.name)
+            }
+        })
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
 
-//         }catch(e){
-//             res.send(e.message)
-//         }
-//     }
 
+const getAllInfo = async(req, res) => {
+    try {
+        const name = req.query.name
 
+        if(!name){
+            let data = await getApiRecipes()
+            let dbData = await getDBRecipes()
+            if(!dbData || dbData.length === 0) {
+                if(!data || data.length === 0) {
+                    return res.status(404).json({msg: "Oops, we couldn't find any recipes"})
+                }
+                return res.status(200).json(data)
+            }
+            let totalData = [...data, ...dbData]
+            return res.status(200).json(totalData)
+        }
 
+        let data = await getApiNameRecipes(name)
+        let dbData = await getDBNameRecipes(name)
+        if(!dbData || dbData.length === 0) {
+            if(!data || data.length === 0) {
+                return res.status(404).json({msg: "Oops, we couldn't find any recipes"})
+            }
+        }
+        let totalData = [...data, ...dbData]
+        return res.status(200).json(totalData)
+
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 
 
 
 module.exports = {
-    getApiRecipes,
-    getApiNameRecipes,
+    getAllInfo,
 }
