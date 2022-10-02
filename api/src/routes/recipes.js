@@ -1,7 +1,7 @@
 const  { Router } = require("express")
 const router = Router()
-const { getApiRecipes } = require("../controllers/recipescontrollers")
-const { getApiNameRecipes } = require("../controllers/recipescontrollers")
+const { getAllInfo } = require("../controllers/recipescontrollers")
+
 
 router.get("/", async (req, res) => {
     
@@ -10,11 +10,11 @@ router.get("/", async (req, res) => {
     try {
 
         if(name) {
-            return res.status(200).json(await getApiNameRecipes(name))
+            return res.status(200).json(await getAllInfo(name))
 
             } else {
 
-            return res.status(201).json(await getApiRecipes())
+            return res.status(201).json(await getAllInfo())
             }
 
         } catch(error) {
