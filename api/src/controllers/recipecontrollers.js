@@ -43,8 +43,8 @@ const createRecipe = async (
   healthScore,
   image,
   summary,
-  cuisines,
-  dishTypes,
+  // cuisines,
+  // dishTypes,
   diets
 ) => {
     try{ 
@@ -61,18 +61,16 @@ const createRecipe = async (
     healthScore: healthScore ? healthScore : 0,
     image: image ? image : "",
     summary,
-    cuisines: cuisines ? cuisines : "no cuisines available",
-    dishTypes: dishTypes ? dishTypes : "no dish type available",
+    // cuisines: cuisines ? cuisines : "no cuisines available",
+    // dishTypes: dishTypes ? dishTypes : "no dish type available",
   });
-  
+
   const dietType = await Diet.findAll({
       where: { name: diets },
     });
-    console.log("dietType", !!dietType);
     await newRecipe.addDiet(dietType);
-    console.log("newRecipe", newRecipe);
 }catch(e){
-    console.log('lol',e)
+    console.log(e)
 }
 };
 

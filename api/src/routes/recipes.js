@@ -1,20 +1,20 @@
 const  { Router } = require("express")
 const router = Router()
-const { getAllInfo } = require("../controllers/recipescontrollers")
+const { getAllInfo, getByName } = require("../controllers/recipescontrollers")
 
 
 router.get("/", async (req, res) => {
     
         let {name} = req.query;
-    
     try {
 
         if(name) {
-            return res.status(200).json(await getAllInfo(name))
+            let searchName =await getByName(name)
+            return res.status(200).json(searchName)
 
             } else {
-
-            return res.status(201).json(await getAllInfo())
+            let allInfo =await getAllInfo()
+            return res.status(201).json(allInfo)
             }
 
         } catch(error) {
