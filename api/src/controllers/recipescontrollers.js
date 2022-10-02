@@ -138,13 +138,19 @@ const getAllInfo = async() => {
             let data = await getApiRecipes()
            let dbData = await getDBRecipes()
            if(!dbData || dbData.length === 0) {
-                if(!data || data.length === 0) {
-                    throw new Error("Oops, we couldn't find any recipes")
-                }
+
+            if(!data || data.length === 0) {
+                throw new Error("Oops, we couldn't find any recipes")
+            }else{
                 return data
+            }
+        }else{
+            if(!data){
+                return dbData
             }
             let totalData = [...dbData, ...data]
             return totalData
+            }
 
     } catch (error) {
         console.log(error)
