@@ -68,9 +68,7 @@ const createRecipe = async (
   const dietType = await Diet.findAll({
       where: { name: diets },
     });
-    console.log("dietType", !!dietType);
     await newRecipe.addDiet(dietType);
-    console.log("newRecipe", newRecipe);
 }catch(e){
     console.log(e)
 }

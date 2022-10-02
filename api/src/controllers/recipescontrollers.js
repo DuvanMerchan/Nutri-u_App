@@ -43,12 +43,11 @@ const getDBRecipes = async() => {
         const dbRecipes = await Recipe.findAll({
             include: [{
                 model: Diet,
-                through: {
-                    attributes: ['name']
-                }
+                // through: {
+                //     attributes: ['name']
+                // }
             }]
         })
-        console.log(dbRecipes)
         let data = dbRecipes.map(e => {
             return {
                 name: e.name,
@@ -73,8 +72,7 @@ const getDBRecipes = async() => {
 const getApiNameRecipes = async(name) => {
     try {
         const axiosName = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${name}&addRecipeInformation=true&number=100&apiKey=${API_KEY}`)
-        const { results } = axiosName
-    
+        const results  = axiosName.data.results
         if(results !==0) {
             let dishName = results?.map((el) => {
                 return {
@@ -84,7 +82,7 @@ const getApiNameRecipes = async(name) => {
                     glutenFree: el.glutenFree,
                     dairyFree: el.dairyFree,
                     veryPopular: el.veryPopular,
-                    healthScore: e.healthScore,
+                    healthScore: el.healthScore,
                     image: el.image,
                     summary: el.summary,
                     //cuisines: el.cuisines?.map(ele => ele),
@@ -109,11 +107,11 @@ const getDBNameRecipes = async(name) => {
             },
             include: [{
                 model: Diet,
-                through: {
-                    attributes: ['name']
-                }
+                // through: {
+                //     attributes: ['name']
+                // }
             }]
-        })
+        })   
         let data = dbRecipes.map(e => {
             return {
                 name: e.name,
@@ -135,41 +133,48 @@ const getDBNameRecipes = async(name) => {
 }
 
 
-const getAllInfo = async(req, res) => {
+const getAllInfo = async() => {
     try {
-        const name = req.query.name
-
-        if(!name){
             let data = await getApiRecipes()
-            let dbData = await getDBRecipes()
-            if(!dbData || dbData.length === 0) {
+           let dbData = await getDBRecipes()
+           if(!dbData || dbData.length === 0) {
                 if(!data || data.length === 0) {
-                    return res.status(404).json({msg: "Oops, we couldn't find any recipes"})
+                    throw new Error("Oops, we couldn't find any recipes")
                 }
-                return res.status(200).json(data)
+                return data
             }
-            let totalData = [...data, ...dbData]
-            return res.status(200).json(totalData)
-        }
-
-        let data = await getApiNameRecipes(name)
-        let dbData = await getDBNameRecipes(name)
-        if(!dbData || dbData.length === 0) {
-            if(!data || data.length === 0) {
-                return res.status(404).json({msg: "Oops, we couldn't find any recipes"})
-            }
-        }
-        let totalData = [...data, ...dbData]
-        return res.status(200).json(totalData)
+            let totalData = [...dbData, ...data]
+            return totalData
 
     } catch (error) {
         console.log(error)
     }
 }
 
-
+const getByName = async (name)=>{
+    try {
+        let data = await getApiNameRecipes(name)
+        let dbData = await getDBNameRecipes(name)
+        if(!dbData) {
+            if(!data || data.length === 0) {
+                throw new Error("Oops, we couldn't find any recipes")
+            }else{
+                return data
+            }
+        }else{
+            if(!data){
+                return dbData
+            }
+            let totalData = [...dbData, ...data]
+            return totalData
+        }
+    } catch (error) {
+        
+    }
+}
 
 
 module.exports = {
     getAllInfo,
+    getByName,
 }

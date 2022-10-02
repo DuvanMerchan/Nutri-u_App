@@ -63,7 +63,7 @@ router.post("/", async (req, res) => {
       diets
     );
 
-    res.send("Recipe created successfully");
+    res.send(`Recipe ${name} created successfully`);
   } catch (e) {
     res.send(e.message);
   }
