@@ -1,8 +1,8 @@
 const { Router } = require("express");
 const router = Router();
 const Recipe = require("../db");
-const { getApiRecipeByID } = require("../controllers/recipecontrollers");
-const { createRecipe } = require("../controllers/recipecontrollers");
+const { getApiRecipeByID, createRecipe, deleteRecipe, updateRecipe } = require("../controllers/recipecontrollers");
+
 
 router.get("/:id", async (req, res) => {
   let { id } = req.params;
@@ -68,5 +68,29 @@ router.post("/", async (req, res) => {
     res.send(e.message);
   }
 });
+
+
+router.delete("/:id", async (req, res) => {
+  let { id } = req.params;
+
+  try {
+    deleteRecipe(id);
+    res.send(`Recipe ${id} deleted successfully`);
+  } catch (e) {
+    res.send(e.message);
+  }
+});
+
+router.put("/:id", async (req, res) => {
+  let { id } = req.params;
+
+  try {
+    updateRecipe(id);
+    res.send(`Recipe ${id} updated successfully`);
+  } catch (e) {
+    res.send(e.message);
+  }
+});
+
 
 module.exports = router;

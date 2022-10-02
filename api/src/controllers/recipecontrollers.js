@@ -85,8 +85,20 @@ const deleteRecipe = async (id) => {
   }
 }
 
+const updateRecipe = async (id) => {
+  try {
+    const findRecipe = await Recipe.findByPk({ where: { id: id } });
+    if (findRecipe.length !== 0) throw new Error("This recipe does not exist");
+    await findRecipe.update();
+  } catch (e) {
+    console.log(e.message);
+  }
+}
+
+
 module.exports = {
   getApiRecipeByID,
   createRecipe,
-  deleteRecipe
+  deleteRecipe,
+  updateRecipe,
 };
