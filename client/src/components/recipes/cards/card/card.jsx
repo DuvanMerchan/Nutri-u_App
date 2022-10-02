@@ -6,13 +6,13 @@ export const Card = ({id, title, diets, image, healthScore})=>{
     return(
         
 
-<div class="col">
-    <div id={id} class="card h-100">
-      <img src={image} class="card-img-top" alt="..."/>
-      <div class="card-body">
-        <h5 class="card-title">{title}</h5>
-        <p class="card-text">{diets}</p>
-        <p class="card-text">{healthScore}</p>
+<div className="col">
+    <div id={id} className="card h-100">
+      <img src={image} className="card-img-top" alt="..."/>
+      <div className="card-body">
+        <h5 className="card-title">{title}</h5>
+        <p className="card-text">{diets}</p>
+        <p className="card-text">{healthScore}</p>
         
       </div>
     </div>
