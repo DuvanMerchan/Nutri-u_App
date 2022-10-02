@@ -1,7 +1,7 @@
 const  { Router } = require("express")
 const router = Router()
-const { getApiRecipes } = require("../controllers/guest.controllers")
-const { getApiNameRecipes } = require("../controllers/guest.controllers")
+const { getApiRecipes } = require("../controllers/recipescontrollers")
+const { getApiNameRecipes } = require("../controllers/recipescontrollers")
 
 router.get("/", async (req, res) => {
     

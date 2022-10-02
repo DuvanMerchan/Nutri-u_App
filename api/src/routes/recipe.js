@@ -1,56 +1,71 @@
-const { Router } = require("express")
-const router = Router()
-const { getApiRecipeByID } = require("../controllers/guest.controllers")
+const { Router } = require("express");
+const router = Router();
+const Recipe = require("../db");
+const { getApiRecipeByID } = require("../controllers/recipescontrollers");
+const { createRecipe } = require("../controllers/recipecotrollers");
 
-router.get("/:id", async(req, res) => {
-    
-    let { id } = req.params;
-    
-    try {
+router.get("/:id", async (req, res) => {
+  let { id } = req.params;
 
-        return res.status(200).json(await getApiRecipeByID(id))
+  try {
+    return res.status(200).json(await getApiRecipeByID(id));
+  } catch (error) {
+    return res
+      .status(400)
+      .json({ error: "error getting that specific recipe" });
+  }
+});
 
-    } catch(error) {
+router.post("/", async (req, res) => {
+  const {
+    name,
+    vegetarian,
+    vegan,
+    glutenFree,
+    dairyFree,
+    veryPopular,
+    healthScore,
+    image,
+    summary,
+    cuisines,
+    dishTypes,
+    diets,
+  } = req.body;
 
-        return res.status(400).json({error: "error getting that specific recipe"})
-    }
-})
+  try {
+    if (
+      !(
+        name &&
+        vegetarian &&
+        vegan &&
+        glutenFree &&
+        dairyFree &&
+        veryPopular &&
+        summary &&
+        diets
+      )
+    )
+      throw new Error("We dont recive all the necessary info");
 
-router.post('/', async (req, res) => {
+    createRecipe(
+      name,
+      vegetarian,
+      vegan,
+      glutenFree,
+      dairyFree,
+      veryPopular,
+      healthScore,
+      image,
+      summary,
+      cuisines,
+      dishTypes,
+      diets
+    );
 
-    const { name, vegetarian, vegan, glutenFree, dairyFree, veryPopular, healthScore, image, summary, cuisines, dishTypes, diet } = req.body;
-    
-    try{
-        if(!(name && vegetarian && vegan && glutenFree && dairyFree && veryPopular && summary && diet)) throw new Error ('We dont recive all the necessary info')
-        
-        const findRecipe = await recipe.findAll({where: {name: name}})
-        if(findRecipe.length !== 0) throw new Error ('This recipe already exist')
-
-        const newRecipe = await recipe.create({
-           name,
-           vegetarian,
-           vegan, 
-           glutenFree, 
-           dairyFree, 
-           veryPopular, 
-           healthScore: healthScore ? healthScore : 0, 
-           image: image ? image : '', 
-           summary, 
-           cuisines: cuisines ? cuisines : 'no cuisines available', 
-           dishTypes: dishTypes ? dishTypes: 'no dish type available'
-        })
-        console.log(newRecipe)
-        const dietType = await dietTypes.findAll({
-            where: {name: diet}
-        })
-        newRecipe.addDiet(dietType)
-        
-        res.send('Recipe created successfully')
-
-    }catch(e){
-        res.send(e.message)
-    }
-
-})
+    res.send("Recipe created successfully");
+  } catch (e) {
+    res.send(e.message);
+  }
+});
 
 module.exports = router;

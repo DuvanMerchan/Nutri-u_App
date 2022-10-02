@@ -10,17 +10,12 @@ conn.sync({ force: true }).then(() => {
   server.listen(DB_PORT, () => {
     console.log(`%s listening at ${DB_PORT}`); // eslint-disable-line no-console
  
-    dietTypes.forEach(async d =>{
-    
-            // const exist = await Diet.findOne({where: {name: d.name}})
-            
+    dietTypes.forEach(async d =>{           
                 await Diet.create({
                     id: d.id,
-                    name: d.name,
+                    name: d.name.toLowerCase(),
                     description: d.description
                 })
-            
-            // console.log(exist)
         })
 
   });

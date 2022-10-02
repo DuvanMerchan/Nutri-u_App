@@ -90,83 +90,12 @@ const getApiNameRecipes = async(name) => {
 //     }
 
 
-const getApiRecipeByID = async(id) => {
 
-    if(id.length > 15){
-    
-        try {
 
-        const recipeDb = await Recipe.findByPk(id, {include:Diet});
-    
-        return recipeDb.dataValues;
-    
-    } catch(error) {
-        throw new Error("That recipe does not exist") 
-    }
 
-    } else {
-    
-    const url = (`https://api.spoonacular.com/recipes/${id}/information?&apiKey=${API_KEY}&addRecipeInformation=true&number=100`);
-    const recipeApi = await axios.get(url);
-    
-    const recipeData = {
-        name: recipeApi.title,
-        vegetarian: recipeApi.vegetarian,
-        vegan: recipeApi.vegan,
-        glutenFree: recipeApi.glutenFree,
-        dairyFree: recipeApi.dairyFree,
-        veryPopular: recipeApi.veryPopular,
-        healthScore: recipeApi.healthScore,
-        image: recipeApi.image,
-        summary: recipeApi.summary,
-        cuisines: recipeApi.cuisines?.map(ele => ele),
-        dishTypes: recipeApi.dishTypes?.map(ele => ele),
-        diets: recipeApi.diets?.map(ele => ele),
-        //ingredients: recipeApi.analyzedInstructions[0].steps?.map(ele => ele.ingredients.name): "does not have any ingredient"
 
-            }           
-                return recipeData;
-        }
-    }
-
-    const getApiIngredientByID = async (req, res) => {
-        
-        const { ingredientID } = req.params;
-
-        try{
-            if(ingredientID){
-                let { data } = await axios.get(`https://api.spoonacular.com/food/ingredients/${ingredientID}/information?amount=1&apiKey=${API_KEY}`)
-                if(data.hasOwnProperty('id')) res.json(data)
-                else{throw new Error(`We can't find a recipe with id: ${ingredientID}`)}
-            }else{
-                throw new Error(`We need an id to search a recipe`)
-            }
-
-        }catch(e){
-            res.sen(e.message)
-        }
-
-    }
-
-    const getDietByID = async(id) => {
-        
-        try{
-            const axiosID = await axios.get(dietTypes)
-            const { results } = axiosID
-            
-            let dietName = results?.filter(e => e.id === id)
-            return dietName
-
-        }catch(e){
-            console.log(e)
-        }
-
-    }
 
 module.exports = {
     getApiRecipes,
     getApiNameRecipes,
-    getApiRecipeByID,
-    getApiIngredientByID,
-    getDietByID
 }
