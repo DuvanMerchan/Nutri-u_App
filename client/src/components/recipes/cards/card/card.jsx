@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Card = ({id, title, diets, image, healthScore})=>{
+export const Card = ({id,image,name, healthScore})=>{
     
 
     return(
@@ -10,8 +10,7 @@ export const Card = ({id, title, diets, image, healthScore})=>{
     <div id={id} className="card h-100">
       <img src={image} className="card-img-top" alt="..."/>
       <div className="card-body">
-        <h5 className="card-title">{title}</h5>
-        <p className="card-text">{diets}</p>
+        <h5 className="card-title">{name}</h5>
         <p className="card-text">{healthScore}</p>
         
       </div>
