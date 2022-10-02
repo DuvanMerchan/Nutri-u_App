@@ -1,5 +1,5 @@
 //--------------------- ALL DIET TYPES ---------------------
-export const dietTypes = [
+const dietTypes = [
     {
         id: 1,
         name: 'Gluten Free',
@@ -51,5 +51,7 @@ export const dietTypes = [
         description: 'Allowed ingredients include meat, fish/seafood, eggs, vegetables, fresh fruit, coconut oil, olive oil, small amounts of dried fruit and nuts/seeds. Ingredients not allowed include added sweeteners (natural and artificial, except small amounts of fruit juice), dairy (except clarified butter or ghee), alcohol, grains, legumes (except green beans, sugar snap peas, and snow peas), and food additives, such as carrageenan, MSG, and sulfites.',
     },
 ];
+
+module.exports = dietTypes;
 
 //----------------------------------------------------------------------------------------------------
