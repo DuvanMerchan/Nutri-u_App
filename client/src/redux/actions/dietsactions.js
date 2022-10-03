@@ -1,10 +1,11 @@
 import axios from "axios";
 import { filterByDiet, getAllDiets, getDietDetail, getDietByName } from "../dietsSlice";
-import {REACT_APP_HOST} from process.env
+
+require('dotenv').config()
 
 export const getDiets =()=>async (dispatch)=>{
     try {
-        let res = await axios.get(`http://${REACT_APP_HOST}/recipes`)
+        let res = await axios.get(`http://${process.env.REACT_APP_HOST}/diets`)
         dispatch(getAllDiets(res.data))
     } catch (error) {
         console.log(error)
@@ -13,7 +14,7 @@ export const getDiets =()=>async (dispatch)=>{
 
 export const getDetail =(id)=>async (dispatch)=>{
     try {
-        let res = await axios.get(`http://${REACT_APP_HOST}/recipe/${id}`)
+        let res = await axios.get(`http://${process.env.REACT_APP_HOST}/diets/${id}`)
         dispatch(getDietDetail(res.data))
     } catch (error) {
         console.log(error)
@@ -21,7 +22,7 @@ export const getDetail =(id)=>async (dispatch)=>{
 }
 export const getByName =(name)=>async (dispatch)=>{
     try {
-        let res = await axios.get(`http://${REACT_APP_HOST}/recipes?${name}`)
+        let res = await axios.get(`http://${process.env.REACT_APP_HOST}/diets?${name}`)
         dispatch(getDietByName(res.data))
     } catch (error) {
         console.log(error)
