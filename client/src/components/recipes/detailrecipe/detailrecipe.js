@@ -19,6 +19,7 @@ const RecipeDetail =()=>{
 
     useEffect(() => {
         dispatch(getRecipeDetail(id));
+        console.log(recipe)
     },[])
     
      return(
@@ -27,7 +28,7 @@ const RecipeDetail =()=>{
              
             <div className={style.detailContainer}>
                 <h1>Recipe Name</h1>
-                <h2>{recipe.title}</h2>
+                <h4>{recipe.name}</h4>
                 <img src={recipe.image} alt ='recipe'/>
                 <h1>Summary</h1>
                 <p className={style.sumary} dangerouslySetInnerHTML={{__html:recipe.summary}}/>
