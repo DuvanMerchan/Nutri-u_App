@@ -63,8 +63,13 @@ module.exports = (sequelize) => {
         dishTypes: {
             type: DataTypes.STRING,
             allowNull: true,
-        },      
-    }, {
+        },   
+        
+        createdInDB: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true,
+            allowNull: false,
+        }, 
         timestamps: false,
     });
 };

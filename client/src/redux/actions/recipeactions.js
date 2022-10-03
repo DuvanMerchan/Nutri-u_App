@@ -58,14 +58,14 @@ export const getRecipeDetail =(id)=> async (dispatch) => {
 // }
 
 
-// export const postRecipe = async (dispatch) => {
-//     try{
-//         let res = await axios.post(`http://${process.env.REACT_APP_HOST}/recipe`)
-//         dispatch(createRecipe(res.data))
-//     }catch(e){
-//         console.log(e)
-//     }
-// }
+export const postRecipe = async (dispatch) => {
+    try{
+        let res = await axios.post(`http://${process.env.REACT_APP_HOST}/recipe`)
+        dispatch(createRecipe(res.data))
+    }catch(e){
+        console.log(e)
+    }
+}
 
 
 // export const deleteRecipeByID = async (dispatch) => {
