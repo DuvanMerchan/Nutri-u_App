@@ -41,7 +41,7 @@ export const Cards = () => {
 
     //--------/PAGINADO/--------------------//
 const [currentPage, setCurrentPage] = useState(1);  //act
-const [recipesPerPage] = useState(6)
+const [recipesPerPage] = useState(12)
 const lastCountry = currentPage * recipesPerPage ;  // 1 10
 const firstCountry = lastCountry - recipesPerPage; // 10 - 10 .. 0
 const currentRecipe = recipes.slice(firstCountry, lastCountry);   

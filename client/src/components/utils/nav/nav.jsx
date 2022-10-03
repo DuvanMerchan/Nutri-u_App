@@ -1,38 +1,57 @@
 import React from "react";
-
+import "./nav.css"
+import img from "./logo"
 
 
 
 export const NavBar = () => {
     return (
-        <div>
-            <div className="collapse" id="navbarToggleExternalContent">
-                <div class="bg-dark p-4">
-                    <h5 class="text-white h4">Collapsed content</h5>
-                    <span className="text-muted">Toggleable via the navbar brand.</span>
-                </div>
-            </div>
-            <nav className="navbar navbar-dark bg-success">
-                <div className="container-fluid">
-
-                    <button onClick={()=>""} className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-
-                    {/* <form className="d-flex" role="search">
-                        <input className="form-control me-2" type="search" placeholder="Search Recipes" aria-label="Search" />
-                        <button className="btn btn-outline-success" type="submit">Search</button>
-                    </form> */}
-
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16">
-                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                    </svg>
-
-                    
-
-                </div>
-            </nav>
+        <div className="NavBar">
+            <header class="navigation bg-tertiary">
+	<nav class="navbar navbar-expand-xl navbar-light text-center py-3">
+		<div class="container">
+			<a class="navbar-brand" href="index.html">
+				<img loading="prelaod" decoding="async" class="img-fluid" width="160" src={img} alt="Wallet"/>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+					<li class="nav-item"> <a class="nav-link" href="index.html">Home</a>
+					</li>
+					<li class="nav-item "> <a class="nav-link" href="about.html">About</a>
+					</li>
+					<li class="nav-item "> <a class="nav-link" href="how-it-works.html">How It Works</a>
+					</li>
+					<li class="nav-item "> <a class="nav-link" href="services.html">Services</a>
+					</li>
+					<li class="nav-item "> <a class="nav-link" href="contact.html">Contact</a>
+					</li>
+					<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item " href="blog.html">Blog</a>
+							</li>
+							<li><a class="dropdown-item " href="blog-details.html">Blog Details</a>
+							</li>
+							<li><a class="dropdown-item " href="service-details.html">Service Details</a>
+							</li>
+							<li><a class="dropdown-item " href="faq.html">FAQ&#39;s</a>
+							</li>
+							<li><a class="dropdown-item " href="legal.html">Legal</a>
+							</li>
+							<li><a class="dropdown-item " href="terms.html">Terms &amp; Condition</a>
+							</li>
+							<li><a class="dropdown-item " href="privacy-policy.html">Privacy &amp; Policy</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<a id ="Login"href="#!" class="btn btn-outline-primary">Log In</a>
+				<a id ="SignUp"href="#!" class="btn btn-primary ms-2 ms-lg-3">Sign Up</a>
+			</div>
+		</div>
+	</nav>
+</header>
             
         </div>
     )
