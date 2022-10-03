@@ -78,7 +78,7 @@ const getApiNameRecipes = async(name) => {
         if(results !==0) {
             let dishName = results?.map((el) => {
                 return {
-                    id: e.id,
+                    id: el.id,
                     name: el.title,
                     vegetarian: el.vegetarian,
                     vegan: el.vegan,
