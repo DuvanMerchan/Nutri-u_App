@@ -6,11 +6,12 @@ import {getAllRecipes, orderByRating
 //-------------------- RUTAS --------------------------
 
 //import {REACT_APP_HOST} from process.env
+require('dotenv').config()
 
 //-------------------- ACTIONS ------------------------
 export const getRecipes = ()=> async (dispatch) => {
     try{
-        let res = await axios.get(`http://localhost:5001/recipes`)
+        let res = await axios.get(`http://${process.env.REACT_APP_HOST}/recipes`)
         dispatch(getAllRecipes(res.data))
     }catch(e){
         console.log(e.message)

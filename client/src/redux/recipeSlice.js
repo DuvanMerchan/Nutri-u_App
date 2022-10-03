@@ -1,13 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 //import { recetas } from "../components/recetas";
 
+
 export const recipesSlice = createSlice({
     name: 'recipes',
     initialState:{
         recipes:[],
         allrecipes:[],
         detail:{},
+        recipeshall:[],
     },
+    
     reducers:{
         getAllRecipes: (state, action)=>{
             state.recipes = action.payload
