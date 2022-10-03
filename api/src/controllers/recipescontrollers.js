@@ -27,6 +27,7 @@ const getApiRecipes = async() => {
                     //cuisines: e.cuisines?.map(ele => ele),
                     //dishTypes: e.dishTypes?.map(ele => ele),
                     diets: e.diets?.map(ele => ele),
+                    createdInDB: false
                     //ingredients: e.analyzedInstructions[0].steps?.map(ele => ele.ingredients.name): "does not have any ingredient"
             }
         })
@@ -61,7 +62,8 @@ const getDBRecipes = async() => {
                 healthScore: e.healthScore,
                 image: e.image,
                 summary: e.summary,
-                diets: e.diets?.map(ele => ele.name)
+                diets: e.diets?.map(ele => ele.name),
+                createdInDB: e.createdInDB,
             }
         })
         return data
@@ -127,7 +129,8 @@ const getDBNameRecipes = async(name) => {
                 healthScore: e.healthScore,
                 image: e.image,
                 summary: e.summary,
-                diets: e.diets?.map(ele => ele.name)
+                diets: e.diets?.map(ele => ele.name),
+                createdInDB: e.createdInDB,
             }
         })
         return data
@@ -140,8 +143,8 @@ const getDBNameRecipes = async(name) => {
 const getAllInfo = async() => {
     try {
             let data = await getApiRecipes()
-           let dbData = await getDBRecipes()
-           if(!dbData || dbData.length === 0) {
+            let dbData = await getDBRecipes()
+            if(!dbData || dbData.length === 0) {
 
             if(!data || data.length === 0) {
                 throw new Error("Oops, we couldn't find any recipes")
