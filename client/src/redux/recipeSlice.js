@@ -5,11 +5,13 @@ export const recipesSlice = createSlice({
     name: 'recipes',
     initialState:{
         recipes:[],
+        allrecipes:[],
         detail:{},
     },
     reducers:{
         getAllRecipes: (state, action)=>{
             state.recipes = action.payload
+            state.allrecipes = action.payload
         },
         getRecipeById: (state, action)=>{
             state.detail = action.payload
@@ -24,8 +26,30 @@ export const recipesSlice = createSlice({
             state.recipes = action.payload
         },
         orderByRating: (state, action)=>{
-            state.recipes = state.recipes.sort((a,b)=> b.rating - a.rating)
-        }
+            
+            action.payload === "MENOR"? state.recipes.sort((a, b)=>{
+                
+                if (a.healthScore < b.healthScore) {
+                    return 1;
+                }
+                if(a.healthScore > b.healthScore) {
+                    return -1;
+                }
+
+            }) :
+                state.recipes.sort((a, b) => {
+
+                    if (a.healthScore < b.healthScore) {
+                        return -1;
+                    }
+                    if (a.healthScore > b.healthScore) {
+                        return 1;
+                    }
+                    return 0;
+                })
+            
+        },
+
     }
 })
 
