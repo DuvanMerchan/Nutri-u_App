@@ -6,10 +6,14 @@ export const recipesSlice = createSlice({
     initialState:{
         recipes:[],
         detail:{},
+        recipeshall:[],
     },
+    
     reducers:{
         getAllRecipes: (state, action)=>{
             state.recipes = action.payload
+            state.recipeshall = action.payload
+
         },
         getRecipeById: (state, action)=>{
             state.detail = action.payload
