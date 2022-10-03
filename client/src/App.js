@@ -10,6 +10,7 @@ function App() {
       <Route exact path="/" element={<Home/>} />
       <Route exact path="/register" element={<Register/>} />
     </Routes>
+    
     </div>
   );
 }
