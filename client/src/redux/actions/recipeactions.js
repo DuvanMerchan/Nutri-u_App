@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {getAllRecipes, 
+import {getAllRecipes, orderByRating
     //getRecipeById, getRecipesByName, createRecipe, deleteRecipe, orderByRating
 } from '../recipeSlice'
 
@@ -18,6 +18,14 @@ export const getRecipes = ()=> async (dispatch) => {
     }
 }
 
+
+export const orderForRating = (payload)=> async (dispatch)=>{
+    try {
+        dispatch(orderByRating(payload))
+    } catch (error) {
+        
+    }
+}
 
 // export const getRecipeDetail = async (dispatch) => {
 //     try{
