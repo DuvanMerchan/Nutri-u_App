@@ -26,6 +26,7 @@ export const orderForRating = (payload)=> async (dispatch)=>{
     }
 }
 
+
 // export const getRecipeDetail = async (dispatch) => {
 //     try{
 //         let res = await axios.get(`http://${process.env.REACT_APP_HOST}/recipe/${id}`)
