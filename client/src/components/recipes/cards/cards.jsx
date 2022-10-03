@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react";
 import { Card } from "./card/card";
 import "./cards.css"
 import Paginado from "./paginado/paginado";
-import { getRecipes, orderForRating } from "../../../redux/actions/recipeactions";
+import { getRecipes, orderForRating, getRecipesName } from "../../../redux/actions/recipeactions";
 import { useDispatch, useSelector } from "react-redux";
 
 
@@ -18,6 +18,25 @@ export const Cards = () => {
       setCurrentPage(1);                                            //  1-2 2-1
       setOrden(`Ordenado ${e.target.value}`);
     }
+
+
+
+    const [inputSearchBar, setInputSearchBar] = useState('')
+
+    function onSubmitSearchbar(e){
+      e.preventDefault();
+      setCurrentPage(1);
+      dispatch(getRecipesName(inputSearchBar))
+      setInputSearchBar('')
+    }
+    
+    
+    function onInputChangeSearchbar(e){
+        e.preventDefault();
+        setInputSearchBar(e.target.value)
+    }
+
+
 
 
     //--------/PAGINADO/--------------------//
@@ -43,6 +62,18 @@ const paginado = (pageNumber) => {
     return (
         <div className="CardsRecipes">
             <h1>RECIPES</h1>
+
+
+            <div className="Search">
+    <p>Search Recipes</p>
+      <form onSubmit={onSubmitSearchbar}>
+            <input 
+   list="listframe" type="text" onChange={onInputChangeSearchbar} value={inputSearchBar}/>
+            <input className="" type="submit" value="Search"/>
+        </form>
+    </div>
+
+
             <div className="OrdenRankingRecipes">
         <p>Ranking Recipes</p>
     <select className=''
@@ -62,7 +93,7 @@ const paginado = (pageNumber) => {
                 
                   return(
                     <div id={el.id}>
-                      <a href={"/recipes/" + el.id}  className="Links" >
+                      <a href={"/detail/" + el.id}  className="Links" >
                     <Card
                     id={el.id}
                     image={el.image}

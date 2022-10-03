@@ -1,6 +1,6 @@
 import axios from 'axios'
-import {getAllRecipes, orderByRating
-    //getRecipeById, getRecipesByName, createRecipe, deleteRecipe, orderByRating
+import {getAllRecipes, orderByRating, getRecipesByName,
+    getRecipeById//getRecipesByName, createRecipe, deleteRecipe, orderByRating
 } from '../recipeSlice'
 
 //-------------------- RUTAS --------------------------
@@ -25,16 +25,27 @@ export const orderForRating = (payload)=> async (dispatch)=>{
     } catch (error) {
         
     }
+
 }
 
-// export const getRecipeDetail = async (dispatch) => {
-//     try{
-//         let res = await axios.get(`http://${process.env.REACT_APP_HOST}/recipe/${id}`)
-//         dispatch(getRecipeById(res.data))
-//     }catch(e){
-//         console.log(e)
-//     }
-// }
+
+export const getRecipesName = (payload)=> async (dispatch)=>{
+    try {
+        let res = await axios.get(`http://${process.env.REACT_APP_HOST}/recipes?name=${payload}`)
+        dispatch(getRecipesByName(res.data))
+    } catch (error) {
+        
+    }
+}
+
+export const getRecipeDetail =(id)=> async (dispatch) => {
+    try{
+        let res = await axios.get(`http://${process.env.REACT_APP_HOST}/recipe/${id}`)
+        dispatch(getRecipeById(res.data))
+    }catch(e){
+        console.log(e)
+    }
+}
 
 
 // export const getByName = async (dispatch) => {
