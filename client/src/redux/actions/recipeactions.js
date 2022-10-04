@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {getAllRecipes, orderByRating, getRecipesByName,
-    getRecipeById//getRecipesByName, createRecipe, deleteRecipe, orderByRating
+    getRecipeById,createRecipe//getRecipesByName, createRecipe, deleteRecipe, orderByRating
 } from '../recipeSlice'
 
 //-------------------- RUTAS --------------------------
