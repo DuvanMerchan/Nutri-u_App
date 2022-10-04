@@ -2,13 +2,16 @@ import React, { useState,useEffect } from "react";
 import { Card } from "./card/card";
 import "./cards.css"
 import Paginado from "./paginado/paginado";
-import { getRecipes, orderForRating, getRecipesName } from "../../../redux/actions/recipeactions";
+import { getRecipes, orderForRating, getRecipesName, filterDiet } from "../../../redux/actions/recipeactions";
+import { getDiets } from '../../../redux/actions/dietsactions'
 import { useDispatch, useSelector } from "react-redux";
 
 
 export const Cards = () => {
     const dispatch = useDispatch();
     const {recipes} = useSelector((state) => state.recipes);
+    const { diets } = useSelector((state) => state.diets)
+    // console.log('diets', diets)
 
 
 
@@ -19,6 +22,11 @@ export const Cards = () => {
       setOrden(`Ordenado ${e.target.value}`);
     }
 
+    function handleSortByDiet(e){
+      e.preventDefault();
+      setCurrentPage(1);
+      dispatch(filterDiet(e.target.value))
+    }
 
 
     const [inputSearchBar, setInputSearchBar] = useState('')
@@ -55,8 +63,9 @@ const paginado = (pageNumber) => {
 
     useEffect(() => {
         dispatch(getRecipes())
+        dispatch(getDiets())
     }, []);
-    console.log('recipes',recipes)
+    // console.log('recipes',recipes)
 
 
     return (
@@ -85,6 +94,19 @@ const paginado = (pageNumber) => {
           <option value={"MENOR"}>TOP</option>
           <option value={"MAYOR"}>BOTTOM</option>
           
+        </select>
+        <p>Sort by Diet</p>  
+        <select  onChange={(e) => {
+          handleSortByDiet(e)
+        }}>
+          <option hidden={true}value='all'>Select Diet</option>
+          {
+            diets.map(e => {
+              return(
+                <option key={e.id} value={e.name}>{e.name}</option>
+              )
+            })
+          }
         </select>
         </div>
             <div className="row row-cols-1 row-cols-md-3 g-4">
