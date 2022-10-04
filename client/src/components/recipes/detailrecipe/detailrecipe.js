@@ -57,6 +57,7 @@ const RecipeDetail =()=>{
             </div>
 
             <div class="sub-footer">
+
             </div>
 
         </div>
@@ -74,12 +75,6 @@ const RecipeDetail =()=>{
     </div>
 
     </div>
-
-
-
-
-
-
 
 
     )
