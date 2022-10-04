@@ -31,8 +31,10 @@ export const orderForRating = (payload)=> async (dispatch)=>{
 
 export const getRecipesName = (payload)=> async (dispatch)=>{
     try {
+        let nodata = [{nodata:"Sorry, there are no recipes of this type"}]
+
         let res = await axios.get(`http://${process.env.REACT_APP_HOST}/recipes?name=${payload}`)
-        dispatch(getRecipesByName(res.data))
+        dispatch(getRecipesByName(res.data.length?res.data:nodata))
     } catch (error) {
         
     }

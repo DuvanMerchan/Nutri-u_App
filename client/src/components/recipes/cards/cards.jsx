@@ -92,6 +92,8 @@ const paginado = (pageNumber) => {
                 {currentRecipe.map((el)=>{
                 
                   return(
+                    <div className="CardHeader">
+                      {el.nodata?<h1>{el.nodata}</h1>:
                     <div id={el.id}>
                       <a href={"/detail/" + el.id}  className="Links" >
                     <Card
@@ -102,6 +104,7 @@ const paginado = (pageNumber) => {
                   />
                   </a>
                   </div>
+                  }</div>
                   )})}
                   
             </div>

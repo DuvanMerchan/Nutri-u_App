@@ -7,7 +7,7 @@ import { getDiets } from "../../../redux/actions/dietactions";
 
 
 
-const CreateRecipe = () => {
+export const CreateRecipe = () => {
     const recipes = useSelector(state => state.recipes);
     const db = recipes.filter(e => e.createdInDB === true);
     const [input, setInput] = useState({
@@ -192,7 +192,7 @@ const CreateRecipe = () => {
         </form>
         </div>
 
-        <div className='conteinerDiets'>
+        {/* <div className='conteinerDiets'>
         <div className='selectedDiets'>Selected Diets</div>
         <div className='diets'>
         {
@@ -204,11 +204,10 @@ const CreateRecipe = () => {
             })
         }
         </div>
-        </div>
+        </div> */}
     </div>
     )
 }
 
 
 
-export default CreateRecipe

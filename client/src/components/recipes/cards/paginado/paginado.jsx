@@ -14,9 +14,12 @@ export default function Paginado({recipesPerPage, recipes, paginado, currentPage
     }
     return(
         <nav className='Paginado'>
-            <button disabled ={currentPage<=1} onClick={()=> paginado(currentPage -1) }>Back</button>
-                
+            
+            <div className="container xlarge">
+            <div className="pagination">  
+           
             <ul className ='ul'>
+            <button className="Button-Paginado" disabled ={currentPage<=1} onClick={()=> paginado(currentPage -1) }>{"<<"}</button>
                 {pageNumbrers && 
                 pageNumbrers.map(number =>(
                     
@@ -26,9 +29,11 @@ export default function Paginado({recipesPerPage, recipes, paginado, currentPage
                     </li> 
                     
                 ))}
-                
+            <button className="Button-Paginado" disabled={pageNumbrers.length < currentPage+1?true:false} onClick={()=>paginado(currentPage + 1)}>{">>"}</button>    
             </ul>
-            <button disabled={pageNumbrers.length < currentPage+1?true:false} onClick={()=>paginado(currentPage + 1)}>Next</button>
+            </div>
+            </div>
+            
         </nav>
     )
 }

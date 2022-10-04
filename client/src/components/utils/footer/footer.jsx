@@ -24,7 +24,7 @@ export const Footer = ()=>{
                             <i class="fas fa-phone"></i>
                             <div class="cta-text">
                                 <h4>Call us</h4>
-                                <span>+54</span>
+                                <span>0800-444-nutriu</span>
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@ export const Footer = ()=>{
                     <div class="col-xl-4 col-lg-4 mb-50">
                         <div class="footer-widget">
                             <div class="footer-logo">
-                                <a href="index.html"><img src={img} class="img-fluid" alt="logo" width={75}/></a>
+                                <a href="/"><img src={img} class="img-fluid" alt="logo" width={75}/></a>
                             </div>
                             <div class="footer-text">
                                 <p>Lorem ipsum dolor sit amet, consec tetur adipisicing elit, sed do eiusmod tempor incididuntut consec tetur adipisicing
@@ -69,10 +69,7 @@ export const Footer = ()=>{
                                 <li><a href="/services">services</a></li>
                                 <li><a href="/nustritionist">Nutritionist</a></li>
                                 <li><a href="/contact">Contact</a></li>
-                                <li><a href="/about">About us</a></li>
-                                <li><a href="/ourservices">Our Services</a></li>
-                                <li><a href="/team">Expert Team</a></li>
-                                <li><a href="/contact">Contact us</a></li>
+
                                 <li><a href="/lates">Latest News</a></li>
                             </ul>
                         </div>
