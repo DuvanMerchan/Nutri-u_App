@@ -1,7 +1,8 @@
 import axios from 'axios'
 import {getAllRecipes, orderByRating, getRecipesByName,
-    getRecipeById,createRecipe//getRecipesByName, createRecipe, deleteRecipe, orderByRating
+    getRecipeById,createRecipe, filterByDiet, getDiets_Recipe//getRecipesByName, createRecipe, deleteRecipe, orderByRating
 } from '../recipeSlice'
+
 
 //-------------------- RUTAS --------------------------
 
@@ -13,6 +14,8 @@ export const getRecipes = ()=> async (dispatch) => {
     try{
         let res = await axios.get(`http://${process.env.REACT_APP_HOST}/recipes`)
         dispatch(getAllRecipes(res.data))
+        let res2 = await axios.get(`http://${process.env.REACT_APP_HOST}/diets`)
+        dispatch(getDiets_Recipe(res2.data))
     }catch(e){
         console.log(e.message)
     }
@@ -46,6 +49,14 @@ export const getRecipeDetail =(id)=> async (dispatch) => {
         dispatch(getRecipeById(res.data))
     }catch(e){
         console.log(e)
+    }
+}
+
+export const filterDiet =(payload)=>async (dispatch)=>{
+    try {
+        dispatch(filterByDiet(payload))
+    } catch (error) {
+        console.log(error)
     }
 }
 

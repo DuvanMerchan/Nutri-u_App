@@ -13,7 +13,11 @@ export const recipesSlice = createSlice({
         getAllRecipes: (state, action)=>{
             state.recipes = action.payload
             state.allrecipes = action.payload
-
+            // console.log('receta',state.recipes)
+        },
+        getDiets_Recipe:(state, action) => {
+            state.diets = action.payload
+            state.allDiets = action.payload
         },
         getRecipeById: (state, action)=>{
             state.detail = action.payload
@@ -50,10 +54,26 @@ export const recipesSlice = createSlice({
                     return 0;
                 })
             
+        },
+        filterByDiet:  (state, action)=>{
+
+            const recipes = state.recipes
+            
+            const dietsFil = action.payload === 'all' ? recipes : recipes.filter(recipe => {
+                if(recipe.diets.length > 1){
+                    let dietsFilt = recipe.diets.map(di => di)
+                    console.log('slice',dietsFilt)
+                    return dietsFilt.includes(action.payload)
+                }
+                return true
+            })
+            console.log('asdsad',dietsFil)
+            state.recipes = dietsFil
+        
         }
     }
 })
 
-export const {getAllRecipes, getRecipeById, getRecipesByName, createRecipe, deleteRecipe, orderByRating} = recipesSlice.actions
+export const {getAllRecipes, getRecipeById, getRecipesByName, createRecipe, deleteRecipe, orderByRating, filterByDiet, getDiets_Recipe} = recipesSlice.actions
 
 export default recipesSlice.reducer

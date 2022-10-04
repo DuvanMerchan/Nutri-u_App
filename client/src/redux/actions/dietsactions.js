@@ -29,10 +29,10 @@ export const getByName =(name)=>async (dispatch)=>{
     }
 }
 
-export const filterDiet =()=>async (dispatch)=>{
-    try {
-        dispatch(filterByDiet(payload))
-    } catch (error) {
-        console.log(error)
-    }
-}
+// export const filterDiet =(payload)=>async (dispatch)=>{
+//     try {
+//         dispatch(filterByDiet(payload))
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
