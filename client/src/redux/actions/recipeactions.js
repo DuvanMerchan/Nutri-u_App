@@ -12,9 +12,9 @@ require('dotenv').config()
 //-------------------- ACTIONS ------------------------
 export const getRecipes = ()=> async (dispatch) => {
     try{
-        let res = await axios.get(`http://localhost:5000/recipes`)
+        let res = await axios.get(`http://${process.env.REACT_APP_HOST}/recipes`)
         dispatch(getAllRecipes(res.data))
-        let res2 = await axios.get(`http://localhost:5000/diets`)
+        let res2 = await axios.get(`http://${process.env.REACT_APP_HOST}/diets`)
         dispatch(getDiets_Recipe(res2.data))
     }catch(e){
         console.log(e.message)
@@ -34,8 +34,10 @@ export const orderForRating = (payload)=> async (dispatch)=>{
 
 export const getRecipesName = (payload)=> async (dispatch)=>{
     try {
-        let res = await axios.get(`http://localhost:5000/recipes?name=${payload}`)
-        dispatch(getRecipesByName(res.data))
+        let nodata = [{nodata:"Sorry, there are no recipes of this type"}]
+
+        let res = await axios.get(`http://${process.env.REACT_APP_HOST}/recipes?name=${payload}`)
+        dispatch(getRecipesByName(res.data.length?res.data:nodata))
     } catch (error) {
         
     }
@@ -43,7 +45,7 @@ export const getRecipesName = (payload)=> async (dispatch)=>{
 
 export const getRecipeDetail =(id)=> async (dispatch) => {
     try{
-        let res = await axios.get(`http://localhost:5000/recipe/${id}`)
+        let res = await axios.get(`http://${process.env.REACT_APP_HOST}/recipe/${id}`)
         dispatch(getRecipeById(res.data))
     }catch(e){
         console.log(e)
