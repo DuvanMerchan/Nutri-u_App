@@ -1,7 +1,8 @@
 import axios from 'axios'
 import {getAllRecipes, orderByRating, getRecipesByName,
-    getRecipeById,createRecipe//getRecipesByName, createRecipe, deleteRecipe, orderByRating
+    getRecipeById,createRecipe, filterByDiet, getDiets_Recipe//getRecipesByName, createRecipe, deleteRecipe, orderByRating
 } from '../recipeSlice'
+
 
 //-------------------- RUTAS --------------------------
 
@@ -11,8 +12,10 @@ require('dotenv').config()
 //-------------------- ACTIONS ------------------------
 export const getRecipes = ()=> async (dispatch) => {
     try{
-        let res = await axios.get(`http://${process.env.REACT_APP_HOST}/recipes`)
+        let res = await axios.get(`http://localhost:5000/recipes`)
         dispatch(getAllRecipes(res.data))
+        let res2 = await axios.get(`http://localhost:5000/diets`)
+        dispatch(getDiets_Recipe(res2.data))
     }catch(e){
         console.log(e.message)
     }
@@ -31,7 +34,7 @@ export const orderForRating = (payload)=> async (dispatch)=>{
 
 export const getRecipesName = (payload)=> async (dispatch)=>{
     try {
-        let res = await axios.get(`http://${process.env.REACT_APP_HOST}/recipes?name=${payload}`)
+        let res = await axios.get(`http://localhost:5000/recipes?name=${payload}`)
         dispatch(getRecipesByName(res.data))
     } catch (error) {
         
@@ -40,10 +43,18 @@ export const getRecipesName = (payload)=> async (dispatch)=>{
 
 export const getRecipeDetail =(id)=> async (dispatch) => {
     try{
-        let res = await axios.get(`http://${process.env.REACT_APP_HOST}/recipe/${id}`)
+        let res = await axios.get(`http://localhost:5000/recipe/${id}`)
         dispatch(getRecipeById(res.data))
     }catch(e){
         console.log(e)
+    }
+}
+
+export const filterDiet =(payload)=>async (dispatch)=>{
+    try {
+        dispatch(filterByDiet(payload))
+    } catch (error) {
+        console.log(error)
     }
 }
 
