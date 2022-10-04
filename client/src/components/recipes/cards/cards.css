@@ -8,3 +8,18 @@
     
     margin: auto;
 }
+
+.OrdenRankingRecipes{
+    display: flex;
+    
+}
+
+.OrdenRankingRecipes .form-select{
+    max-width: 250px;
+}
+
+.options-recipes{
+    display: flex;
+    justify-content: space-between;
+    
+}

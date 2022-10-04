@@ -74,7 +74,7 @@ const paginado = (pageNumber) => {
             <h1>RECIPES</h1>
 
 
-
+<div className="options-recipes">
     <nav class="navbar bg-light">
   <div class="container-fluid">
     <form onSubmit={onSubmitSearchbar} class="d-flex" role="search">
@@ -86,8 +86,8 @@ const paginado = (pageNumber) => {
 
 
             <div className="OrdenRankingRecipes">
-        <p>Ranking Recipes</p>
-    <select className=''
+        
+    <select class="form-select" aria-label="Default select example"
           onChange={(e) => {
             handleSortRecipes(e);
           }}
@@ -97,8 +97,8 @@ const paginado = (pageNumber) => {
           <option value={"MAYOR"}>BOTTOM</option>
           
         </select>
-        <p>Sort by Diet</p>  
-        <select  onChange={(e) => {
+         
+        <select class="form-select" aria-label="Default select example" onChange={(e) => {
           handleSortByDiet(e)
         }}>
           <option hidden={true}value='all'>Select Diet</option>
@@ -112,6 +112,7 @@ const paginado = (pageNumber) => {
           }
         </select>
         </div>
+  </div>
             <div className="row row-cols-1 row-cols-md-3 g-4">
                 
                 {currentRecipe.map((el)=>{
