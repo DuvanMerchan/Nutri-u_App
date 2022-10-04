@@ -1,0 +1,214 @@
+import React, {useState, useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {Link} from "react-router-dom";
+import { getRecipes, postRecipe } from "../../../redux/actions/recipeactions";
+import { getDiets } from "../../../redux/actions/dietactions";
+
+
+
+
+const CreateRecipe = () => {
+    const recipes = useSelector(state => state.recipes);
+    const db = recipes.filter(e => e.createdInDB === true);
+    const [input, setInput] = useState({
+        name: "",
+        vegetarian: false,
+        vegan: false,
+        glutenFree: false,
+        dairyFree: false,
+        veryPopular: false,
+        healthScore: 0,
+        image: "",
+        summary: "",
+        diets: [],
+    })
+
+    const [error, setError] = useState({})
+    const dispacth = useDispatch()
+    const validate = (input) => {
+        let error = {}
+
+        if(!input.name.trim()) {
+            error.name = "Name is required";
+        }
+
+        let search = db.find(e => e.name.toLowerCase() === input.name.toLowerCase())  //me fijo si el nombre de la receta ya existe en la db
+        if(search){
+            error.name = "That recipe already exists";
+        }
+
+        if(!input.summary.trim()) {
+            error.summary = "Summary is required";
+        }
+
+        if(!input.healthScore || input.healthScore < 0 || input.healthScore > 100) {
+            error.healthScore = "Health Score is required and must be between 0 and 100";
+        }
+
+        if(input.diets.length === 0 || !input.diets) {
+            error.diets = "At least one Diet Type is required";
+        }
+
+        if(!input.image.trim()) {
+            error.image = "Image URL is required";
+        }
+
+        if(!input.vegetarian) {
+            error.vegetarian = "Vegetarian is required";
+        }
+
+        if(!input.vegan) {
+            error.vegan = "Vegan is required";
+        }
+
+        if(!input.glutenFree) {
+            error.glutenFree = "Gluten Free is required";
+        }
+
+        if(!input.dairyFree) {
+            error.dairyFree = "Dairy Free is required";
+        }
+
+        if(!input.veryPopular) {
+            error.veryPopular = "Very Popular is required";
+        }
+
+        return error;
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        dispacth(postRecipe(input))
+            setInput({
+                name: "",
+                vegetarian: false,
+                vegan: false,
+                glutenFree: false,
+                dairyFree: false,
+                veryPopular: false,
+                healthScore: 0,
+                image: "",
+                summary: "",
+                diets: [],
+            })
+        alert('The Recipe was created successfully')
+    }
+
+
+    const checkDiets = (e) => {
+        setInput({
+            ...input,
+            diets: input.diets.includes(e.target.value) ?
+            input.diets :
+            [...input.diets, e.target.value]
+        })
+        setError(validate({
+            ...input,
+            diets: input.diets.includes(e.target.value) ?
+            input.diets :
+            [...input.diets, e.target.value]
+        }))
+    }
+
+    const handlleChange = (e) => {
+        console.log(input)
+        setInput({
+            ...input,
+            [e.target.name] : e.target.value
+        })
+        setError(validate({
+            ...input,
+            [e.target.name] : e.target.value
+        }))
+    }
+
+    const filterDiets = (e) => {
+        let newDiets = input.diets.filter(i => i !== e.target.value)
+        setInput({
+            ...input,
+            diets: newDiets
+        })
+        setError(validate({
+            ...input,
+            diets: newDiets
+        }))
+    }
+
+
+    useEffect(() => {
+        dispacth(getDiets())
+        dispacth(getRecipes())
+    }, [dispacth])
+
+
+    const diets = useSelector(state => state.diets)
+    return (
+    <div className='formConteiner'>
+        <div className='formConteinerData'>
+            <Link className='back' to="/">🏠 Home</Link>
+            <form onSubmit={(e) => handleSubmit(e)}>
+                <div className='namerecipe'>
+                <label>Name: </label>
+                <input autoComplete="off" type="text" placeholder="Name your recipe..." name="name" value={input.name} onChange={(e) => handlleChange(e)}></input>
+                {
+                    error.name && <p className='error'>{error.name}</p>
+                }
+                </div>
+                <div className='diets'>
+                <label>Diets: </label>
+                <select defaultinput="Diets" id="diets" name="diets" onChange={(e) => checkDiets(e)}>
+                <option disabled={true}>Diets</option>
+            {
+                diets.map(e => 
+                <option key={e.name} value={e.name}>
+                    {e.name}
+                </option>
+                )
+            }
+                </select>
+                {
+                        error.diets && <p className='error'>{error.diets}</p>
+                }
+                </div>
+                <div className='summary'>
+                <label>Summary: </label>
+                <input autoComplete="off" type="text" placeholder="Describe your recipe..." name="summary" value={input.summary} onChange={(e) => handlleChange(e)}></input>
+                {
+                        error.summary && <p className='error'>{error.summary}</p>
+                }
+                </div>
+                <div className='healthScore'>
+                <label>Health Score: </label>
+                <input type="number" placeholder="Rate your recipe" name="healthScore" value={input.healthScore} onChange={(e) => handlleChange(e)}></input>
+                {
+                        error.healthScore && <p className='error'>{error.healthScore}</p>
+                }
+                </div>
+                <div className='imgCreate'>
+                <label>Image: </label>
+                <input autoComplete="off" type="text" name="image" placeholder="Copy/Paste your image URL" value={input.image} onChange={(e) => handlleChange(e)}></input>
+                </div>
+                <button className='btn1' type="submit" disabled={!input.name || Object.keys(error).length > 0}>🛠️ Create</button>
+        </form>
+        </div>
+
+        <div className='conteinerDiets'>
+        <div className='selectedDiets'>Selected Diets</div>
+        <div className='diets'>
+        {
+            input.genres?.map(e => {
+                let dietsSelected = diets.find(i => i.name === Number(e))
+                return (
+                    <button key={e} className='btn2' value={e} type="button" onClick={(e) => filterDiets(e)}>{e}</button>
+                )    
+            })
+        }
+        </div>
+        </div>
+    </div>
+    )
+}
+
+
+
+export default CreateRecipe

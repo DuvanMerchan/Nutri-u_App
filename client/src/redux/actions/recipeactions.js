@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {getAllRecipes, orderByRating, getRecipesByName,
-    getRecipeById, filterByDiet, getDiets_Recipe//getRecipesByName, createRecipe, deleteRecipe, orderByRating
+    getRecipeById,createRecipe, filterByDiet//getRecipesByName, createRecipe, deleteRecipe, orderByRating
 } from '../recipeSlice'
 
 
@@ -69,14 +69,14 @@ export const filterDiet =(payload)=>async (dispatch)=>{
 // }
 
 
-// export const postRecipe = async (dispatch) => {
-//     try{
-//         let res = await axios.post(`http://${process.env.REACT_APP_HOST}/recipe`)
-//         dispatch(createRecipe(res.data))
-//     }catch(e){
-//         console.log(e)
-//     }
-// }
+export const postRecipe = async (dispatch) => {
+    try{
+        let res = await axios.post(`http://${process.env.REACT_APP_HOST}/recipe`)
+        dispatch(createRecipe(res.data))
+    }catch(e){
+        console.log(e)
+    }
+}
 
 
 // export const deleteRecipeByID = async (dispatch) => {
