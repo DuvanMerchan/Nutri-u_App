@@ -73,14 +73,15 @@ const paginado = (pageNumber) => {
             <h1>RECIPES</h1>
 
 
-            <div className="Search">
-    <p>Search Recipes</p>
-      <form onSubmit={onSubmitSearchbar}>
-            <input 
-   list="listframe" type="text" onChange={onInputChangeSearchbar} value={inputSearchBar}/>
-            <input className="" type="submit" value="Search"/>
-        </form>
-    </div>
+
+    <nav class="navbar bg-light">
+  <div class="container-fluid">
+    <form onSubmit={onSubmitSearchbar} class="d-flex" role="search">
+      <input onChange={onInputChangeSearchbar} value={inputSearchBar} class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
 
 
             <div className="OrdenRankingRecipes">
