@@ -1,0 +1,61 @@
+/* a:link, a:visited, a:active {
+    text-decoration:none;
+}
+.sumary{
+    text-decoration: none;
+} */
+
+
+
+
+
+/* .row, .col-md-4, .col-md-8 {
+    border: 2px solid pink; 
+}
+
+.row.main-content {
+    background-color: blue;
+    height: 300px;
+    margin-top: 20px;
+ }
+
+ .row.top {
+    top: 0;
+    height: 20px;
+    width: 100%;
+    background-color: red;
+ }
+    
+ .row.bottom {
+    position: fixed;
+    bottom: 0;
+    height: 20px;
+    width: 100%;
+    background-color: green;
+    z-index: 9999;
+ }
+
+.scrollable {
+    overflow-y: scroll;
+    height: 300px; 
+  } */
+
+
+.rowtop{
+    font-size: 120px;
+}
+
+.rowbottom {
+    margin-top: 30px;
+    font-size: 30px;
+    width: 90;
+}
+
+.scrollable {
+    font-size: 30px;
+    margin-top: 30px;
+}
+
+.scrollable1 {
+    font-size: 40px;
+}
