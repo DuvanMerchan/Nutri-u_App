@@ -58,14 +58,15 @@ export const recipesSlice = createSlice({
         filterByDiet:  (state, action)=>{
 
             const recipes = state.recipes
+            const allrecipes = state.allrecipes
             
-            const dietsFil = action.payload === 'all' ? recipes : recipes.filter(recipe => {
+            const dietsFil = action.payload === 'all' ? allrecipes : recipes.filter(recipe => {
                 if(recipe.diets.length > 1){
                     let dietsFilt = recipe.diets.map(di => di)
                     console.log('slice',dietsFilt)
                     return dietsFilt.includes(action.payload)
                 }
-                return true
+                return dietsFil
             })
             console.log('asdsad',dietsFil)
             state.recipes = dietsFil

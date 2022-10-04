@@ -25,6 +25,7 @@ export const Cards = () => {
     function handleSortByDiet(e){
       e.preventDefault();
       setCurrentPage(1);
+      dispatch(filterDiet('all'))
       dispatch(filterDiet(e.target.value))
     }
 
@@ -100,6 +101,7 @@ const paginado = (pageNumber) => {
           handleSortByDiet(e)
         }}>
           <option hidden={true}value='all'>Select Diet</option>
+          <option value='all'>All Diets</option>
           {
             diets.map(e => {
               return(

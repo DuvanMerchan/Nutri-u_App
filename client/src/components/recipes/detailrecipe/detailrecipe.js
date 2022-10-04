@@ -34,6 +34,11 @@ const RecipeDetail =()=>{
                 <p className={style.sumary} dangerouslySetInnerHTML={{__html:recipe.summary}}/>
                 <h1>Diet/s</h1>
                 <p>{recipe.diets}</p>
+                {/* {
+                    recipe.diets.map(e => {
+                        <p>{e}</p>
+                    })
+                } */}
                 <h1>Health Score</h1>
                 <h2>{recipe.healthScore}</h2> 
                 <h1>Is Vegetarian?</h1>
