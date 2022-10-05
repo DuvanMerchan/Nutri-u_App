@@ -1,6 +1,10 @@
 const { Router } = require("express");
 const { adminLogin, adminSingIn, usersList, userByName, userByid, userBanned } = require("../../controllers/usersControllers/admin.controllers");
 
+//Middleware
+
+const auth = require('../../middlewares/auth')
+
 // Importar todos los routers;
 
 const router = Router();
@@ -22,12 +26,13 @@ router.post('/singin', async(req,res)=>{
         token:admin.token})
 })
 
-router.get('/search', async(req,res)=>{
+router.get('/search',auth, async(req,res)=>{
     
     let {username} = req.query
     try {
         if(!username){
         let users = await usersList()
+
         res.json(users)
         }else{
             let users = await userByName(username)
@@ -37,7 +42,7 @@ router.get('/search', async(req,res)=>{
         console.log(error) 
     }})
 
-router.get('/search/:id'), async(req,res)=>{
+router.get('/search/:id'), async (req,res)=>{
     try {
         console.log('lol')
         let { id } = req.params;
