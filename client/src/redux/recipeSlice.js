@@ -26,7 +26,7 @@ export const recipesSlice = createSlice({
             state.recipes = action.payload
         },
         createRecipe: (state, action)=>{
-            state.recipes = [...state.recipes, action.payload]
+            state.recipes = action.payload
         },
         deleteRecipe: (state, action)=>{
             state.recipes = action.payload

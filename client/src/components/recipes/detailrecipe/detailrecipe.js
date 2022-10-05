@@ -21,7 +21,7 @@ const RecipeDetail =()=>{
 
     useEffect(() => {
         dispatch(getRecipeDetail(id));
-        console.log(recipe)
+        console.log(recipe,'ESTAMOS MOSTRANDO RECETA API')
     },[])
     
      return(
@@ -35,7 +35,7 @@ const RecipeDetail =()=>{
 
       <div class="row main-content">
             <h4 className="scrollable">Diet/s</h4>
-                <p className="scrollable1">{recipe.diets}</p>
+                {recipe.createdInDB?(<p className="scrollable1">{recipe.diets[0].name}</p>):<p className="scrollable1">{recipe.diets}</p>}
         <div class="col-md-4">
         
             <div class="sub-header">
@@ -44,16 +44,6 @@ const RecipeDetail =()=>{
             <div className="scrollable">
                 <h5 className="scrollable1">Health Score</h5>
                 <li>{recipe.healthScore}</li> 
-                <h5 className="scrollable1">Is Vegetarian?</h5>
-                <li>{recipe.vegetarian? 'Yes': 'Not'}</li>
-                <h5 className="scrollable1">Is Vegan?</h5>
-                <li>{recipe.vegan? 'Yes': 'Not'}</li>
-                <h5 className="scrollable1">Is Gluten free?</h5>
-                <li>{recipe.glutenFree? 'Yes': 'Not'}</li>
-                <h5 className="scrollable1">Is Dairy free?</h5>
-                <li>{recipe.dairyFree? 'Yes': 'Not'}</li>
-                <h5 className="scrollable1">Is Healthy?</h5>
-                <li>{recipe.veryHealthy? 'Yes': 'Not'}</li>
             </div>
 
             <div class="sub-footer">
@@ -69,7 +59,8 @@ const RecipeDetail =()=>{
       </div>
 
       <div className="rowbottom">
-      <p className={style.sumary} dangerouslySetInnerHTML={{__html:recipe.summary}}/>
+        <h5 className="scrollable1">Summary</h5>
+      {recipe.createdInDB?(<p>{recipe.summary}</p>):(<p className={style.sumary} dangerouslySetInnerHTML={{__html:recipe.summary}}/>)}
       </div>
 
     </div>

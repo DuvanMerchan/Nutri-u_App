@@ -2,21 +2,21 @@ import React, {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import { getRecipes, postRecipe } from "../../../redux/actions/recipeactions";
-import { getDiets } from "../../../redux/actions/dietactions";
+import { getDiets } from "../../../redux/actions/dietsactions";
 
 
 
 
 export const CreateRecipe = () => {
-    const recipes = useSelector(state => state.recipes);
-    const db = recipes.filter(e => e.createdInDB === true);
+    const {recipes} = useSelector(state => state.recipes);
+    const state = useSelector(state => state);
+    console.log(state, 'state')
+    //console.log(recipes, 'recipes')
+    const { diets } = useSelector(state => state.diets);
+    // const db = recipes.filter(e => e.createdInDB === true);
+    const dispacth = useDispatch()
     const [input, setInput] = useState({
         name: "",
-        vegetarian: false,
-        vegan: false,
-        glutenFree: false,
-        dairyFree: false,
-        veryPopular: false,
         healthScore: 0,
         image: "",
         summary: "",
@@ -24,7 +24,6 @@ export const CreateRecipe = () => {
     })
 
     const [error, setError] = useState({})
-    const dispacth = useDispatch()
     const validate = (input) => {
         let error = {}
 
@@ -32,10 +31,10 @@ export const CreateRecipe = () => {
             error.name = "Name is required";
         }
 
-        let search = db.find(e => e.name.toLowerCase() === input.name.toLowerCase())  //me fijo si el nombre de la receta ya existe en la db
-        if(search){
-            error.name = "That recipe already exists";
-        }
+        // let search = db.find(e => e.name.toLowerCase() === input.name.toLowerCase())  //me fijo si el nombre de la receta ya existe en la db
+        // if(search){
+        //     error.name = "That recipe already exists";
+        // }
 
         if(!input.summary.trim()) {
             error.summary = "Summary is required";
@@ -53,26 +52,6 @@ export const CreateRecipe = () => {
             error.image = "Image URL is required";
         }
 
-        if(!input.vegetarian) {
-            error.vegetarian = "Vegetarian is required";
-        }
-
-        if(!input.vegan) {
-            error.vegan = "Vegan is required";
-        }
-
-        if(!input.glutenFree) {
-            error.glutenFree = "Gluten Free is required";
-        }
-
-        if(!input.dairyFree) {
-            error.dairyFree = "Dairy Free is required";
-        }
-
-        if(!input.veryPopular) {
-            error.veryPopular = "Very Popular is required";
-        }
-
         return error;
     }
 
@@ -81,11 +60,6 @@ export const CreateRecipe = () => {
         dispacth(postRecipe(input))
             setInput({
                 name: "",
-                vegetarian: false,
-                vegan: false,
-                glutenFree: false,
-                dairyFree: false,
-                veryPopular: false,
                 healthScore: 0,
                 image: "",
                 summary: "",
@@ -122,26 +96,26 @@ export const CreateRecipe = () => {
         }))
     }
 
-    const filterDiets = (e) => {
-        let newDiets = input.diets.filter(i => i !== e.target.value)
-        setInput({
-            ...input,
-            diets: newDiets
-        })
-        setError(validate({
-            ...input,
-            diets: newDiets
-        }))
-    }
+    // const filterDiets = (e) => {
+    //     let newDiets = input.diets.filter(i => i !== e.target.value)
+    //     setInput({
+    //         ...input,
+    //         diets: newDiets
+    //     })
+    //     setError(validate({
+    //         ...input,
+    //         diets: newDiets
+    //     }))
+    // }
 
 
     useEffect(() => {
         dispacth(getDiets())
         dispacth(getRecipes())
-    }, [dispacth])
+    }, [])
 
 
-    const diets = useSelector(state => state.diets)
+
     return (
     <div className='formConteiner'>
         <div className='formConteinerData'>
@@ -188,6 +162,7 @@ export const CreateRecipe = () => {
                 <label>Image: </label>
                 <input autoComplete="off" type="text" name="image" placeholder="Copy/Paste your image URL" value={input.image} onChange={(e) => handlleChange(e)}></input>
                 </div>
+                {console.log(error, 'error')}
                 <button className='btn1' type="submit" disabled={!input.name || Object.keys(error).length > 0}>🛠️ Create</button>
         </form>
         </div>

@@ -46,6 +46,7 @@ export const getRecipesName = (payload)=> async (dispatch)=>{
 export const getRecipeDetail =(id)=> async (dispatch) => {
     try{
         let res = await axios.get(`http://${process.env.REACT_APP_HOST}/recipe/${id}`)
+        console.log(res.data, 'RECIPE DESDE ACTIONS')
         dispatch(getRecipeById(res.data))
     }catch(e){
         console.log(e)
@@ -71,10 +72,10 @@ export const filterDiet =(payload)=>async (dispatch)=>{
 // }
 
 
-export const postRecipe = async (dispatch) => {
+export const postRecipe = (payload) => async (dispatch) => {
     try{
-        let res = await axios.post(`http://${process.env.REACT_APP_HOST}/recipe`)
-        dispatch(createRecipe(res.data))
+        let res = await axios.post(`http://${process.env.REACT_APP_HOST}/recipe`, payload)
+        console.log(res.send, 'res')
     }catch(e){
         console.log(e)
     }

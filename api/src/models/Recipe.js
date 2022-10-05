@@ -15,33 +15,8 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
 
-        vegetarian: { 
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-        },
-
-        vegan: { 
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-        },
-
-        glutenFree: { 
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-        },
-
-        dairyFree: { 
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-        },
-
-        veryPopular: { 
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-        },
-
         healthScore: { 
-            type: DataTypes.FLOAT,
+            type: DataTypes.INTEGER,
             allowNull: true,
         },
 
@@ -51,19 +26,19 @@ module.exports = (sequelize) => {
         },
 
         summary: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false,
         },
 
-        cuisines: { 
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
+        // cuisines: { 
+        //     type: DataTypes.STRING,
+        //     allowNull: true,
+        // },
 
-        dishTypes: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },   
+        // dishTypes: {
+        //     type: DataTypes.STRING,
+        //     allowNull: true,
+        // },   
         
         createdInDB: {
             type: DataTypes.BOOLEAN,
