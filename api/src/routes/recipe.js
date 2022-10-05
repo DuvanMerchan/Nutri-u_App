@@ -3,6 +3,7 @@ const router = Router();
 const Recipe = require("../db");
 const { getApiRecipeByID, createRecipe, deleteRecipe, updateRecipe } = require("../controllers/recipecontrollers");
 
+const auth = require('../middlewares/auth')
 
 router.get("/:id", async (req, res) => {
   let { id } = req.params;
@@ -17,7 +18,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", auth,async (req, res) => {
   const {
     name,
     healthScore,
@@ -55,7 +56,7 @@ router.post("/", async (req, res) => {
 });
 
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id",auth, async (req, res) => {
   let { id } = req.params;
 
   try {
@@ -66,7 +67,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id",auth, async (req, res) => {
   let { id } = req.params;
 
   try {

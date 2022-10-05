@@ -30,8 +30,9 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { User,  Diet, Recipe, Ingredient} = sequelize.models;
 
 // hay que corregir estas relaciones
-User.hasMany(Diet)
-User.hasMany(Recipe)
+User.hasMany(Diet, {as: "fav_diet", foreignKey: "userId"})
+User.hasMany(Recipe, {as: "new_recipe", foreignKey: "userId"})
+Recipe.belongsTo(User,{ as: "author", foreignKey: "userId"})
 Diet.belongsToMany( Recipe,{ through: "diets_recipes"})
 Recipe.belongsToMany(Diet,{ through: "diets_recipes"})
 Recipe.belongsToMany(Ingredient,{ through: "recipes_ingredients"})
