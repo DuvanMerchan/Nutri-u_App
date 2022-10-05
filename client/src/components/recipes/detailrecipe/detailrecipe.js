@@ -35,7 +35,7 @@ const RecipeDetail =()=>{
 
       <div class="row main-content">
             <h4 className="scrollable">Diet/s</h4>
-                <p className="scrollable1">{recipe.diets}</p>
+                {recipe.createdInDB?(<p className="scrollable1">{recipe.diets[0].name}</p>):<p className="scrollable1">{recipe.diets}</p>}
         <div class="col-md-4">
         
             <div class="sub-header">
@@ -59,7 +59,8 @@ const RecipeDetail =()=>{
       </div>
 
       <div className="rowbottom">
-      {recipe.createdInDB?(<p>{recipe.sumary}</p>):(<p className={style.sumary} dangerouslySetInnerHTML={{__html:recipe.summary}}/>)}
+        <h5 className="scrollable1">Summary</h5>
+      {recipe.createdInDB?(<p>{recipe.summary}</p>):(<p className={style.sumary} dangerouslySetInnerHTML={{__html:recipe.summary}}/>)}
       </div>
 
     </div>

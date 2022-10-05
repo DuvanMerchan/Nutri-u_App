@@ -46,6 +46,7 @@ export const getRecipesName = (payload)=> async (dispatch)=>{
 export const getRecipeDetail =(id)=> async (dispatch) => {
     try{
         let res = await axios.get(`http://${process.env.REACT_APP_HOST}/recipe/${id}`)
+        console.log(res.data, 'RECIPE DESDE ACTIONS')
         dispatch(getRecipeById(res.data))
     }catch(e){
         console.log(e)
