@@ -6,5 +6,6 @@ const userFreeControllers = require('../../controllers/usersControllers/userfree
 
 router.post('/singin',userFreeControllers.singIn)
 router.post('/login',userFreeControllers.login)
+router.get('/confirm/:token', userFreeControllers.confirmAccount)
 
 module.exports = router;
