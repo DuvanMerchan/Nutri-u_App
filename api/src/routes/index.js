@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const userRoute = require('./users/userfree.js')
+const userRoute = require('./users/user.js')
 const recipesRoute = require('./recipes')
 const dietsRoutes = require('./diets')
 const recipe = require("./recipe")

@@ -5,7 +5,7 @@ const authConfig = require('../config/auth.js')
 
 module.exports = {
     //Login
-  singIn(req, res) {
+  login(req, res) {
 
     let {email, password} = req.body
 
@@ -16,7 +16,7 @@ module.exports = {
     }).then(user=>{
 
         if(!user){
-            res.status(404).json({msg:'Usuario con este correo no encontrado'})
+            res.status(404).json({msg:'User not found'})
         }else{
             if(bcrypt.compareSync(password, user.password)){
                 let token = jwt.sign({user:user}, authConfig.secret, {
@@ -26,7 +26,7 @@ module.exports = {
                     token:token
                 });
             }else{
-                res.status(401).json({msg: 'contraseña incorrecta'})
+                res.status(401).json({msg: 'Incorrect password '})
             }
         }
     }).catch(err=>{
@@ -34,7 +34,7 @@ module.exports = {
     })
   },
   //Registro
-  singUp(req, res) {
+  singIn(req, res) {
     //crear un registro
     const {username, email, password} = req.body;
 

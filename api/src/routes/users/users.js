@@ -5,6 +5,6 @@ const userFreeControllers = require('../../controllers/usersControllers/userfree
 
 
 router.post('/singin',userFreeControllers.singIn)
-router.post('/singup',userFreeControllers.singUp)
+router.post('/login',userFreeControllers.login)
 
 module.exports = router;
