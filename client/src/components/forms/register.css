@@ -2,16 +2,41 @@
     margin-top: 50px;
     justify-content: center;
     
+    
 }
 
 
 
 .registerBody{
     display: flex;
-    max-width: 700px;
+    max-width: 800px;
     justify-content: center;
-    background-color: green;
+    background: #56ab2f;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #a8e063, #56ab2f);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #a8e063, #56ab2f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+color: white;
     margin: auto;
     padding-top: 25px;
     padding-bottom: 25px;
+    border-radius: 10px;
+}
+
+.col-form-label{
+    font-weight: bold;
+    padding-right: 50px;
+    font-size: 15px;
+}
+
+.registerBody h1{
+    background-color: #a8e063;
+}
+
+.register-user h1{
+    display: flex;
+    justify-content: center;
+}
+
+
+.errors{
+    color: #AA0000
 }
