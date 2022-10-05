@@ -16,11 +16,6 @@ const getApiRecipeByID = async (id) => {
     const recipeApi = await axios.get(url);
     const recipeData = {
       name: recipeApi.data.title,
-      vegetarian: recipeApi.data.vegetarian,
-      vegan: recipeApi.data.vegan,
-      glutenFree: recipeApi.data.glutenFree,
-      dairyFree: recipeApi.data.dairyFree,
-      veryPopular: recipeApi.data.veryPopular,
       healthScore: recipeApi.data.healthScore,
       image: recipeApi.data.image,
       summary: recipeApi.data.summary,
@@ -35,11 +30,6 @@ const getApiRecipeByID = async (id) => {
 
 const createRecipe = async (
   name,
-  vegetarian,
-  vegan,
-  glutenFree,
-  dairyFree,
-  veryPopular,
   healthScore,
   image,
   summary,
@@ -53,11 +43,6 @@ const createRecipe = async (
 
   const newRecipe = await Recipe.create({
     name,
-    vegetarian,
-    vegan,
-    glutenFree,
-    dairyFree,
-    veryPopular,
     healthScore: healthScore ? healthScore : 0,
     image: image ? image : "",
     summary,

@@ -71,10 +71,10 @@ export const filterDiet =(payload)=>async (dispatch)=>{
 // }
 
 
-export const postRecipe = async (dispatch) => {
+export const postRecipe = (payload) => async (dispatch) => {
     try{
-        let res = await axios.post(`http://${process.env.REACT_APP_HOST}/recipe`)
-        dispatch(createRecipe(res.data))
+        let res = await axios.post(`http://${process.env.REACT_APP_HOST}/recipe`, payload)
+        console.log(res.send, 'res')
     }catch(e){
         console.log(e)
     }

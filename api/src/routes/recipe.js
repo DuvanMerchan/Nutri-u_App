@@ -20,11 +20,6 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   const {
     name,
-    vegetarian,
-    vegan,
-    glutenFree,
-    dairyFree,
-    veryPopular,
     healthScore,
     image,
     summary,
@@ -37,11 +32,6 @@ router.post("/", async (req, res) => {
     if (
       !(
         name &&
-        vegetarian &&
-        vegan &&
-        glutenFree &&
-        dairyFree &&
-        veryPopular &&
         summary &&
         diets
       )
@@ -50,11 +40,6 @@ router.post("/", async (req, res) => {
 
     createRecipe(
       name,
-      vegetarian,
-      vegan,
-      glutenFree,
-      dairyFree,
-      veryPopular,
       healthScore,
       image,
       summary,
