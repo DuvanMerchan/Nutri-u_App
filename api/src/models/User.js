@@ -21,7 +21,6 @@ module.exports = (sequelize) => {
         email:{
             type: DataTypes.STRING,
             allowNull: false,
-            primaryKey: true,
             validate: {
                 isEmail: true
             }
@@ -29,6 +28,10 @@ module.exports = (sequelize) => {
         password:{
             allowNull: false,
             type:DataTypes.STRING,
+        },
+        banned:{
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
         },
         admin:{
             type: DataTypes.BOOLEAN,
