@@ -16,31 +16,31 @@ export const getUserDetail = async (dispatch) => {
 }
 
 
-export const getUserStatus = async (dispatch) => {
+// export const getUserStatus = async (dispatch) => {
+//     try{
+//         let res = await axios.get()
+//         dispatch(getUserStatus(res.data))
+//     }catch(e){
+//         console.log(e)
+//     }
+// }
+
+
+export const postUser =(payload)=> async (dispatch) => {
     try{
-        let res = await axios.get()
-        dispatch(getUserStatus(res.data))
+        let res = await axios.post(`http://${process.env.REACT_APP_HOST}/user/singup`, payload)
+        console.log(res, 'res')
     }catch(e){
         console.log(e)
     }
 }
 
 
-export const postUser = async (dispatch) => {
-    try{
-        let res = await axios.post()
-        dispatch(createUser(res.data))
-    }catch(e){
-        console.log(e)
-    }
-}
-
-
-export const deleteUser = async (dispatch) => {
-    try{
-        let res = await axios.delete()
-        dispatch(deleteUser(res.data))
-    }catch(e){
-        console.log(e)
-    }
-}
+// export const deleteUser = async (dispatch) => {
+//     try{
+//         let res = await axios.delete()
+//         dispatch(deleteUser(res.data))
+//     }catch(e){
+//         console.log(e)
+//     }
+// }
