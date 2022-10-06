@@ -39,6 +39,7 @@ router.post('/login', async (req,res)=>{
 router.get('/confirm/:token', async (req,res)=>{
     let {token} = req.params
     confirmAccount(token)
+    
 })
 
 module.exports = router;

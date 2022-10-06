@@ -17,12 +17,6 @@ const   userSingIn = async (username, email, password) => {
 
          sendConfirmationEmail(newUser)
          return ("User Created, verify your email to confirm")
-    //         let token = jwt.sign({user:newUser}, authConfig.secret, {
-    //         expiresIn: authConfig.expires}) 
-    //     return({
-    //         user:newUser,
-    //         token:token  
-    // })
     } catch(error) {
         console.log(error)
     }
@@ -64,7 +58,7 @@ function sendConfirmationEmail(user){
         }
     });
     var token = jwt.sign({email:user.email}, authConfig.secret);
-    const urlConfirm =`http://${DB_HOST}:${DB_PORT}/user/users/confirm/${token}`
+    const urlConfirm =`http://${DB_HOST}:${DB_PORT}/user/confirm/${token}`
 
     return transporter.sendMail({
         from: "nutri.u.contact@gmail.com",
