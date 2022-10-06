@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {getUserById, getUserStatus, createUser, deleteUser} from '../userSlice'
+import swal from 'sweetalert';
 
 //-------------------- RUTAS --------------------------
 const url = ''
@@ -30,8 +31,12 @@ export const postUser =(payload)=> async (dispatch) => {
     try{
         let res = await axios.post(`http://${process.env.REACT_APP_HOST}/user/users/singin`, payload)
         console.log(res, 'res')
+        
+        swal(res.data.message)
     }catch(e){
-        console.log(e)
+        let respuesta= JSON.parse(e.request.response).message;
+        console.log(respuesta)
+        swal(respuesta)
     }
 }
 
