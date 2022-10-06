@@ -36,12 +36,26 @@ module.exports = {
     })
   },
   //Registro
-  singIn(req, res) {
+  async singIn(req, res, next) {
     //crear un registro
     const {username, email, password} = req.body;
 
     let passwordCryp = bcrypt.hashSync(password, Number.parseInt(authConfig.rounds))
 
+
+
+    try {
+
+    const usernameCreate = await User.findOne({where:{username:username}})
+    const emailCreate = await User.findOne({where:{email:email}})
+    
+    if(usernameCreate){
+        res.status(201).send({message:"Username already exits"})
+    }
+    else if(emailCreate){
+        res.status(201).send({message:"Email already exits"})
+    }
+    else if(!usernameCreate && !emailCreate){
     User.create({
         username:username, 
         email:email, 
@@ -49,6 +63,14 @@ module.exports = {
     })
     .then(user=>sendConfirmationEmail(user))
     .then(user=>user)
+    res.send({message:"User Created, verify your email to confirm"})
+}
+    
+    } catch (err) {
+        res.send(next(err))
+    }
+
+    
 
 },
 
