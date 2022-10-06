@@ -3,7 +3,7 @@ import {getUserById, getUserStatus, createUser, deleteUser} from '../userSlice'
 import swal from 'sweetalert';
 
 //-------------------- RUTAS --------------------------
-const url = ''
+const url = process.env.REACT_APP_HOST || 'localhost:5001'
 
 
 //-------------------- ACTIONS -----------------------

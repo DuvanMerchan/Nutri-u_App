@@ -24,29 +24,29 @@ const adminSingIn = async (email, username, password) =>{
         console.log(error)
     }}
 
-const adminLogin = async (email, password) =>{
-   try {
-    let user = await User.findOne({
-        where:{
-            email:email
-        }})
+// const adminLogin = async (email, password) =>{
+//    try {
+//     let user = await User.findOne({
+//         where:{
+//             email:email
+//         }})
 
-    if(!user){
-        throw new Error ('admin not found')
-    }else{
-        if(bcrypt.compareSync(password, user.password)){
-        let token = jwt.sign({user:user}, authConfig.secret, {
-            expiresIn: authConfig.expires})
-        return({
-            user:user,
-            token:token
-        })}else{
-            throw new Error('Incorrect password')
-        }}
-   } catch (error) {
-    console.log(error)
-   }
-}
+//     if(!user){
+//         throw new Error ('admin not found')
+//     }else{
+//         if(bcrypt.compareSync(password, user.password)){
+//         let token = jwt.sign({user:user}, authConfig.secret, {
+//             expiresIn: authConfig.expires})
+//         return({
+//             user:user,
+//             token:token
+//         })}else{
+//             throw new Error('Incorrect password')
+//         }}
+//    } catch (error) {
+//     console.log(error)
+//    }
+// }
 
 const usersList = async () => {
     try {
@@ -88,7 +88,7 @@ const userBanned =async(id) =>{
 }
 
 module.exports = {
-    adminLogin,
+    //adminLogin,
     adminSingIn,
     usersList,
     userByid,

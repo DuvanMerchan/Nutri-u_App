@@ -5,36 +5,13 @@ const authConfig = require('../config/auth.js')
 const nodemailer = require("nodemailer")
 const { HOST_EMAIL, PORT_EMAIL, EMAIL, EMAIL_PASS, DB_HOST, DB_PORT } = process.env;
 
+
+const changeToPremium = () =>{
+
+}
 module.exports = {
-    //Login
-  login(req, res) {
-
-    let {email, password} = req.body
-
-    User.findOne({
-        where:{
-            email:email
-        }
-    }).then(user=>{
-
-        if(!user){
-            res.status(404).json({msg:'User not found'})
-        }else{
-            if(bcrypt.compareSync(password, user.password)){
-                let token = jwt.sign({user:user}, authConfig.secret, {
-                    expiresIn: authConfig.expires}) 
-                res.json({
-                    user:user,
-                    token:token
-                });
-            }else{
-                res.status(401).json({msg: 'Incorrect password '})
-            }
-        }
-    }).catch(err=>{
-        res.status(500).json(err)
-    })
-  },
+    changeToPremium,
+   
   //Registro
   async singIn(req, res, next) {
     //crear un registro
@@ -63,7 +40,7 @@ module.exports = {
     })
     .then(user=>sendConfirmationEmail(user))
     .then(user=>user)
-    res.send({message:"User Created, verify your email to confirm"})
+    res.send()
 }
     
     } catch (err) {
@@ -88,29 +65,6 @@ module.exports = {
     }
 }
 
-
-// send Email confirmation 
-
-function sendConfirmationEmail(user){
-    let transporter = nodemailer.createTransport({
-        host: `${HOST_EMAIL}`,
-        port:`${PORT_EMAIL}`,
-        secure:false,
-        auth:{
-            user:`${EMAIL}`,
-            pass:`${EMAIL_PASS}`
-        }
-    });
-    var token = jwt.sign({email:user.email}, authConfig.secret);
-    const urlConfirm =`http://${DB_HOST}:${DB_PORT}/user/users/confirm/${token}`
-
-    return transporter.sendMail({
-        from: "nutri.u.contact@gmail.com",
-        to: user.email,
-        subject:"Please confirm your email Nutri-U",
-        html:`<p>Confirm your email <a href="${urlConfirm}">Confirm</a></p>`,
-    }).then(()=>user)
-} 
 
 
  async function confirmAccount2(token){
