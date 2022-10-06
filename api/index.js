@@ -11,10 +11,17 @@ conn.sync({ force: true }).then(() => {
     console.log(`%s listening at ${DB_PORT}`); // eslint-disable-line no-console
  
     dietTypes.forEach(async d =>{           
-                await Diet.create({
+                await Diet.findOrCreate({
+                  where: {
                     id: d.id,
                     name: d.name.toLowerCase(),
                     description: d.description
+                  },
+                  default:{
+                    id: d.id,
+                    name: d.name.toLowerCase(),
+                    description: d.description
+                  }
                 })
         })
 

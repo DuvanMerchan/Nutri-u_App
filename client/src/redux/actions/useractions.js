@@ -2,7 +2,7 @@ import axios from 'axios'
 import {getUserById, getUserStatus, createUser, deleteUser} from '../userSlice'
 
 //-------------------- RUTAS --------------------------
-const url = ''
+const url = process.env.REACT_APP_HOST || 'localhost:5001'
 
 
 //-------------------- ACTIONS -----------------------

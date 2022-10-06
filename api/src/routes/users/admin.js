@@ -9,20 +9,19 @@ const auth = require('../../middlewares/auth')
 
 const router = Router();
 
-//router.post('/singin',adminControllers.singIn)
-router.post('/login', async(req,res)=>{
-    let {email, password} = req.body
-    let admin = await adminLogin(email, password)
-    res.json({
-        admin:admin.user.username,
-        token:admin.token})
-})
+// router.post('/login', async(req,res)=>{
+//     let {email, password} = req.body
+//     let admin = await adminLogin(email, password)
+//     res.json({
+//         admin:admin.username,
+//         token:admin.token})
+// })
 
 router.post('/singin', async(req,res)=>{
     let {email, username, password} = req.body
     let admin = await adminSingIn(email, username, password)
     res.json({
-        admin:admin.user.username,
+        admin:admin.username,
         token:admin.token})
 })
 
