@@ -50,10 +50,10 @@ module.exports = {
     const emailCreate = await User.findOne({where:{email:email}})
     
     if(usernameCreate){
-        res.status(201).send({message:"Username already exits"})
+        res.status(400).send({message:"Username already exits"})
     }
     else if(emailCreate){
-        res.status(201).send({message:"Email already exits"})
+        res.status(400).send({message:"Email already exits"})
     }
     else if(!usernameCreate && !emailCreate){
     User.create({

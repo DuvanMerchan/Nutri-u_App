@@ -1,6 +1,6 @@
 import React from "react";
 import "./register.css"
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { NavBar } from "../utils/nav/nav";
 import {Formik} from "formik"
 import { postUser } from "../../redux/actions/useractions";
@@ -9,7 +9,8 @@ import { postUser } from "../../redux/actions/useractions";
 export const Register = () => {
 
     const dispacth = useDispatch()
-
+    //const {userRegisted} = useSelector((state) => state.userRegisted)
+    
     return (
         <div className="register-user">
             <NavBar/>
@@ -97,6 +98,8 @@ export const Register = () => {
             )}
             </Formik>
         </div>
+        {/* {userRegisted?<h1>{userRegisted}</h1>:null} */}
+        
         </div>
         </div>
     )
