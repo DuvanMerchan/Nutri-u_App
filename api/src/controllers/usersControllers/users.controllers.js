@@ -74,10 +74,10 @@ function sendConfirmationEmail(user){
     }).then(()=>user)
 }
 
-const  confirmAccount =(req,res) =>{
+const  confirmAccount =(token) =>{
     // confirmar cuenta controller
         try {
-            confirmAccount2(req.params.token)
+            confirmAccount2(token)
             .then(()=>{
                 res.status(200).send({succes:true,message:'user confirmed succesfully'})
             }).catch(err =>res.status(200).send({succes:false, message:err.message}))

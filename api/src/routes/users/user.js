@@ -2,7 +2,7 @@ const { Router } = require("express");
 const { User } = require('../../db')
 const usersRoutes = require('./users');
 const adminRoutes = require('./admin');
-const { userLogin, userSingIn } = require("../../controllers/usersControllers/users.controllers");
+const { userLogin, userSingIn, confirmAccount } = require("../../controllers/usersControllers/users.controllers");
 
 
 // Importar todos los routers;
@@ -36,6 +36,9 @@ router.post('/login', async (req,res)=>{
         user:user.username,
         token:user.token
     })})
-router.get('/confirm/:token', userFreeControllers.confirmAccount)
+router.get('/confirm/:token', async (req,res)=>{
+    let {token} = req.params
+    confirmAccount(token)
+})
 
 module.exports = router;
