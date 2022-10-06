@@ -32,7 +32,7 @@ export const postUser =(payload)=> async (dispatch) => {
         let res = await axios.post(`http://${process.env.REACT_APP_HOST}/user/users/singin`, payload)
         console.log(res, 'res')
         
-        swal(res.data.message)
+        swal({title:res.data.message,icon: "success",button:"Acept",backgroundcolor: "rgba(43, 165, 137, 0.45)"})
     }catch(e){
         let respuesta= JSON.parse(e.request.response).message;
         console.log(respuesta)
