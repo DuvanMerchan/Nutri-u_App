@@ -14,6 +14,7 @@ router.use('/users', usersRoutes)
 router.use('/admin', adminRoutes)
 router.post('/singin', userSingIn)
 router.post('/login', async (req,res)=>{
+    console.log(req.body)
     let {email, password} = req.body
     let user = await userLogin(email,password)
     res.json({

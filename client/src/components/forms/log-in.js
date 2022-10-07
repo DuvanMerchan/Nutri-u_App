@@ -10,30 +10,27 @@ export const Login = () => {
 
     const dispacth = useDispatch()
     //const {userRegisted} = useSelector((state) => state.userRegisted)
-    const [email , setEmail] = useState ('')
-    const [password , setPassword] = useState ('')
+
+    const [user, setUser] = useState({
+        email:'',
+        password:'',
+    })
 
     function handleSubmit(e){
         e.preventDefault()
-        dispacth(logIn({
-            email,
-            password
-        }))
+
+        dispacth(logIn(user))
         alert()
     }
-
-    function handleEmailChange(e){
+    
+    function handleInputChange(e){
         e.preventDefault()
-        setEmail({
-            ...email,
-            email: e.target.value
+        setUser({
+            ...user,
+            [e.target.name]: e.target.value
         })
     }
 
-    function handlePasswordChange(e){
-        e.preventDefault()
-        setPassword(e.target.value)
-    }
     
     return (
         <div className="register-user">
@@ -44,8 +41,8 @@ export const Login = () => {
             
         <div className="registerBody">
             <form onSubmit={e => handleSubmit(e)}>
-                <input onChange={e => handleEmailChange(e)} type='email' placeholder='Enter your email'/>
-                <input onChange={e => handlePasswordChange(e)} type='password' placeholder='Enter your password'/>
+                <input onChange={e => handleInputChange(e)} name='email'type='email' placeholder='Enter your email'/>
+                <input onChange={e => handleInputChange(e)} name='password'type='password' placeholder='Enter your password'/>
                 <button onSubmit={e => handleSubmit(e)}>LOG IN</button>
             </form>
         

@@ -40,11 +40,11 @@ export const postUser =(payload)=> async (dispatch) => {
     }
 }
 
-export const logIn = (payload) => async (dispatch) =>{
+export const logIn = (email, password) => async (dispatch) =>{
 
     try {
-        let res = await axios.post(`http://${process.env.REACT_APP_HOST}/user/login`, payload)
-        console.log(res,'res')
+        let res = await axios.post(`http://${process.env.REACT_APP_HOST}/user/login`, email, password)
+        // console.log(payload,'res')
         dispatch(getUser(res.data))
     } catch (e) {
         let respuesta = JSON.parse(e.request.response).message;

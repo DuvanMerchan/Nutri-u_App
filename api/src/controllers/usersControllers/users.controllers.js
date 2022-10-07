@@ -5,7 +5,7 @@ const authConfig = require('../config/auth.js')
 const nodemailer = require("nodemailer")
 const { HOST_EMAIL, PORT_EMAIL, EMAIL, EMAIL_PASS, DB_HOST, DB_PORT } = process.env;
 
-const   userSingIn = async ( req, res) => {
+const   userSingIn = async (req, res) => {
     //crear un registro
     const {username, email, password} = req.body;
 
@@ -42,14 +42,16 @@ const   userSingIn = async ( req, res) => {
 }
 
 const userLogin = async (email, password) =>{
-   try {
+    
+  
+    try {
     let user = await User.findOne({
         where:{
             email:email
         }})
-        console.log(user)
+        // console.log(user)
     if(!user){
-        throw new Error ('admin not found')
+        throw new Error ('user not found')
     }else{
         if(user.banned){
             throw new Error ('This user was ban')
@@ -57,6 +59,12 @@ const userLogin = async (email, password) =>{
             if(bcrypt.compareSync(password, user.password)){
                 let token = jwt.sign({user:user}, authConfig.secret, {
                     expiresIn: authConfig.expires})
+                    console.log(user,token)
+                    user.update({logged: true})
+                    console.log('1',user.logged)
+                    setTimeout(function(){
+                        user.update({logged: false});
+                    },50000) // a los 5 minutos se pone el status del logged en false
                 return({
                     user:user,
                     token:token
