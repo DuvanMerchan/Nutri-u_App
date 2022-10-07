@@ -5,8 +5,7 @@ import { Register } from './components/forms/register';
 import RecipeDetail from './components/recipes/detailrecipe/detailrecipe';
 import { CalculatorIMC } from './components/utils/imcalculator/imcalculator';
 import { CreateRecipe } from './components/recipes/createrecipe/createrecipe';
-import { Stripe } from './components/utils/Stripe/checkoutForm'
-
+import { Payment } from './components/utils/Stripe/payment'
 
 
 function App() {
@@ -18,7 +17,7 @@ function App() {
       <Route exact path="/calculatorimc" element={<CalculatorIMC/>} />
       <Route exact path="/detail/:id" element={<RecipeDetail/>} />
       <Route exact path="/createrecipe" element={<CreateRecipe/>} />
-      <Route exact path="/suscription" element={<Stripe/>}/>
+      <Route exact path="/suscription" element={<Payment/>}/> 
     </Routes>
     </div>
   );

@@ -5,20 +5,22 @@ import {
   PaymentRequestButtonElement,
   useElements,
   useStripe,
+  loadStripe
 } from "@stripe/react-stripe-js";
 import React, { useState } from "react";
 
 //import subimg1 from "./subimg1.jpg"
 
-const stripePromise = loadStripe("pk_test_51LpumKJocvWwgusfuIDgKMDWBBTXIYMiqNNp1I0a6FOuXMVVnNFrqUOuUmJzvONbAVs0Fc7NAGCCNGm4AumQptBV00bOAnI6rN")
 
-function PaymentForm() {
+
+export function PaymentForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const stripe = useStripe();
   const elements = useElements();
 
-  const Stripe = async () => {
+  const createSubscription = async () => {
+    
     try {
       const paymentMethod = await stripe.createPaymentMethod({
         card: elements.getElement("card"),
@@ -47,28 +49,28 @@ function PaymentForm() {
   };
 
   return (
-    <Elements stripe={stripePromise}>
-    <div style={{ width: "40%" }}>
-      Name:{" "}
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <br />
-      Email:{" "}
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <br />
-      <CardElement />
-      <br />
-      <button onClick={createSubscription}>Subscribe - 5 INR</button>
+    <div>
+      <div style={{ width: "40%" }}>
+        Name:{" "}
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <br />
+        Email:{" "}
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <br />
+        <CardElement />
+        <br />
+        <button onClick={createSubscription}>Subscribe - 5 INR</button>
+      </div>
     </div>
-    </Elements>
   );
 }
 
-export default Stripe;
+// export default PaymentForm;

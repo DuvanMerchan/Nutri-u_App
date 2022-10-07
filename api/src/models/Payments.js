@@ -4,8 +4,10 @@ module.exports = (sequelize) => {
 
     sequelize.define('payments', {
         id: {
-            type: DataTypes.UUIDV4,
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
+            allowNull: false
         },
         paymenthID:{
             type: DataTypes.STRING,
