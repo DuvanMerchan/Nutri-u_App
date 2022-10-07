@@ -2,23 +2,41 @@ const { User } = require("../../db.js");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const authConfig = require('../config/auth.js')
+const nodemailer = require("nodemailer")
 const { HOST_EMAIL, PORT_EMAIL, EMAIL, EMAIL_PASS, DB_HOST, DB_PORT } = process.env;
 
-const   userSingIn = async (username, email, password) => {
+const   userSingIn = async ( req, res) => {
     //crear un registro
+    const {username, email, password} = req.body;
+
+    let passwordCryp = bcrypt.hashSync(password, Number.parseInt(authConfig.rounds))
+
+
+
     try {
-        let passwordCryp = bcrypt.hashSync(password, Number.parseInt(authConfig.rounds))
 
-        let newUser = await User.create({
-            username:username, 
-            email:email, 
-            password: passwordCryp
-         })
-
-         sendConfirmationEmail(newUser)
-         return ("User Created, verify your email to confirm")
-    } catch(error) {
-        console.log(error)
+    const usernameCreate = await User.findOne({where:{username:username}})
+    const emailCreate = await User.findOne({where:{email:email}})
+    
+    if(usernameCreate){
+        res.status(400).send({message:"Username already exits"})
+    }
+    else if(emailCreate){
+        res.status(400).send({message:"Email already exits"})
+    }
+    else if(!usernameCreate && !emailCreate){
+    User.create({
+        username:username, 
+        email:email, 
+        password: passwordCryp
+    })
+    .then(user=>sendConfirmationEmail(user))
+    .then(user=>user)
+    res.send({message:"User Created, verify your email to confirm"})
+}
+    
+    } catch (err) {
+        res.send(next(err))
     }
 
 }
@@ -68,33 +86,33 @@ function sendConfirmationEmail(user){
     }).then(()=>user)
 }
 
-const  confirmAccount =(token) =>{
+const confirmAccount = async ( req, res) =>{
     // confirmar cuenta controller
         try {
-            confirmAccount2(token)
+            confirmAccount2(req.params.token)
             .then(()=>{
                 res.status(200).send({succes:true,message:'user confirmed succesfully'})
             }).catch(err =>res.status(200).send({succes:false, message:err.message}))
         } catch (err) {
-            res.status(500).send({succes:false, error:err.message})
+            console.log(err)
         }
     }
 
-const confirmAccount2 = async(token) =>{
-    var email = null
-    try {
-        const payload = jwt.verify(token, authConfig.secret)
-        email = payload.email
-        
-    } catch (err) {
-        throw new Error('Invalid token')
-    }
-
-    User.update({ emailVerified: true}, {
-        where: {
-          email: email
+async function confirmAccount2(token){
+        var email = null
+        try {
+            const payload = jwt.verify(token, authConfig.secret)
+            email = payload.email
+            
+        } catch (err) {
+            throw new Error('Invalid token')
         }
-      }) }
+    
+        User.update({ emailVerified: true}, {
+            where: {
+              email: email
+            }
+          }) }
 
 module.exports ={
     userSingIn,

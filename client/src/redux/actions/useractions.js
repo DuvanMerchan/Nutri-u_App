@@ -29,7 +29,7 @@ export const getUserDetail = async (dispatch) => {
 
 export const postUser =(payload)=> async (dispatch) => {
     try{
-        let res = await axios.post(`http://${process.env.REACT_APP_HOST}/user/users/singin`, payload)
+        let res = await axios.post(`http://${process.env.REACT_APP_HOST}/user/singin`, payload)
         console.log(res, 'res')
         
         swal(res.data.message)
