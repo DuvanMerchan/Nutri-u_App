@@ -3,6 +3,7 @@ const { User } = require('../../db')
 const usersRoutes = require('./users');
 const adminRoutes = require('./admin');
 const { userLogin, userSingIn, confirmAccount } = require("../../controllers/usersControllers/users.controllers");
+const { changeToPremium } = require('../../controllers/usersControllers/userfree.controller')
 
 
 // Importar todos los routers;
@@ -40,6 +41,11 @@ router.get('/confirm/:token', async (req,res)=>{
     let {token} = req.params
     confirmAccount(token)
     
+})
+
+router.patch('/premium', (req,res) =>{
+    let {userId} = req.body
+    changeToPremium(userId)
 })
 
 module.exports = router;
