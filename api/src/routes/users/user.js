@@ -17,9 +17,9 @@ router.post('/login', async (req,res)=>{
     console.log(req.body)
     let {email, password} = req.body
     let user = await userLogin(email,password)
+    console.log('ESTE ES', user)
     res.json({
-        user:user.username,
-        token:user.token
+        user
     })})
 router.get('/confirm/:token',confirmAccount)
 
