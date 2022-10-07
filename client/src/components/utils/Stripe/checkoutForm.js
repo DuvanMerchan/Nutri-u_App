@@ -26,7 +26,7 @@ export function PaymentForm() {
         card: elements.getElement("card"),
         type: "card",
       });
-      const response = await fetch("/api/subscribe", {
+      const response = await fetch("localhost:5000/user/premium", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

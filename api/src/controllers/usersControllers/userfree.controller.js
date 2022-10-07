@@ -15,7 +15,31 @@ const changeToPremium = async (userId) =>{
 
     try {
 
-       
+       const product = await stripe.products.create({
+        name: 'Monthly subscription',
+       })
+
+       const subscription = await stripe.subscriptions.create({
+        customer: customer.id,
+        items: [
+          {
+            price_data: {
+              currency: "INR",
+              product: product.id,
+              unit_amount: "500",
+              recurring: {
+                interval: "month",
+              },
+            },
+          },
+        ],
+  
+        payment_settings: {
+          payment_method_types: ["card"],
+          save_default_payment_method: "on_subscription",
+        },
+        expand: ["latest_invoice.payment_intent"],
+      });
 
     } catch(error) {
         console.log(error);
