@@ -47,7 +47,7 @@ const userLogin = async (email, password) =>{
         where:{
             email:email
         }})
-
+        console.log(user)
     if(!user){
         throw new Error ('admin not found')
     }else{

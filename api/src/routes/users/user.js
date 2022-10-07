@@ -22,7 +22,7 @@ router.post('/login', async (req,res)=>{
     })})
 router.get('/confirm/:token',confirmAccount)
 
-router.patch('/premium', (req,res) =>{
+router.post('/premium', (req,res) =>{
     let {userId} = req.body
     changeToPremium(userId)
 })
