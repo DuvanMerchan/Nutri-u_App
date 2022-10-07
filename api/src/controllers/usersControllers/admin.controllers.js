@@ -58,9 +58,7 @@ const usersList = async () => {
 
 const userByid = async (id) =>{
     try {
-        console.log('id2',id)
-        let user = await User.findByPk({where: {id: id}})
-        console.log('user2',user)
+        let user = await User.findByPk(id)
         return user
     } catch (error) {
        console.log(error) 
@@ -69,18 +67,17 @@ const userByid = async (id) =>{
 
 const userByName = async(name) =>{
     try {
-        let users = User.findAll({where: {username:name}})
+        let users = await User.findAll({where: {username:name}})
         return users
     } catch (error) {
        console.log(error) 
     }
 }
 
-const userBanned =async(id) =>{
+const userBanned =async(id,banned) =>{
     try {
-        let user = User.findByPk({where: {id: id}})
-        console.log(user)
-        //user.banned
+        let user = await User.findByPk(id)
+        await user.update({banned: banned})
         return user 
     } catch (error) {
         console.log(error)

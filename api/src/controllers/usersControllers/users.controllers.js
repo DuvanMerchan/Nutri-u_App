@@ -51,15 +51,20 @@ const userLogin = async (email, password) =>{
     if(!user){
         throw new Error ('admin not found')
     }else{
-        if(bcrypt.compareSync(password, user.password)){
-            let token = jwt.sign({user:user}, authConfig.secret, {
-                expiresIn: authConfig.expires})
-            return({
-                user:user,
-                token:token
-            })}else{
-                throw new Error('Incorrect password')
-            }}
+        if(user.banned){
+            throw new Error ('This user was ban')
+        }else{
+            if(bcrypt.compareSync(password, user.password)){
+                let token = jwt.sign({user:user}, authConfig.secret, {
+                    expiresIn: authConfig.expires})
+                return({
+                    user:user,
+                    token:token
+                })}else{
+                    throw new Error('Incorrect password')
+                }
+        }
+       }
    } catch (error) {
     console.log(error)
    }
