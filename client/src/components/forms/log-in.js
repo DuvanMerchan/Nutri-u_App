@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {useDispatch, useSelector} from "react-redux";
 import { NavBar } from "../utils/nav/nav";
@@ -8,27 +8,31 @@ import { logIn } from "../../redux/actions/useractions";
 
 export const Login = () => {
 
-    const dispacth = useDispatch()
-    //const {userRegisted} = useSelector((state) => state.userRegisted)
-
-    const [user, setUser] = useState({
+    const dispatch = useDispatch()
+    
+    const [userLogged, setUserLogged] = useState({
         email:'',
         password:'',
     })
-
+    let user = useSelector((state) => state.user)
+    
+    useEffect(()=>{
+        console.log('USER 1', user)
+    },[dispatch])
+    
     function handleSubmit(e){
         e.preventDefault()
-
-        dispacth(logIn(user))
+        dispatch(logIn(userLogged))
         alert()
     }
     
     function handleInputChange(e){
         e.preventDefault()
-        setUser({
-            ...user,
+        setUserLogged({
+            ...userLogged,
             [e.target.name]: e.target.value
         })
+
     }
 
     

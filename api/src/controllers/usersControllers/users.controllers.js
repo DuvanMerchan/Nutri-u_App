@@ -61,12 +61,13 @@ const userLogin = async (email, password) =>{
                     expiresIn: authConfig.expires})
                     console.log(user,token)
                     user.update({logged: true})
-                    console.log('1',user.logged)
+                    // console.log('1',user.logged)
                     setTimeout(function(){
                         user.update({logged: false});
-                    },50000) // a los 5 minutos se pone el status del logged en false
+                    },5000) // a los 5 minutos se pone el status del logged en false
+                    // console.log('user y token', user, token)
                 return({
-                    user:user,
+                    user:user.dataValues,
                     token:token
                 })}else{
                     throw new Error('Incorrect password')

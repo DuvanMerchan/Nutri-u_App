@@ -7,6 +7,15 @@ const url = process.env.REACT_APP_HOST || 'localhost:5001'
 
 
 //-------------------- ACTIONS -----------------------
+
+export const loggedUser = async (dispatch) =>{
+    try{
+        let res = await axios.get()
+    }catch(e){
+        console.log(e.message)
+    }
+}
+
 export const getUserDetail = async (dispatch) => {
     try{
         let res = await axios.get()
@@ -31,7 +40,6 @@ export const postUser =(payload)=> async (dispatch) => {
     try{
         let res = await axios.post(`http://${process.env.REACT_APP_HOST}/user/singin`, payload)
         console.log(res, 'res')
-        
         swal(res.data.message)
     }catch(e){
         let respuesta= JSON.parse(e.request.response).message;
@@ -44,8 +52,9 @@ export const logIn = (email, password) => async (dispatch) =>{
 
     try {
         let res = await axios.post(`http://${process.env.REACT_APP_HOST}/user/login`, email, password)
-        // console.log(payload,'res')
-        dispatch(getUser(res.data))
+        let res2 = JSON.parse(res.request.response)
+        console.log('res',res2.user.user)
+        dispatch(getUser(res2.user.user))
     } catch (e) {
         let respuesta = JSON.parse(e.request.response).message;
         console.log(respuesta)
