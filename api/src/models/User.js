@@ -52,6 +52,10 @@ module.exports = (sequelize) => {
         emailVerified:{
             type: DataTypes.BOOLEAN,
             defaultValue: false,
+        },
+        logged:{
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         }
     }, {
         timestamps: false,

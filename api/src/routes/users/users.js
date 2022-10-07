@@ -4,9 +4,9 @@ const router = Router()
 
 
 
-router.patch('/premium', (req,res) =>{
-let user = changeToPremium()
-})
+// router.patch('/premium', (req,res) =>{
+//     let user = changeToPremium()
+// })
 //router.post('/login',userFreeControllers.login)
 // router.post('/singin',userFreeControllers.singIn)
 // router.post('/login',userFreeControllers.login)

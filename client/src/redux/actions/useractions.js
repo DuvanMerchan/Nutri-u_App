@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {getUserById, getUserStatus, createUser, deleteUser} from '../userSlice'
+import { getUser, getUserById, getUserStatus, createUser, deleteUser} from '../userSlice'
 import swal from 'sweetalert';
 
 //-------------------- RUTAS --------------------------
@@ -17,14 +17,14 @@ export const getUserDetail = async (dispatch) => {
 }
 
 
-// export const getUserStatus = async (dispatch) => {
-//     try{
-//         let res = await axios.get()
-//         dispatch(getUserStatus(res.data))
-//     }catch(e){
-//         console.log(e)
-//     }
-// }
+export const getStatus = async (dispatch) => {
+    try{
+        let res = await axios.get()
+        dispatch(getUserStatus(res.data))
+    }catch(e){
+        console.log(e)
+    }
+}
 
 
 export const postUser =(payload)=> async (dispatch) => {
@@ -40,6 +40,19 @@ export const postUser =(payload)=> async (dispatch) => {
     }
 }
 
+export const logIn = (email, password) => async (dispatch) =>{
+
+    try {
+        let res = await axios.post(`http://${process.env.REACT_APP_HOST}/user/login`, email, password)
+        // console.log(payload,'res')
+        dispatch(getUser(res.data))
+    } catch (e) {
+        let respuesta = JSON.parse(e.request.response).message;
+        console.log(respuesta)
+        swal(respuesta)
+    }
+
+}
 
 // export const deleteUser = async (dispatch) => {
 //     try{

@@ -16,8 +16,8 @@ const auth = require("../../middlewares/auth");
 // Importar todos los routers;
 
 const router = Router();
-
-router.post("/singin", auth, async (req, res) => {
+// le saque el auth
+router.post("/singin",  async (req, res) => {
   let { email, username, password } = req.body;
   const usernameCreate = await User.findOne({ where: { username: username } });
   const emailCreate = await User.findOne({ where: { email: email } });
