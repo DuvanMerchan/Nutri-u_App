@@ -19,7 +19,7 @@ function App() {
       <Route exact path="/calculatorimc" element={<CalculatorIMC/>} />
       <Route exact path="/detail/:id" element={<RecipeDetail/>} />
       <Route exact path="/createrecipe" element={<CreateRecipe/>} />
-      <Route exact path="/suscription" element={<Payment/>}/> 
+      <Route exact path="/subscription" element={<Payment/>}/> 
     </Routes>
     </div>
   );

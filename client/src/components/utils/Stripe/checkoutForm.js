@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   CardElement,
   Elements,
@@ -7,7 +8,6 @@ import {
   useStripe,
   loadStripe
 } from "@stripe/react-stripe-js";
-import React, { useState } from "react";
 
 //import subimg1 from "./subimg1.jpg"
 
@@ -16,6 +16,10 @@ import React, { useState } from "react";
 export function PaymentForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  
+  const storagelocal = localStorage.getItem("userSession")
+
+
   const stripe = useStripe();
   const elements = useElements();
 
@@ -51,19 +55,6 @@ export function PaymentForm() {
   return (
     <div>
       <div style={{ width: "40%" }}>
-        Name:{" "}
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <br />
-        Email:{" "}
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
         <br />
         <CardElement />
         <br />

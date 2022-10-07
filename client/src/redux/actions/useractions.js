@@ -2,6 +2,7 @@ import axios from 'axios'
 import { getUser, getUserById, getUserStatus, createUser, deleteUser} from '../userSlice'
 import swal from 'sweetalert';
 
+
 //-------------------- RUTAS --------------------------
 const url = process.env.REACT_APP_HOST || 'localhost:5001'
 
@@ -55,6 +56,10 @@ export const logIn = (email, password) => async (dispatch) =>{
         let res2 = JSON.parse(res.request.response)
         console.log('res',res2.user.user)
         dispatch(getUser(res2.user.user))
+
+        window.sessionStorage.setItem(
+            "userSession", JSON.stringify(res2.user.user) // guarda la sesion del usuario en el SessionStorage
+        )
     } catch (e) {
         let respuesta = JSON.parse(e.request.response).message;
         console.log(respuesta)

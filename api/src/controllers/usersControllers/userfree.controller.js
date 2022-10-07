@@ -6,9 +6,9 @@ const Stripe = require('stripe')
 const stripe = new Stripe('sk_test_51LpumKJocvWwgusfR19jzAn2K6nOtr99mMwbcQpJUMWLvPOZPlQozetO9hdsLp95i29WyTO7o7Kvv7IQHLZoqqAx00S5mMHbOv')
 
 
-const changeToPremium = async (userId) =>{
+const changeToPremium = async (userEmail) =>{
 
-    const user = await User.findByPk(userId)
+    const user = await User.findOne(userEmail})
 
     
     const { paymentId, amount } = req.body;
