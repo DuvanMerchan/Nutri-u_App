@@ -14,7 +14,7 @@ export const Register = () => {
     return (
         <div className="register-user">
             <NavBar/>
-            <h1>Sign up for Nutri-u and get a better experience</h1>
+            <h1>Sign up for Nutri-u</h1>
         <div className="register-Content">
             
             
@@ -27,7 +27,8 @@ export const Register = () => {
             initialValues={{
                 email: "",
                 username:"",
-                password:""
+                password:"",
+                password2:"",
             }}
 
             validate={(valores)=>{
@@ -46,6 +47,16 @@ export const Register = () => {
                 }else if(!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.username)){
                     errores.username = 'The name can only contain letters and spaces'
                 }
+
+                //validacion passoword
+
+                if(!valores.password){
+                    errores.password = "Please, enter an password"
+                }
+
+                if(valores.password != valores.password2){
+                    errores.password2 = "the passwords are different"
+                }
             return errores   
             }}
 
@@ -55,7 +66,7 @@ export const Register = () => {
             }}
         >
             {( {values,errors,touched,handleSubmit,handleChange,handleBlur} )=>(
-                <form onSubmit={handleSubmit}>
+                <form className="Form-Register" onSubmit={handleSubmit}>
 
                 <div class="row mb-2">
                     <label  for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
@@ -83,17 +94,18 @@ export const Register = () => {
                 </div>
 
                 <div class="row mb-3">
-                    <div class="col-sm-10 offset-sm-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck1" />
-                            <label class="form-check-label" for="gridCheck1">
-                            Accept terms and conditions
-                            </label>
-                        </div>
+                    <label  for="inputPassword3" class="col-sm-2 col-form-label">Repeat Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="inputPassword3" name="password2" value={values.password2} onChange={handleChange} onBlur={handleBlur}/>
+                        {touched.password2 && errors.password2 && <div className="errors">{errors.password2}</div>}
                     </div>
                 </div>
+
+                
+                <div className="buttons-register">
                 <button type="submit" class="btn btn-primary">Register</button>
-                <button type="submit" class="btn btn-secondary">Ya tengo cuenta</button>
+                <a className="btn btn-secondary" href="/login">Login</a>
+                </div>
             </form>
             )}
             </Formik>
