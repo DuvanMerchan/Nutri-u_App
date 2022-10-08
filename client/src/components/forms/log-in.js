@@ -18,7 +18,7 @@ export const Login = () => {
     
     useEffect(()=>{
         console.log('USER 1', user)
-    },[dispatch])
+    },[])
     
     function handleSubmit(e){
         e.preventDefault()

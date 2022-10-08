@@ -3,7 +3,8 @@ const { User } = require('../../db')
 const usersRoutes = require('./users');
 const adminRoutes = require('./admin');
 const { userLogin, userSingIn, confirmAccount } = require("../../controllers/usersControllers/users.controllers");
-const { changeToPremium } = require('../../controllers/usersControllers/userfree.controller')
+const { changeToPremium } = require('../../controllers/usersControllers/userfree.controller');
+const { json } = require( 'body-parser' );
 
 
 // Importar todos los routers;
@@ -23,9 +24,13 @@ router.post('/login', async (req,res)=>{
     })})
 router.get('/confirm/:token',confirmAccount)
 
-router.post('/premium', (req,res) =>{
-    let {userId} = req.body
-    changeToPremium(userId)
+router.post('/premium', async (req,res) =>{
+    let {userEmail, userName, paymentMethod} = req.body
+    let respuesta = await changeToPremium(userEmail, userName, paymentMethod)
+    console.log('estoo', JSON.stringify(respuesta))
+    res.json({
+        respuesta
+    })
 })
 
 module.exports = router;
