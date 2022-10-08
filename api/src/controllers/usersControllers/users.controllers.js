@@ -5,7 +5,7 @@ const authConfig = require('../config/auth.js')
 const nodemailer = require("nodemailer")
 const { HOST_EMAIL, PORT_EMAIL, EMAIL, EMAIL_PASS, DB_HOST, DB_PORT } = process.env;
 
-const   userSingIn = async (req, res) => {
+const   userSingIn = async (req, res,next) => {
     //crear un registro
     const {username, email, password} = req.body;
 
@@ -36,7 +36,7 @@ const   userSingIn = async (req, res) => {
 }
     
     } catch (err) {
-        res.send(next(err))
+        res.status(400).send(err)
     }
 
 }
