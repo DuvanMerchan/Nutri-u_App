@@ -7,10 +7,12 @@ import RecipeDetail from './components/recipes/detailrecipe/detailrecipe';
 import { CalculatorIMC } from './components/utils/imcalculator/imcalculator';
 import { CreateRecipe } from './components/recipes/createrecipe/createrecipe';
 import { Payment } from './components/utils/Stripe/payment'
+import { UserContextProvider } from './Context/UserContext';
 
 
 function App() {
   return (
+    <UserContextProvider>
     <div className="App">
      <Routes>
       <Route exact path="/" element={<Home/>} />
@@ -22,6 +24,7 @@ function App() {
       <Route exact path="/suscription" element={<Payment/>}/> 
     </Routes>
     </div>
+    </UserContextProvider>
   );
 }
 
