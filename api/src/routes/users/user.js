@@ -7,6 +7,8 @@ const {
   userSingIn,
   confirmAccount,
   userLogOut,
+  forgotPassword,
+  newPassword,
 } = require("../../controllers/usersControllers/users.controllers");
 const {
   changeToPremium,
@@ -39,5 +41,9 @@ router.post("/premium", (req, res) => {
   let { userId } = req.body;
   changeToPremium(userId);
 });
+
+
+router.post("/forgot-password", forgotPassword)
+router.post("/new-password/:token", newPassword)
 
 module.exports = router;

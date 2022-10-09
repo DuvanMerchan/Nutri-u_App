@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer")
-const { HOST_EMAIL, PORT_EMAIL, EMAIL, EMAIL_PASS } = process.env;
+const { HOST_EMAIL, PORT_EMAIL, EMAIL, EMAIL_PASS, DB_HOST, DB_PORT } = process.env;
 
 async function bannedUserNotification(email,banned){
     let transporter = nodemailer.createTransport({
@@ -34,8 +34,33 @@ if(banned.toString() == "true") {
 
 }
 
+async function changePasswordNotification(email,token){
+    let transporter = nodemailer.createTransport({
+        host: `${HOST_EMAIL}`,
+        port:`${PORT_EMAIL}`,
+        secure:false,
+        auth:{
+            user:`${EMAIL}`,
+            pass:`${EMAIL_PASS}`
+        }
+    });
+
+const urlConfirm = `http://${DB_HOST}:${DB_PORT}/user/new-password/${token}`;
+if(email && token){
+    return transporter.sendMail({
+        from: "nutri.u.contact@gmail.com",
+        to: email,
+        subject:"Change Password your Nutri-u Account",
+        html:`<p>Enter the following link and reset your password<a href="${urlConfirm}"> Change Password</a></p>`,
+    })
+}
+
+
+}
+
 
 module.exports = {
     //adminLogin,
-    bannedUserNotification
+    bannedUserNotification,
+    changePasswordNotification
 }
