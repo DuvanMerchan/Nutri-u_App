@@ -38,7 +38,7 @@ export const getStatus = async (dispatch) => {
 
 export const postUser =(payload)=> async (dispatch) => {
     try{
-        let res = await axios.post(`http://${process.env.REACT_APP_HOST}/user/singin`, payload)
+        let res = await axios.post(`http://${url}/user/singin`, payload)
         console.log(res, 'res')
         swal(res.data.message)
     }catch(e){
@@ -49,16 +49,27 @@ export const postUser =(payload)=> async (dispatch) => {
 }
 
 export const logIn = (email, password) => async (dispatch) =>{
-
     try {
-        let res = await axios.post(`http://${process.env.REACT_APP_HOST}/user/login`, email, password)
-        let res2 = JSON.parse(res.request.response)
-        console.log('res',res2.user.user)
-        dispatch(getUser(res2.user.user))
+        let res = await axios.post(`http://${url}/user/login`, email, password)
+        dispatch(getUser(res.data))
+        return res.data
     } catch (e) {
         let respuesta = JSON.parse(e.request.response).message;
         console.log(respuesta)
         swal(respuesta)
+    }
+
+}
+export const logOut = ()  => async (dispatch) =>{
+    try {
+            let user =  JSON.parse(sessionStorage.getItem('userdata')) 
+            let res = await axios.post(`http://${url}/user/logout`,user)
+            // sessionStorage.setItem('user', JSON.stringify(res.data.loggedUser))
+            // sessionStorage.removeItem('user')
+            dispatch(getUser(res.data.loggedUser))
+            return res.data.loggedUser
+    } catch (error) {
+        console.log(error)
     }
 
 }

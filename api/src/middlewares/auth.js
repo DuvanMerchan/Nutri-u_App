@@ -10,7 +10,8 @@ module.exports = (req, res, next) => {
         if(err){
             res.json({msg: "No authorization"})
         }else{
-          //console.log(decoded)
+          //console.log('decoded',decoded)
+
             next();
         }
     });
