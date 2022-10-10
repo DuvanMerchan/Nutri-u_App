@@ -8,6 +8,7 @@ import { CalculatorIMC } from './components/utils/imcalculator/imcalculator';
 import { CreateRecipe } from './components/recipes/createrecipe/createrecipe';
 import { Payment } from './components/utils/Stripe/payment'
 import { UserContextProvider } from './Context/UserContext';
+import {UserTable} from './components/admin/UserTable';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
       <Route exact path="/detail/:id" element={<RecipeDetail/>} />
       <Route exact path="/createrecipe" element={<CreateRecipe/>} />
       <Route exact path="/suscription" element={<Payment/>}/> 
+      <Route exact path="/table" element={<UserTable/>}/> 
     </Routes>
     </div>
     </UserContextProvider>
