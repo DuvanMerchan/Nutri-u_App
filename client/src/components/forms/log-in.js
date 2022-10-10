@@ -11,10 +11,31 @@ export const Login = ({onLogin}) => {
   const [password, setPassword] = useState("");
   const [, navigate] = useLocation();
 
+<<<<<<< HEAD
+export const Login = () => {
+
+    const dispatch = useDispatch()
+    
+    const [userLogged, setUserLogged] = useState({
+        email:'',
+        password:'',
+    })
+    let user = useSelector((state) => state.user)
+    
+    useEffect(()=>{
+        console.log('USER 1', user)
+    },[])
+    
+    function handleSubmit(e){
+        e.preventDefault()
+        dispatch(logIn(userLogged))
+        alert()
+=======
   useEffect(() => {
     if (isLogged) {
       navigate("/");
       onLogin && onLogin();
+>>>>>>> c1bea2f36ba8a72e95c5c7623872d471c5f5663d
     }
   }, [isLogged, navigate, onLogin]);
 
