@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
             type:DataTypes.STRING,
             validate:{
                 isAlphanumeric: true,
-                len:[2,255],
+                len:[1,255],
             }
         },
         email:{

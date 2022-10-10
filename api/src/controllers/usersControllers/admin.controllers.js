@@ -2,6 +2,7 @@ const { User } = require("../../db.js");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const authConfig = require('../config/auth.js')
+const {bannedUserNotification} = require('./notifications/notifications')
 
 const adminSingIn = async (email, username, password) =>{
 
@@ -77,7 +78,10 @@ const userByName = async(name) =>{
 const userBanned =async(id,banned) =>{
     try {
         let user = await User.findByPk(id)
+        let email = user.dataValues.email
+        console.log(email)
         await user.update({banned: banned})
+        bannedUserNotification(email,banned)
         return user 
     } catch (error) {
         console.log(error)

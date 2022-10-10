@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {getAllRecipes, orderByRating, getRecipesByName,
-    getRecipeById,createRecipe, filterByDiet, getDiets_Recipe//getRecipesByName, createRecipe, deleteRecipe, orderByRating
+    getRecipeById,createRecipe, filterByDiet, getDiets_Recipe
 } from '../recipeSlice'
 
 //-------------------- RUTAS --------------------------
@@ -76,6 +76,7 @@ export const postRecipe = (payload) => async (dispatch) => {
     try{
         let res = await axios.post(`http://${url}/recipe`, payload)
         console.log(res.send, 'res')
+        dispatch(createRecipe(res.data))
     }catch(e){
         console.log(e)
     }

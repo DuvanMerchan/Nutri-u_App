@@ -34,9 +34,28 @@
 .register-user h1{
     display: flex;
     justify-content: center;
+    padding-top: 20px;
 }
 
 
 .errors{
+    position: absolute;
     color: #AA0000
+}
+
+.buttons-register .btn-primary{
+    margin-right: 10px;
+}
+
+.col-form-label{
+    margin-right: 40px;
+    
+}
+
+.Form-Register .mb-2 {
+    padding-bottom: 25px;
+}
+
+.Form-Register .mb-3 {
+    padding-bottom: 25px;
 }

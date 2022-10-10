@@ -1,0 +1,14 @@
+.Form-Recovery{
+    display: flex;
+    justify-items: center;
+    align-items:inherit;
+    
+}
+
+.register-recovery .form-control{
+    
+    min-width: 250px;
+    
+}
+
+ 

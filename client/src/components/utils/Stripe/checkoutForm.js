@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import {
   CardElement,
-  Elements,
-  PaymentElement,
-  PaymentRequestButtonElement,
+  // Elements,
+  // PaymentElement,
+  // PaymentRequestButtonElement,
   useElements,
   useStripe,
-  loadStripe
+  // loadStripe
 } from "@stripe/react-stripe-js";
 import axios from 'axios';
 

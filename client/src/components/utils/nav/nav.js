@@ -1,10 +1,34 @@
 import React from "react";
 import "./nav.css"
 import img from "./logo"
-
+import useUser from "../../../hooks/useUser";
+import {useRoute} from 'wouter'
 
 
 export const NavBar = () => {
+
+	const {isLogged,logout} = useUser()
+
+	const [match] = useRoute("/login");
+	
+
+	const handleClick = e => {
+		e.preventDefault()
+		logout()
+	  }
+
+	  const renderButton =({isLogged}) =>{
+		return isLogged ? 
+		<a id ="Logout" href="/" 
+		class="btn btn-primary ms-2 ms-lg-3" onClick={handleClick} >Log Out</a>:<>
+		<a id ="Login"href="/login" class="btn btn-outline-primary">Log In</a>
+		<a id ="SignUp"href="/register" class="btn btn-primary ms-2 ms-lg-3">Sign Up</a>
+		</>}
+
+		const content = match
+		? null
+		: renderButton({isLogged})
+	  
     return (
         <div className="NavBar">
             <header class="navigation bg-tertiary">
@@ -41,8 +65,7 @@ export const NavBar = () => {
 						</ul>
 					</li>
 				</ul>
-				<a id ="Login"href="/login" class="btn btn-outline-primary">Log In</a>
-				<a id ="SignUp"href="/register" class="btn btn-primary ms-2 ms-lg-3">Sign Up</a>
+				{content}
 			</div>
 		</div>
 	</nav>

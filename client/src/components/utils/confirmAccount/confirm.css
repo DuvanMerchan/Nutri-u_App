@@ -1,0 +1,23 @@
+.tittle-confirm{
+    
+    padding-right: 10px;
+    
+}
+
+.confirm-container{
+    display: flex;
+    margin: auto;
+    max-width: 800px;
+    text-shadow: 1px 1px 1px;
+    padding: 20px;
+    
+}
+
+.button-confirm{
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    max-width: 800px;
+    
+}
+

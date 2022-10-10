@@ -32,7 +32,7 @@ export const recipesSlice = createSlice({
             state.recipes = action.payload
         },
         orderByRating: (state, action)=>{
-            
+            // eslint-disable-next-line
             action.payload === "MENOR"? state.recipes.sort((a, b)=>{
                 
                 if (a.healthScore < b.healthScore) {
