@@ -28,7 +28,7 @@ const RecipeDetail =()=>{
 <div>
 <NavBar />
 
-<div class="wrapper">
+<div class="wrapper2">
 <h1 className="name1">{recipe.name}</h1>
       <a action="">
         <p>
@@ -41,7 +41,7 @@ const RecipeDetail =()=>{
                 <li>{recipe.healthScore}</li> 
         </p>
 
-         <p class="input-file-wrapper">
+         <p class="input-file-wrapper2">
         <img src={recipe.image} alt ='recipe' width={600}/>
         </p>
 

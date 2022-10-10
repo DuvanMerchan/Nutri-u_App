@@ -122,7 +122,7 @@ export const CreateRecipe = () => {
     return (
     <div className='formConteiner'>
         <NavBar />
-        <div className='wrapper'>
+        <div className='wrapper1'>
             <form onSubmit={(e) => handleSubmit(e)} action="">
                 <h1 className="tittle1">Create Recipe</h1>
         <p>

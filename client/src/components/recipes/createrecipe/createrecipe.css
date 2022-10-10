@@ -6,11 +6,7 @@
   box-sizing: border-box;
 }
 
-body {
-  padding-top: 1rem;
-}
-
-.wrapper {
+.wrapper1 {
     border-radius: 4px;
     height: 900px;
   max-width: 1800px;
@@ -52,7 +48,7 @@ button {
   border-radius: 4px;
 }
 
-.wrapper > * {
+.wrapper1 > * {
   padding: 1em;
 }
 
