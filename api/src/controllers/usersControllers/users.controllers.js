@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const authConfig = require("../config/auth.js");
 const nodemailer = require("nodemailer");
+const {changePasswordNotification} = require("./notifications/notifications")
 const { HOST_EMAIL, PORT_EMAIL, EMAIL, EMAIL_PASS, DB_HOST, DB_PORT } =
   process.env;
 
@@ -160,11 +161,66 @@ async function confirmAccount2(token) {
   );
 }
 
+const forgotPassword = async (req, res)=>{
+  const {email} = req.body
+  try {
+    if(!email){
+      res.send({message:"Insert email"})
 
+    } else if(email){
+
+    const oldUser = await User.findOne({where:{email:email}})
+    
+    
+    if(!oldUser){
+      res.status(400).send({message:"user no exist"})
+    }
+    else if(oldUser){
+      var token = jwt.sign({ email: oldUser.email }, authConfig.secret, {expiresIn:"5m"});
+      changePasswordNotification(email,token)
+      res.send({message:"An email to recover password was sent successfully, check your email"})
+    }
+  }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const newPassword = async (req, res) => {
+  let {token} = req.params
+  let {password} = req.body
+  
+
+  let passwordCryp = bcrypt.hashSync(
+    password,
+    Number.parseInt(authConfig.rounds)
+  );
+   
+  try {
+    const payload = jwt.verify(token, authConfig.secret);
+    let email = payload.email;
+    User.update(
+      { password: passwordCryp },
+      {
+        where: {
+          email: email,
+        },
+      })
+
+    res.send({message:"Your password was successfully modified"})
+  } catch (error) {
+    res.status(400).send({message:"Your session expired, or token is invalid"})
+  }
+
+ 
+
+}
 
 module.exports = {
   userSingIn,
   userLogin,
   userLogOut,
   confirmAccount,
+  forgotPassword,
+  newPassword,
 };

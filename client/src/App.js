@@ -8,6 +8,10 @@ import { CalculatorIMC } from './components/utils/imcalculator/imcalculator';
 import { CreateRecipe } from './components/recipes/createrecipe/createrecipe';
 import { Payment } from './components/utils/Stripe/payment'
 import { UserContextProvider } from './Context/UserContext';
+import {UserTable} from './components/admin/UserTable';
+import { Recovery } from './components/utils/forgot-password/recovery-password/recovery';
+import { Change } from './components/utils/forgot-password/change-password/change';
+
 
 
 function App() {
@@ -22,6 +26,9 @@ function App() {
       <Route exact path="/detail/:id" element={<RecipeDetail/>} />
       <Route exact path="/createrecipe" element={<CreateRecipe/>} />
       <Route exact path="/suscription" element={<Payment/>}/> 
+      <Route exact path="/table" element={<UserTable/>}/> 
+      <Route exact path="/recovery-password" element={<Recovery/>}/>
+      <Route exact path="/change-password/:token" element={<Change/>}/>
     </Routes>
     </div>
     </UserContextProvider>
