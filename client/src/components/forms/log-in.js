@@ -11,6 +11,19 @@ export const Login = ({onLogin}) => {
   const [password, setPassword] = useState("");
   const [, navigate] = useLocation();
 
+
+
+
+    
+    const [userLogged, setUserLogged] = useState({
+        email:'',
+        password:'',
+    })
+    //let user = useSelector((state) => state.user)
+    
+   
+    
+    
   useEffect(() => {
     if (isLogged) {
       navigate("/");
@@ -54,4 +67,5 @@ export const Login = ({onLogin}) => {
       {hasLoginError && <strong>Credentials are invalid</strong>}
     </div>
   );
-};
+}
+

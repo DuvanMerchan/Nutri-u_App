@@ -1,6 +1,7 @@
 import React from "react";
 import "./footer.css"
 import img from "../nav/logo"
+import { Link } from "react-router-dom"
 
 
 export const Footer = ()=>{
@@ -47,15 +48,10 @@ export const Footer = ()=>{
                                 <a href="/"><img src={img} class="img-fluid" alt="logo" width={75}/></a>
                             </div>
                             <div class="footer-text">
-                                <p>Lorem ipsum dolor sit amet, consec tetur adipisicing elit, sed do eiusmod tempor incididuntut consec tetur adipisicing
-                                elit,Lorem ipsum dolor sit amet.</p>
+                                <p>
+Our main objective as a food application is to provide the client with different types of diets, promoting health, differentiation and the work of nutritionists</p>
                             </div>
-                            <div class="footer-social-icon">
-                                <span>Follow us</span>
-                                <a href="#"><i class="fab fa-facebook-f facebook-bg"></i></a>
-                                <a href="#"><i class="fab fa-twitter twitter-bg"></i></a>
-                                <a href="#"><i class="fab fa-google-plus-g google-bg"></i></a>
-                            </div>
+
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
@@ -80,12 +76,13 @@ export const Footer = ()=>{
                                 <h3>Subscribe</h3>
                             </div>
                             <div class="footer-text mb-25">
-                                <p>Don’t miss to subscribe to our new feeds, kindly fill the form below.</p>
+                                <p>Don’t miss to subscribe to our new feeds and the posibility to create new recipes</p>
                             </div>
                             <div class="subscribe-form">
                                 <form action="#">
-                                    <input type="text" placeholder="Email Address"/>
-                                    <button><i class="fab fa-telegram-plane"></i></button>
+                                <ul>
+                                <li><a href="/register">Register</a></li>
+                            </ul>
                                 </form>
                             </div>
                         </div>
@@ -98,18 +95,7 @@ export const Footer = ()=>{
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 text-center text-lg-left">
                         <div class="copyright-text">
-                            <p>Copyright &copy; 2022, All Right Reserved <a href="https://google.com/">Nutri-U</a></p>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
-                        <div class="footer-menu">
-                            <ul>
-                                <li><a href="/">Home</a></li>
-                                <li><a href="/terms">Terms</a></li>
-                                <li><a href="/privacy">Privacy</a></li>
-                                <li><a href="/policy">Policy</a></li>
-                                <li><a href="/contact">Contact</a></li>
-                            </ul>
+                            <p>Copyright &copy; 2022, All Right Reserved - Nutri-U APP</p>
                         </div>
                     </div>
                 </div>

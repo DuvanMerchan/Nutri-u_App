@@ -1,4 +1,5 @@
 const { Router } = require("express");
+
 const { User } = require("../../db");
 const usersRoutes = require("./users");
 const adminRoutes = require("./admin");
@@ -13,6 +14,7 @@ const {
 const {
   changeToPremium,
 } = require("../../controllers/usersControllers/userfree.controller");
+
 
 // Importar todos los routers;
 
@@ -37,10 +39,16 @@ router.post("/logout", async (req, res) => {
 });
 router.get("/confirm/:token", confirmAccount);
 
-router.post("/premium", (req, res) => {
-  let { userId } = req.body;
-  changeToPremium(userId);
-});
+
+router.post('/premium', async (req,res) =>{
+    let {userEmail, userName, paymentMethod} = req.body
+    let respuesta = await changeToPremium(userEmail, userName, paymentMethod)
+    console.log('estoo', JSON.stringify(respuesta))
+    res.json({
+        respuesta
+    })
+})
+
 
 
 router.post("/forgot-password", forgotPassword)
