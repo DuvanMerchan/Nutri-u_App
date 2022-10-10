@@ -101,6 +101,20 @@ export const changePassword =(password,token)=> async (dispatch) => {
     }
 }
 
+export const confirmAcc =(token)=> async (dispatch) => {
+    try{
+        
+        let res = await axios.get(`http://${url}/user/confirm/${token}`)
+        console.log(res, 'res')
+        
+        swal({title:res.data.message,icon: "success",})
+    }catch(e){
+        let respuesta= JSON.parse(e.request.response).message;
+        console.log(e)
+        swal(respuesta)
+    }
+}
+
 // export const deleteUser = async (dispatch) => {
 //     try{
 //         let res = await axios.delete()
