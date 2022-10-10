@@ -20,7 +20,7 @@ export default function Paginado({recipesPerPage, recipes, paginado, currentPage
             <div className="pagination">  
            
             <ul className ='ul'>
-            <button className="Paginado1" disabled ={currentPage<=1} onClick={()=> paginado(currentPage -1) }>{"<<"}</button>
+            <button className="Button-Paginado" disabled ={currentPage<=1} onClick={()=> paginado(currentPage -1) }>{"<<"}</button>
                 {pageNumbrers && 
                 pageNumbrers.map(number =>(
                     // eslint-disable-next-line
@@ -30,7 +30,7 @@ export default function Paginado({recipesPerPage, recipes, paginado, currentPage
                     </li> 
                     
                 ))}
-            <button className="Paginado1" disabled={pageNumbrers.length < currentPage+1?true:false} onClick={()=>paginado(currentPage + 1)}>{">>"}</button>    
+            <button className="Button-Paginado" disabled={pageNumbrers.length < currentPage+1?true:false} onClick={()=>paginado(currentPage + 1)}>{">>"}</button>    
             </ul>
             </div>
             </div>

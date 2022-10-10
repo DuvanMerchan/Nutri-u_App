@@ -2,16 +2,16 @@
     box-sizing: border-box;
   }
 
-  .name1 {
+  .detalles .name1 {
     font-size: 70px;
     margin-left: 140px;
   }
   
-  body {
+  .detalles body {
     padding-top: 1rem;
   }
   
-  .wrapper2 {
+  .detalles .wrapper2 {
     max-width: 1700px;
     margin: 0 auto;
     padding: 1em;
@@ -19,33 +19,33 @@
     border: 1px solid #c1c1c1;
   }
   
-  h3 {
+  .detalles h3 {
     margin: 0;
   }
   
-  .wrapper > * {
+  .detalles .wrapper > * {
     padding: 1em;
   }
   
-  a label {
+  .detalles a label {
     display: block;
   }
   
-  a p {
+  .detalles a p {
     margin: 0;
   }
 
   
-  a {
+  .detalles a {
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-gap: 20px;
   }
-  a p {
+  .detalles a p {
     grid-column: 1 / 2;
   }
   
-  .p-file-wrapper2 {
+  .detalles .p-file-wrapper2 {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
   }

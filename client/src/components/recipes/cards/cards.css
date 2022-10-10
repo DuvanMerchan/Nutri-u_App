@@ -1,12 +1,15 @@
 .CardsRecipes{
     margin: auto;
     max-width: 70%;
+    min-height: 900px;
 }
 
 .CardHeader h1{
-    
-    
+    display: flex;
+    padding-top: 200px;
+    align-items:baseline;
     margin: auto;
+    min-height: 700px;
 }
 
 .OrdenRankingRecipes{
@@ -22,4 +25,10 @@
     display: flex;
     justify-content: space-between;
     
+}
+
+#content-card{
+    display: flex;
+    min-height: 700px;
+    justify-content: center;
 }
