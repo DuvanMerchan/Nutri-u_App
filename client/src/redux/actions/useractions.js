@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { getUser, getUserById, getUserStatus, createUser, deleteUser} from '../userSlice'
+import { getUser, getUserById, getUserStatus, //createUser, deleteUser
+} from '../userSlice'
 import swal from 'sweetalert';
 
 //-------------------- RUTAS --------------------------
@@ -8,13 +9,13 @@ const url = process.env.REACT_APP_HOST || 'localhost:5001'
 
 //-------------------- ACTIONS -----------------------
 
-export const loggedUser = async (dispatch) =>{
-    try{
-        let res = await axios.get()
-    }catch(e){
-        console.log(e.message)
-    }
-}
+// export const loggedUser = async (dispatch) =>{
+//     try{
+//         let res = await axios.get()
+//     }catch(e){
+//         console.log(e.message)
+//     }
+// }
 
 export const getUserDetail = async (dispatch) => {
     try{

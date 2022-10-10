@@ -10,9 +10,9 @@ export default function useUser (){
 
    const {token,
     setToken,
-    loggedUser,
+    //loggedUser,
     setLoggedUser,
-    dataUser,
+    //dataUser,
     setDataUser} = useContext(Context)
     const [state, setState] = useState({ loading: false, error: false })
 

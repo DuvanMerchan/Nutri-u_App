@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export default function Paginado({recipesPerPage, recipes, paginado, currentPage}){
     const pageNumbrers = []
+    // eslint-disable-next-line
     const [paginadoCss, setPaginadoCss] = useState("PaginadoNum")
     
     
@@ -22,7 +23,7 @@ export default function Paginado({recipesPerPage, recipes, paginado, currentPage
             <button className="Button-Paginado" disabled ={currentPage<=1} onClick={()=> paginado(currentPage -1) }>{"<<"}</button>
                 {pageNumbrers && 
                 pageNumbrers.map(number =>(
-                    
+                    // eslint-disable-next-line
                     <li className ={currentPage==number?paginadoCss:"PaginadoNum2"} key={number}>
                         
                         <a  href onClick={()=>paginado(number)}> {number}</a>  

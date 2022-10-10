@@ -8,7 +8,7 @@ import { getDiets } from "../../../redux/actions/dietsactions";
 
 
 export const CreateRecipe = () => {
-    const {recipes} = useSelector(state => state.recipes);
+    //const {recipes} = useSelector(state => state.recipes);
     const state = useSelector(state => state);
     console.log(state, 'state')
     //console.log(recipes, 'recipes')
