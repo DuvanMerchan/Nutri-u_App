@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { batch } from 'react-redux';
+//import { batch } from 'react-redux';
 
 
 export const dietSlice = createSlice({
