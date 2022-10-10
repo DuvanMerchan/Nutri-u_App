@@ -11,7 +11,7 @@ import "./createrecipe.css"
 
 
 export const CreateRecipe = () => {
-    const {recipes} = useSelector(state => state.recipes);
+    //const {recipes} = useSelector(state => state.recipes);
     const state = useSelector(state => state);
     console.log(state, 'state')
     //console.log(recipes, 'recipes')

@@ -1,5 +1,6 @@
 import axios from "axios";
-import { filterByDiet, getAllDiets, getDietDetail, getDietByName } from "../dietsSlice";
+import { //filterByDiet, 
+    getAllDiets, getDietDetail, getDietByName } from "../dietsSlice";
 
 require('dotenv').config()
 const url = process.env.REACT_APP_HOST || 'localhost:5001'

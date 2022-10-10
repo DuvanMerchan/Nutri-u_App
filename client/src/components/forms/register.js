@@ -1,6 +1,6 @@
 import React from "react";
 import "./register.css"
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import { NavBar } from "../utils/nav/nav";
 import {Formik} from "formik"
 import { postUser } from "../../redux/actions/useractions";
@@ -9,7 +9,6 @@ import { postUser } from "../../redux/actions/useractions";
 export const Register = () => {
 
     const dispacth = useDispatch()
-    //const {userRegisted} = useSelector((state) => state.userRegisted)
     
     return (
         <div className="register-user">
@@ -53,7 +52,7 @@ export const Register = () => {
                 if(!valores.password){
                     errores.password = "Please, enter an password"
                 }
-
+                // eslint-disable-next-line
                 if(valores.password != valores.password2){
                     errores.password2 = "the passwords are different"
                 }

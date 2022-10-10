@@ -1,11 +1,11 @@
 import {
   CardElement,
-  Elements,
-  PaymentElement,
-  PaymentRequestButtonElement,
+  // Elements,
+  // PaymentElement,
+  // PaymentRequestButtonElement,
   useElements,
   useStripe,
-  loadStripe
+  // loadStripe
 } from "@stripe/react-stripe-js";
 import React, { useState } from "react";
 

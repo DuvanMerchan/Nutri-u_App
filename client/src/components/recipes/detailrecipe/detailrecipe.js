@@ -7,7 +7,7 @@ import { getRecipeDetail} from '../../../redux/actions/recipeactions';
 import { useParams } from 'react-router-dom';
 import { NavBar } from '../../utils/nav/nav';
 
-import {check} from "./check.png"
+//import {check} from "./check.png"
 
 import style from './detail.css'
 
