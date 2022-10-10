@@ -74,6 +74,32 @@ export const logOut = ()  => async (dispatch) =>{
 
 }
 
+export const postRecovery =(payload)=> async (dispatch) => {
+    try{
+        let res = await axios.post(`http://${url}/user/forgot-password`, payload)
+        console.log(res, 'res')
+        swal(res.data.message)
+    }catch(e){
+        let respuesta= JSON.parse(e.request.response).message;
+        console.log(respuesta)
+        swal(respuesta)
+    }
+}
+
+export const changePassword =(password,token)=> async (dispatch) => {
+    try{
+        
+        let res = await axios.post(`http://${url}/user/new-password/${token}`, password)
+        console.log(res, 'res')
+        
+        swal(res.data.message)
+    }catch(e){
+        let respuesta= JSON.parse(e.request.response).message;
+        console.log(e)
+        swal(respuesta)
+    }
+}
+
 // export const deleteUser = async (dispatch) => {
 //     try{
 //         let res = await axios.delete()
