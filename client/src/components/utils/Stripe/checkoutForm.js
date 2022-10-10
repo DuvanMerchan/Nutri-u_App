@@ -10,9 +10,34 @@ import {
 } from "@stripe/react-stripe-js";
 import axios from 'axios';
 
+import style from './checkoutForm.module.css' 
 
-//import subimg1 from "./subimg1.jpg"
+// import subimg1 from "./subimg1.jpg"
 
+
+// const appearance = {
+//   theme: 'night',
+//   labels: 'floating'
+// };
+
+const appearance = {
+   theme: 'night',
+  labels: 'floating',
+
+  variables: {
+    colorPrimary: '#0570de',
+    colorBackground: '#ffffff',
+    colorText: '#30313d',
+    colorDanger: '#df1b41',
+    fontFamily: 'Ideal Sans, system-ui, sans-serif',
+    spacingUnit: '2px',
+    borderRadius: '4px',
+    // See all possible variables below
+  }
+};
+
+// Pass the appearance object to the Elements instance
+// const elements = stripe.elements({clientSecret, appearance});
 
 
 export function PaymentForm() {
@@ -29,6 +54,29 @@ export function PaymentForm() {
 
   const stripe = useStripe();
   const elements = useElements();
+
+  // const element = elements.create('card', {
+  //   style: {
+  //     base: {
+  //       iconColor: '#c4f0ff',
+  //       color: '#fff',
+  //       fontWeight: '500',
+  //       fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
+  //       fontSize: '16px',
+  //       fontSmoothing: 'antialiased',
+  //       ':-webkit-autofill': {
+  //         color: '#fce883',
+  //       },
+  //       '::placeholder': {
+  //         color: '#87BBFD',
+  //       },
+  //     },
+  //     invalid: {
+  //       iconColor: '#FFC7EE',
+  //       color: '#FFC7EE',
+  //     },
+  //   },
+  // });
 
   const createSubscription = async () => {
     
@@ -78,12 +126,19 @@ export function PaymentForm() {
   };
 
   return (
-    <div>
-      <div style={{ width: "40%" }}>
-        <br />
-        <CardElement />
-        <br />
-        <button onClick={createSubscription}>Subscribe - 5 USD</button>
+    <div className={style.paymentContainer}>
+      <div className={style.cardContainer}>
+        <div style={{ width: "40%" }}>
+          {/* <input className={style.cardNumber}/>
+          <input className={style.expiration}/>
+          <input className={style.cvc}/>
+          <input className={style.country}/>
+          <br /> */}
+          
+          <CardElement />
+          <button onClick={createSubscription} class="btn btn-secondary">Subscribe - 5 USD</button>
+        </div>
+
       </div>
     </div>
   );

@@ -46,14 +46,14 @@ const changeToPremium = async (userEmail, userName, paymentMethod) =>{
         expand: ["latest_invoice.payment_intent"],
     });
     // console.log('ESTOOO',subscription)
-    return ({
+    return {
       message: 'Subscription successfully initiated',
       clientSecret: subscription.latest_invoice.payment_intent.client_secret,
       subscriptionId: subscription.id
-    })
+    }
 
     } catch(error) {
-        console.log('URAA',error);
+        console.log('Change to premium error',error);
         return JSON.stringify({ message: error.message });
     }
 }

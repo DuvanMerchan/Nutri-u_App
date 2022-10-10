@@ -1,13 +1,9 @@
-.register-Content{
+.paymentContainer{
     margin-top: 50px;
     justify-content: center;
-    
-    
 }
 
-
-
-.registerBody{
+.cardContainer{
     display: flex;
     max-width: 800px;
     justify-content: center;
@@ -19,24 +15,4 @@
     padding-top: 25px;
     padding-bottom: 25px;
     border-radius: 10px;
-}
-
-.col-form-label{
-    font-weight: bold;
-    padding-right: 50px;
-    font-size: 15px;
-}
-
-.registerBody h1{
-    background-color: #a8e063;
-}
-
-.register-user h1{
-    display: flex;
-    justify-content: center;
-}
-
-
-.errors{
-    color: #AA0000
 }
