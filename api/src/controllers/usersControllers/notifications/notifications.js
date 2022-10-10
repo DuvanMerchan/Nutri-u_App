@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer")
-const { HOST_EMAIL, PORT_EMAIL, EMAIL, EMAIL_PASS, DB_HOST, DB_PORT } = process.env;
+const { HOST_EMAIL, PORT_EMAIL, EMAIL, EMAIL_PASS, DB_HOST, DB_PORT, CLIENT_PORT } = process.env;
 
 async function bannedUserNotification(email,banned){
     let transporter = nodemailer.createTransport({
@@ -45,7 +45,7 @@ async function changePasswordNotification(email,token){
         }
     });
 
-const urlConfirm = `http://${DB_HOST}:${DB_PORT}/user/new-password/${token}`;
+const urlConfirm = `http://${DB_HOST}:${CLIENT_PORT}/change-password/${token}`;
 if(email && token){
     return transporter.sendMail({
         from: "nutri.u.contact@gmail.com",

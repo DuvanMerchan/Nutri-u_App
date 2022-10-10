@@ -7,6 +7,10 @@
 }
 
 .wrapper1 {
+  padding-top: 1rem;
+}
+
+.wrapper1 {
     border-radius: 4px;
     height: 900px;
   max-width: 1800px;
