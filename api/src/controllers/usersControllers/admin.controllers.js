@@ -1,4 +1,4 @@
-const { User } = require("../../db.js");
+const { User, Favorites } = require("../../db.js");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const authConfig = require('../config/auth.js')
@@ -15,6 +15,7 @@ const adminSingIn = async (email, username, password) =>{
             password: passwordCryp,
             admin: true
         })
+        defaultList(newAdmin)
         let token = jwt.sign({user:newAdmin}, authConfig.secret, {
             expiresIn: authConfig.expires}) 
             return({
@@ -87,6 +88,14 @@ const userBanned =async(id,banned) =>{
         console.log(error)
     }
 }
+
+const defaultList = async (user) =>{
+    let defList = await Favorites.create({
+        userId: user.id
+      })
+      return await user.addFavorite(defList)
+    }
+  
 
 module.exports = {
     //adminLogin,
