@@ -11,7 +11,8 @@ body {
 }
 
 .wrapper {
-    height: 850px;
+    border-radius: 4px;
+    height: 900px;
   max-width: 1800px;
   margin: 0 auto;
   padding: 1em;
@@ -28,6 +29,7 @@ textarea:focus {
   outline: 3px solid green;
 }
 
+
 select:focus,
 textarea:focus {
   outline: 3px solid green;
@@ -39,6 +41,7 @@ button {
   width: 90%;
   height: 60px;
   border: 1px solid #000;
+  border-radius: 4px;
 }
 
 input,
@@ -46,6 +49,7 @@ textarea,
 button {
   width: 90%;
   border: 1px solid #000;
+  border-radius: 4px;
 }
 
 .wrapper > * {
@@ -67,15 +71,20 @@ textarea {
 }
 
 button {
-  background: green;
-  width: 90%;
-  border: 0;
+    color: black;
+    font-size: 20px;
+    font-weight: 500;
+    background: rgb(129, 226, 129);
+    width: 91%;
+    height: 90%;
+    border: 0;
+    border-radius: 4px;
 }
 
 
 button:hover, button:focus {
   background: green;
-  outline: 0;
+    opacity: 30%;
 }
 
 form {
@@ -91,4 +100,8 @@ form p {
     margin-top: 190px;
     grid-column: 2 / 6;
     grid-row: 1 / 5;
+}
+
+.image1{
+    border-radius: 4px;
 }
