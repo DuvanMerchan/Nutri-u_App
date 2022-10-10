@@ -41,7 +41,7 @@ export const postUser =(payload)=> async (dispatch) => {
     try{
         let res = await axios.post(`http://${url}/user/singin`, payload)
         console.log(res, 'res')
-        swal(res.data.message)
+        swal({title:res.data.message,icon: "success",})
     }catch(e){
         let respuesta= JSON.parse(e.request.response).message;
         console.log(respuesta)
@@ -79,7 +79,7 @@ export const postRecovery =(payload)=> async (dispatch) => {
     try{
         let res = await axios.post(`http://${url}/user/forgot-password`, payload)
         console.log(res, 'res')
-        swal(res.data.message)
+        swal({title:res.data.message,icon: "success",})
     }catch(e){
         let respuesta= JSON.parse(e.request.response).message;
         console.log(respuesta)
@@ -93,7 +93,7 @@ export const changePassword =(password,token)=> async (dispatch) => {
         let res = await axios.post(`http://${url}/user/new-password/${token}`, password)
         console.log(res, 'res')
         
-        swal(res.data.message)
+        swal({title:res.data.message,icon: "success",})
     }catch(e){
         let respuesta= JSON.parse(e.request.response).message;
         console.log(e)

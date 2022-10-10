@@ -173,7 +173,7 @@ const forgotPassword = async (req, res)=>{
     
     
     if(!oldUser){
-      res.status(400).send({message:"user no exist"})
+      res.status(400).send({message:"Email no exist"})
     }
     else if(oldUser){
       var token = jwt.sign({ email: oldUser.email }, authConfig.secret, {expiresIn:"5m"});
