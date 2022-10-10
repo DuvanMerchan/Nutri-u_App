@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const authConfig = require("../config/auth.js");
 const nodemailer = require("nodemailer");
 const {changePasswordNotification} = require("./notifications/notifications")
-const { HOST_EMAIL, PORT_EMAIL, EMAIL, EMAIL_PASS, DB_HOST, DB_PORT } =
+const { HOST_EMAIL, PORT_EMAIL, EMAIL, EMAIL_PASS, DB_HOST, DB_PORT, CLIENT_PORT } =
   process.env;
 
 const userSingIn = async (req, res, next) => {
@@ -113,7 +113,7 @@ function sendConfirmationEmail(user) {
     },
   });
   var token = jwt.sign({ email: user.email }, authConfig.secret);
-  const urlConfirm = `http://${DB_HOST}:${DB_PORT}/user/confirm/${token}`;
+  const urlConfirm = `http://${DB_HOST}:${CLIENT_PORT}/confirm-account/${token}`;
 
   return transporter
     .sendMail({
@@ -135,7 +135,7 @@ const confirmAccount = async (req, res) => {
           .send({ succes: true, message: "user confirmed succesfully" });
       })
       .catch((err) =>
-        res.status(200).send({ succes: false, message: err.message })
+        res.status(400).send({ succes: false, message: err.message })
       );
   } catch (err) {
     console.log(err);
@@ -148,7 +148,7 @@ async function confirmAccount2(token) {
     const payload = jwt.verify(token, authConfig.secret);
     email = payload.email;
   } catch (err) {
-    throw new Error("Invalid token");
+    throw new Error("Ups!, token is invalid");
   }
 
   User.update(

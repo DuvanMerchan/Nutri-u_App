@@ -11,6 +11,7 @@ import { UserContextProvider } from './Context/UserContext';
 import {UserTable} from './components/admin/UserTable';
 import { Recovery } from './components/utils/forgot-password/recovery-password/recovery';
 import { Change } from './components/utils/forgot-password/change-password/change';
+import { ConfirmAccount } from './components/utils/confirmAccount/confirm';
 
 
 
@@ -29,6 +30,7 @@ function App() {
       <Route exact path="/table" element={<UserTable/>}/> 
       <Route exact path="/recovery-password" element={<Recovery/>}/>
       <Route exact path="/change-password/:token" element={<Change/>}/>
+      <Route exact path="/confirm-account/:token" element={<ConfirmAccount/>}/>
     </Routes>
     </div>
     </UserContextProvider>
