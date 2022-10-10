@@ -13,11 +13,6 @@ module.exports = (sequelize) =>{
             allowNull: false,
             defaultValue: 'My favorite'
         },
-        userId: {
-            allowNull: false,
-            type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV4,
-        },
     },
     {timestamps: false,}
     )

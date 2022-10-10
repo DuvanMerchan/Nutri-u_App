@@ -10,6 +10,11 @@ module.exports = (sequelize) => {
             primaryKey: true,
         },
 
+        apiId:{
+            type: DataTypes.INTEGER,
+            allowNull:true
+        },
+
         name: { 
             type: DataTypes.STRING,
             allowNull: false,
@@ -45,11 +50,6 @@ module.exports = (sequelize) => {
             defaultValue: true,
             allowNull: false,
         }, 
-        user_id: {
-            allowNull: false,
-            type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV4,
-        },
         
     },
     {
