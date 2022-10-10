@@ -20,7 +20,8 @@ export const NavBar = () => {
 	  const renderButton =({isLogged}) =>{
 		return isLogged ? 
 		<a id ="Logout" //href="/" 
-		class="btn btn-primary ms-2 ms-lg-3" onClick={handleClick} >Log Out</a>:<>
+		class="btn btn-primary ms-2 ms-lg-3" onClick={handleClick} >Log Out</a>:
+		<>
 		<a id ="Login"href="/login" class="btn btn-outline-primary">Log In</a>
 		<a id ="SignUp"href="/register" class="btn btn-primary ms-2 ms-lg-3">Sign Up</a>
 		</>}
