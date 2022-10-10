@@ -1,4 +1,4 @@
-.formConteiner .tittle1 {
+.tittle1 {
     font-size: 100px;
     margin-left: 350px;
 }
@@ -6,9 +6,11 @@
   box-sizing: border-box;
 }
 
+.wrapper1 {
+  padding-top: 1rem;
+}
 
-
-.formConteiner .wrapper {
+.wrapper1 {
     border-radius: 4px;
     height: 900px;
   max-width: 1800px;
@@ -18,58 +20,57 @@
   border: 1px solid #c1c1c1;
 }
 
-.formConteiner h3 {
+h3 {
   margin: 0;
 }
 
-.formConteiner input:focus,
+input:focus,
 textarea:focus {
   outline: 3px solid green;
 }
 
 
-.formConteiner select:focus,
+select:focus,
 textarea:focus {
   outline: 3px solid green;
 }
 
-.formConteiner select,
+select,
 textarea,
-
-.formConteiner button {
+button {
   width: 90%;
   height: 60px;
   border: 1px solid #000;
   border-radius: 4px;
 }
 
-.formConteiner input,
+input,
 textarea,
-.formConteiner button {
+button {
   width: 90%;
   border: 1px solid #000;
   border-radius: 4px;
 }
 
-.formConteiner .wrapper > * {
+.wrapper1 > * {
   padding: 1em;
 }
 
-.formConteiner form label {
+form label {
   display: block;
 }
 
-.formConteiner form p {
+form p {
   margin: 0;
 }
 
-.formConteiner button,
+button,
 input,
 textarea {
   padding: 1em;
 }
 
-.formConteiner button {
+button {
     color: black;
     font-size: 20px;
     font-weight: 500;
@@ -81,26 +82,26 @@ textarea {
 }
 
 
-.formConteiner button:hover, button:focus {
+button:hover, button:focus {
   background: green;
     opacity: 30%;
 }
 
-.formConteiner form {
+form {
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-gap: 20px;
 }
-.formConteiner form p {
+form p {
   grid-column: 1 / 2;
 }
 
-.formConteiner .input-file-wrapper {
+.input-file-wrapper {
     margin-top: 190px;
     grid-column: 2 / 6;
     grid-row: 1 / 5;
 }
 
-.formConteiner .image1{
+.image1{
     border-radius: 4px;
 }
