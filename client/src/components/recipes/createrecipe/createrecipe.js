@@ -156,16 +156,6 @@ export const CreateRecipe = () => {
         </p>
 
         <p>
-                <div className='summary'>
-                    <label>Summary: </label>
-                    <input autoComplete="off" type="text" placeholder="Describe your recipe..." name="summary" value={input.summary} onChange={(e) => handlleChange(e)}></input>
-                    {
-                        error.summary && <p className='error'>{error.summary}</p>
-                    }
-                </div>
-        </p>
-
-        <p>
 
                 <div className='healthScore'>
                     <label>Health Score: </label>
@@ -183,12 +173,22 @@ export const CreateRecipe = () => {
                 </div>
         </p>
 
+        <p>
+                <div className='summary'>
+                    <label>Summary: </label>
+                    <input autoComplete="off" type="text" placeholder="Describe your recipe..." name="summary" value={input.summary} onChange={(e) => handlleChange(e)}></input>
+                    {
+                        error.summary && <p className='error'>{error.summary}</p>
+                    }
+                </div>
+        </p>
+
         {console.log(error, 'error')}
-                <button className='btn1' type="submit" disabled={!input.name || Object.keys(error).length > 0}>🛠️ Create</button>
+                <button className='btn1' type="submit" disabled={!input.name || Object.keys(error).length > 0}>Create</button>
         
 
         <p class="input-file-wrapper">
-            <img src={subimg1} alt="img" width="500" height="350"/>
+            <img className="image1"src={subimg1} alt="img" width="500" height="350"/>
         </p>
 
         </form>
