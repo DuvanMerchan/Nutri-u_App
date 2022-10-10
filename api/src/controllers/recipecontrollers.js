@@ -15,6 +15,8 @@ const getApiRecipeByID = async (id) => {
     const url = `https://api.spoonacular.com/recipes/${id}/information?&apiKey=${API_KEY}&addRecipeInformation=true&number=100`;
     const recipeApi = await axios.get(url);
     const recipeData = {
+      id:recipeApi.data.id,
+      apiId:recipeApi.data.id,
       name: recipeApi.data.title,
       healthScore: recipeApi.data.healthScore,
       image: recipeApi.data.image,

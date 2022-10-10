@@ -5,7 +5,7 @@ const router = Router()
 
 const routeFavorite = require('./favorites')
 
-router.use('/myfavoriterecipe', routeFavorite)
+router.use('/myfavorite', routeFavorite)
 
 // router.patch('/premium', (req,res) =>{
 //     let user = changeToPremium()
