@@ -3,6 +3,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import { getRecipes, postRecipe } from "../../../redux/actions/recipeactions";
 import { getDiets } from "../../../redux/actions/dietsactions";
+import { NavBar } from '../../utils/nav/nav';
+import subimg1 from "./subimg1.jpg" 
+import "./createrecipe.css"
 
 
 
@@ -118,25 +121,31 @@ export const CreateRecipe = () => {
 
     return (
     <div className='formConteiner'>
-        <div className='formConteinerData'>
-            <Link className='back' to="/">🏠 Home</Link>
-            <form onSubmit={(e) => handleSubmit(e)}>
+        <NavBar />
+        <div className='wrapper'>
+            <form onSubmit={(e) => handleSubmit(e)} action="">
+                <h1 className="tittle1">Create Recipe</h1>
+        <p>
                 <div className='namerecipe'>
-                <label>Name: </label>
-                <input autoComplete="off" type="text" placeholder="Name your recipe..." name="name" value={input.name} onChange={(e) => handlleChange(e)}></input>
-                {
+                    <label>Name: </label>
+                    <input autoComplete="off" type="text" placeholder="Name your recipe..." name="name" value={input.name} onChange={(e) => handlleChange(e)}></input>
+                    {
                     error.name && <p className='error'>{error.name}</p>
-                }
+                    }
                 </div>
+        </p>
+
+        <p>
                 <div className='diets'>
-                <label>Diets: </label>
-                <select defaultinput="Diets" id="diets" name="diets" onChange={(e) => checkDiets(e)}>
-                <option disabled={true}>Diets</option>
+                    <label>Diets: </label>
+                    <select defaultinput="Diets" id="diets" name="diets" onChange={(e) => checkDiets(e)}>
+                    <option disabled={true}>Diets</option>
+
             {
                 diets.map(e => 
-                <option key={e.name} value={e.name}>
-                    {e.name}
-                </option>
+                    <option key={e.name} value={e.name}>
+                {e.name}
+                    </option>
                 )
             }
                 </select>
@@ -144,26 +153,44 @@ export const CreateRecipe = () => {
                         error.diets && <p className='error'>{error.diets}</p>
                 }
                 </div>
+        </p>
+
+        <p>
                 <div className='summary'>
-                <label>Summary: </label>
-                <input autoComplete="off" type="text" placeholder="Describe your recipe..." name="summary" value={input.summary} onChange={(e) => handlleChange(e)}></input>
-                {
+                    <label>Summary: </label>
+                    <input autoComplete="off" type="text" placeholder="Describe your recipe..." name="summary" value={input.summary} onChange={(e) => handlleChange(e)}></input>
+                    {
                         error.summary && <p className='error'>{error.summary}</p>
-                }
+                    }
                 </div>
+        </p>
+
+        <p>
+
                 <div className='healthScore'>
-                <label>Health Score: </label>
-                <input type="number" placeholder="Rate your recipe" name="healthScore" value={input.healthScore} onChange={(e) => handlleChange(e)}></input>
-                {
+                    <label>Health Score: </label>
+                    <input type="number" placeholder="Rate your recipe" name="healthScore" value={input.healthScore} onChange={(e) => handlleChange(e)}></input>
+                    {
                         error.healthScore && <p className='error'>{error.healthScore}</p>
-                }
+                    }
                 </div>
+        </p>
+
+        <p>
                 <div className='imgCreate'>
-                <label>Image: </label>
-                <input autoComplete="off" type="text" name="image" placeholder="Copy/Paste your image URL" value={input.image} onChange={(e) => handlleChange(e)}></input>
+                    <label>Image: </label>
+                    <input autoComplete="off" type="text" name="image" placeholder="Copy/Paste your image URL" value={input.image} onChange={(e) => handlleChange(e)}></input>
                 </div>
-                {console.log(error, 'error')}
+        </p>
+
+        {console.log(error, 'error')}
                 <button className='btn1' type="submit" disabled={!input.name || Object.keys(error).length > 0}>🛠️ Create</button>
+        
+
+        <p class="input-file-wrapper">
+            <img src={subimg1} alt="img" width="500" height="350"/>
+        </p>
+
         </form>
         </div>
 
