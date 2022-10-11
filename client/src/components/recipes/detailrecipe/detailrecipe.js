@@ -45,7 +45,7 @@ const RecipeDetail =()=>{
         </div>
 
         <div className="detail6">
-          <button>Fauvorite</button>
+          <button className="favouritebtn">Favourite</button>
         </div>
 
         <div className="detail4">
