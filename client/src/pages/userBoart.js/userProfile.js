@@ -39,7 +39,7 @@ return (
         user={user} />
       </div>
       <div>
-      <div>{renderFavoriteList()}</div>
+      {/* <div>{renderFavoriteList()}</div> */}
       <div></div>
       </div>
     </div>
