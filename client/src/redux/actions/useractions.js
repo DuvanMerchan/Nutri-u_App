@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getUser, getUserById, getUserStatus, getAllList, getListById,//createUser, deleteUser
+import { getUser, getUserById, getUserStatus, getAllList, getListById, addFavRecipe, removeFavRecipe,//createUser, deleteUser
 } from '../userSlice'
 import swal from 'sweetalert';
 
@@ -162,6 +162,38 @@ export const confirmAcc =(token)=> async (dispatch) => {
         swal("The session has expired, or your token is invalid")
     }
 }
+
+export const addFavorite =(listId,recipeId)=> async (dispatch) =>{
+    try {
+        let token = JSON.parse(sessionStorage.getItem('token'))
+        let res = await axios.post(`http://${url}/user/users/myfavorite/lists/${listId}`,recipeId,{
+            headers:{
+                'Authorization': `Bearer ${token}`,
+                'Accept' : 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        dispatch(addFavRecipe(res.data))
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const removeFavorite =(listId,recipeId)=> async (dispatch) =>{
+    try {
+        let token = JSON.parse(sessionStorage.getItem('token'))
+        let res = await axios.post(`http://${url}/user/users/myfavorite/lists/${listId}`,recipeId,{
+            headers:{
+                'Authorization': `Bearer ${token}`,
+                'Accept' : 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        dispatch(removeFavRecipe(res.data))
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 // export const deleteUser = async (dispatch) => {
 //     try{
