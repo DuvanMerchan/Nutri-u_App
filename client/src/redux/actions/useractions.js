@@ -57,7 +57,7 @@ export const getLists =() => async (dispatch) =>{
                 'Content-Type': 'application/json'
             }
         })
-        dispatch(getAllList(res.data))
+        return dispatch(getAllList(res.data))
     } catch (error) {
         console.log(error)
     }
@@ -181,7 +181,7 @@ export const addFavorite =(listId,recipeId)=> async (dispatch) =>{
 export const removeFavorite =(listId,recipeId)=> async (dispatch) =>{
     try {
         let token = JSON.parse(sessionStorage.getItem('token'))
-        let res = await axios.post(`http://${url}/user/users/myfavorite/lists/${listId}`,recipeId,{
+        let res = await axios.patch(`http://${url}/user/users/myfavorite/lists/${listId}`,recipeId,{
             headers:{
                 'Authorization': `Bearer ${token}`,
                 'Accept' : 'application/json',
