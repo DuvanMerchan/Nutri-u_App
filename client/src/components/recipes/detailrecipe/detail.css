@@ -1,43 +1,100 @@
 
 .detail1 {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "name name name name name name name name name"
+    "name name name name name name name name name"
+    "data data image image image image image image image"
+    "data data image image image image image image image"
+    "data data image image image image image image image"
+    "favourite favourite image image image image image image image"
+    "favourite favourite image image image image image image image"
+    "summary summary summary summary summary summary summary summary summary"
+    "summary summary summary summary summary summary summary summary summary"; 
 
-  max-width: 1700px;
+  max-width: 1500px;
   margin: 0 auto;
-  padding: 1em;
+  padding: 1em; 
   background: #f9f9f9;
   border: 1px solid #c1c1c1;
  }
 
  .detail2 {
-  grid-area: 1 / 1 / 2 / 6;
+  grid-area: name;
+
  }
 
  .font1 {
-  font-size: 70px;
+  font-size: 60px;
  }
 
  .detail3 {
- grid-area: 2 / 1 / 4 / 3;
- padding: 2em;
+  grid-area: data;
+  margin-left: 80px;
 }
 
 .detail4 {
-  grid-area: 4 / 1 / 6 / 3;
+  grid-area: summary;
   padding: 1em;
  }
 
  .detail5 {
-  grid-area: 2 / 3 / 6 / 6;
+
+  grid-area: image;
+  margin-left: 250px;
+
+  /* grid-area: 2 / 3 / 6 / 6;
   margin-bottom: 45px;
   margin-top: 80px;
-  margin-left: 250px;
+  margin-left: 250px; */
+ }
+
+ .detail6{
+  grid-area: favourite;
+  margin-left: 80px;
  }
 
  .fontimg {
   border-radius: 4px;
  }
+
+ .favouritebtn{
+  display: flex;
+  align-items: center;
+  color: #000;
+  background: none;
+  border: none;
+  padding: 12px 18px;
+  position: relative;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: monospace;
+  transition: linear .3s;
+ }
+
+ favouritebtn:hover {
+  color: #fff;
+}
+
+favouritebtn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) translateX(calc(100% + 4px));
+  width: 45px;
+  height: 45px;
+  background-color: #00fe2f;
+  border-radius: 50px;
+  transition: transform .25s .25s cubic-bezier(0, 0, .5, 2), width .25s cubic-bezier(0, 0, .5, 2);
+  z-index: -1;
+}
+
+favouritebtn:hover::before {
+  width: 100%;
+  transform: translateY(-50%) translateX(-18px);
+  transition: transform .25s cubic-bezier(0,0,.5,2);
+}
