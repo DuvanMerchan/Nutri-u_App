@@ -42,7 +42,9 @@ export const getUserDetail = (id) => async (dispatch) => {
 
 export const getUsers = () => async (dispatch) => {
     try{
+        
         let res = await axios.get(`http://${url}/user/admin/search`)
+        console.log('res',res)
         dispatch(getAllUsers(res.data))
     }catch(e){
         console.log(e)
