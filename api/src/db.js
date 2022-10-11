@@ -32,10 +32,10 @@ const { User,  Diet, Recipe, Ingredient, Payments, Favorites } = sequelize.model
 // hay que corregir estas relaciones
 User.hasMany(Diet, {as: "fav_diet", foreignKey: "userId"})
 User.hasMany(Recipe, {as: "new_recipe", foreignKey: "userId"})
-User.hasMany(Favorites, {as: "favorite_list", foreignKey: "userId"})
+User.hasMany(Favorites, { foreignKey: "userId"})
 User.hasMany(Payments, {as: 'monthly_payment', foreignKey: 'userId'})
 Payments.belongsTo(User, {as: 'payment', foreignKey: 'paymentId'})
-Favorites.belongsTo(User, {as: 'favorite_list', foreignKey: 'serId'})
+Favorites.belongsTo(User)
 Recipe.belongsTo(User,{ as: "author", foreignKey: "userId"})
 Diet.belongsToMany( Recipe,{ through: "diets_recipes"})
 Recipe.belongsToMany(Diet,{ through: "diets_recipes"})

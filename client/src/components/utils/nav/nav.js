@@ -19,7 +19,7 @@ export const NavBar = () => {
 
 	  const renderButton =({isLogged}) =>{
 		return isLogged ? 
-		<a id ="Logout" href="/" 
+		<a id ="Logout" href="/home" 
 		class="btn btn-primary ms-2 ms-lg-3" onClick={handleClick} >Log Out</a>:<>
 		<a id ="Login"href="/login" class="btn btn-outline-primary">Log In</a>
 		<a id ="SignUp"href="/register" class="btn btn-primary ms-2 ms-lg-3">Sign Up</a>
@@ -48,6 +48,8 @@ export const NavBar = () => {
 					<li class="nav-item "> <a class="nav-link" href="/createrecipe">Create Recipe</a>
 					</li>
 					<li class="nav-item "> <a class="nav-link" href="/contact">Contact</a>
+					</li>
+					<li class="nav-item "> <a class="nav-link" href="/suscription">Subscribe!</a>
 					</li>
 					<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">

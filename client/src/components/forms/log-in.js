@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./log-in.css"
 import { useLocation } from "wouter";
 
 import { NavBar } from "../utils/nav/nav";
@@ -11,6 +12,19 @@ export const Login = ({onLogin}) => {
   const [password, setPassword] = useState("");
   const [, navigate] = useLocation();
 
+
+
+
+    
+    const [userLogged, setUserLogged] = useState({
+        email:'',
+        password:'',
+    })
+    //let user = useSelector((state) => state.user)
+    
+   
+    
+    
   useEffect(() => {
     if (isLogged) {
       navigate("/");
@@ -32,26 +46,33 @@ export const Login = ({onLogin}) => {
         <div className="register-Content">
           <div className="registerBody">
             <form onSubmit={(e) => handleSubmit(e)}>
-              <input
+              <input className="form-control"
                 onChange={(e) => setEmail(e.target.value)}
                 name="email"
                 type="email"
                 placeholder="Enter your email"
                 value={email}
               />
-              <input
+              <div className="space10"></div>
+              <input className="form-control"
                 onChange={(e) => setPassword(e.target.value)}
                 name="password"
                 type="password"
                 placeholder="Enter your password"
                 value={password}
               />
-              <button onSubmit={(e) => handleSubmit(e)}>LOG IN</button>
+              <div className="space10"></div>
+              <button id="buttonLogin" class="btn btn-primary" onSubmit={(e) => handleSubmit(e)}>LOG IN</button>
+              <a className="forgot" href="/recovery-password">Forgot Password?</a>
             </form>
+            
+            
           </div>
+          
         </div>
       }
       {hasLoginError && <strong>Credentials are invalid</strong>}
     </div>
   );
-};
+}
+

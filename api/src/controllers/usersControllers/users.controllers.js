@@ -1,4 +1,4 @@
-const { User } = require("../../db.js");
+const { User , Favorites } = require("../../db.js");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const authConfig = require("../config/auth.js");
@@ -31,9 +31,9 @@ const userSingIn = async (req, res, next) => {
         username: username,
         email: email,
         password: passwordCryp,
-      })
+      }) 
+        .then((user) => defaultList(user))
         .then((user) => sendConfirmationEmail(user))
-        .then((user) => user);
       res.send({ message: "User Created, verify your email to confirm" });
     }
   } catch (err) {
@@ -211,10 +211,15 @@ const newPassword = async (req, res) => {
   } catch (error) {
     res.status(400).send({message:"Your session expired, or token is invalid"})
   }
-
- 
-
 }
+
+const defaultList = async (user) =>{
+  let defList = await Favorites.create({
+      userId: user.id
+    })
+    return await user.addFavorite(defList)
+  }
+
 
 module.exports = {
   userSingIn,

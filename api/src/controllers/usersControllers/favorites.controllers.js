@@ -1,60 +1,119 @@
 const { User, Favorites, Recipe } = require("../../db");
 
-const createList = async (user, name) => {
-  let userF = await User.findByPk(user.id);
-  userF = userF.dataValues
-  let list = await Favorites.findOne({
-    where: { name: name },
-  });
-  //console.log('userF',userF)
+const createList = async (userId, listName) => {
+  let user = await User.findByPk(userId);
+  let userList = await Favorites.findOne({
+    where: {
+      userId: userId,
+      name: listName
+    }});
   try {
-    if (list) {
+    if (userList) {
         throw new Error("A list with thie name already exist");
       } else {
         let newList = await Favorites.create({
-          name: name,
-          userId: userF.id
+          name: listName,
+          userId: user.dataValues.id
         });
-        console.log('newList',newList)
-        let userList = await userF.addFavorites(newList);
+        await user.addFavorites(newList);
         return {
-          user: userList,
-          list: newList,
+          user,
+          newList,
         };
       }
   } catch (error) {
-    console.log("lol", error);
+    console.log(error);
   }
 };
-const listFavorite = async (user) => {
+const listFavorite = async (userId) => {
   try {
-    let user = await User.findByPk(user.id);
-    let fav = await user.findAll({
-      include: [
-        {
-          model: Favorites,
-        },
-      ],
+    let fav = await Favorites.findAll({
+      where: {
+        userId:userId
+      },
     });
     return fav;
   } catch (error) {
-    console.log("lol", error);
+    console.log( error);
   }
 };
 
-const listById = async () => {};
+const addingRecipe = async ( listId , recipeId) => {
+  try {
+    if (recipeId.length>15) {
+      let list = await Favorites.findByPk(listId)
+      let recipe = await Recipe.findByPk(recipeId)
+      await list.addRecipe(recipe)
+      return list
+    } else {
+      let list = await Favorites.findByPk(listId)
+      let recipe = await Recipe.findOne({
+        where:{
+          apiId:recipeId}})
+      await list.addRecipe(recipe)
+      return list
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const listById = async (listId) => {
+  try {
+    let list = await Favorites.findByPk(listId, { include: Recipe } )
+    return list
+  } catch (error) {
+    console.log( error);
+  }
+};
 
 const listByName = async () => {};
 
-const deleteList = async () => {};
+const deleteList = async (listId) => {
+  try {
+    let list = await Favorites.findByPk(listId, { include: Recipe } ) 
+    console.log(list)
+    let listName = list.name
+    await list.destroy()
+    return(`the list ${listName} has being delete`)
+  } catch (error) {
+    console.log(error)
+  }
+};
 
-const updateList = async () => {};
+const updateList = async (listId, listName) => {
+  let list = await Favorites.findByPk(listId)
+  await list.update({name:listName})
+  return list
+};
+
+const removingRecipe = async ( listId , recipeId) => {
+  try {
+    if (recipeId.length>15) {
+      let list = await Favorites.findByPk(listId)
+      let recipe = await Recipe.findByPk(recipeId)
+      await list.removeRecipe(recipe)
+      return list
+    } else {
+      let list = await Favorites.findByPk(listId)
+      let recipe = await Recipe.findOne({
+        where:{
+          apiId:recipeId}})
+      await list.removeRecipe(recipe)
+      return list
+    }
+  } catch (error) {
+    console.log( error);
+  }
+};
 
 module.exports = {
   listFavorite,
   createList,
+  addingRecipe,
   listById,
   listByName,
   deleteList,
   updateList,
+  removingRecipe
 };

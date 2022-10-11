@@ -25,7 +25,7 @@ const RecipeDetail =()=>{
     },[])
     
      return(
-<div>
+<div className='detalles'>
 <NavBar />
 
 <div className="detail1">
