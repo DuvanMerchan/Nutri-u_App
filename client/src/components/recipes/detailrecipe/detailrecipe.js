@@ -42,7 +42,10 @@ const RecipeDetail =()=>{
 
         <h5>Health Score</h5>
                 <li>{recipe.healthScore}</li> 
+        </div>
 
+        <div className="detail6">
+          <button>Fauvorite</button>
         </div>
 
         <div className="detail4">
