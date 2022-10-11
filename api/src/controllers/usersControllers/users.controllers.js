@@ -101,6 +101,14 @@ const userLogOut = async (user, token) => {
   }
 };
 
+const userInfo = async (id) =>{
+  try {
+    return await User.findByPk(id)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 // send Email confirmation
 function sendConfirmationEmail(user) {
   let transporter = nodemailer.createTransport({
@@ -225,6 +233,7 @@ module.exports = {
   userSingIn,
   userLogin,
   userLogOut,
+  userInfo,
   confirmAccount,
   forgotPassword,
   newPassword,

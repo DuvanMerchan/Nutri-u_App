@@ -1,10 +1,11 @@
 import axios from 'axios'
-import { getUser, getUserById, getUserStatus, //createUser, deleteUser
+import { getUser, getUserById, getUserStatus, getAllList, getListById,//createUser, deleteUser
 } from '../userSlice'
 import swal from 'sweetalert';
 
 
 //-------------------- RUTAS --------------------------
+require('dotenv').config()
 const url = process.env.REACT_APP_HOST || 'localhost:5001'
 
 
@@ -18,9 +19,17 @@ const url = process.env.REACT_APP_HOST || 'localhost:5001'
 //     }
 // }
 
-export const getUserDetail = async (dispatch) => {
+export const getUserDetail = () => async (dispatch) => {
     try{
-        let res = await axios.get()
+        let user = JSON.parse(sessionStorage.getItem('user'))
+        let token = JSON.parse(sessionStorage.getItem('token'))
+        let res = await axios.get( `http://${url}/user/users/me/${user.id}`,{
+            headers:{
+                'Authorization': `Bearer ${token}`,
+                'Accept' : 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
         dispatch(getUserById(res.data))
     }catch(e){
         console.log(e)
@@ -37,7 +46,37 @@ export const getStatus = async (dispatch) => {
     }
 }
 
-
+export const getLists =() => async (dispatch) =>{
+    try {
+        let user = JSON.parse(sessionStorage.getItem('user'))
+        let token = JSON.parse(sessionStorage.getItem('token'))
+        let res = await axios.get(`http://${url}/user/users/myfavorite/allfavlist/${user.id}`,{
+            headers:{
+                'Authorization': `Bearer ${token}`,
+                'Accept' : 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        dispatch(getAllList(res.data))
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const getIdList =( listId) => async (dispatch) =>{
+    try {
+        let token = JSON.parse(sessionStorage.getItem('token'))
+        let res = await axios.get(`http://${url}/user/users/myfavorite/lists/${listId}`,{
+            headers:{
+                'Authorization': `Bearer ${token}`,
+                'Accept' : 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        dispatch(getListById(res.data))
+    } catch (error) {
+        console.log(error)
+    }
+}
 export const postUser =(payload)=> async (dispatch) => {
     try{
         let res = await axios.post(`http://${url}/user/singin`, payload)

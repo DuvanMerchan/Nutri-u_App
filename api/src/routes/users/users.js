@@ -1,4 +1,5 @@
 const {Router} = require('express');
+const { userInfo } = require('../../controllers/usersControllers/users.controllers');
 const { changeToPremium } = require('../../controllers/usersControllers/userfree.controller');
 const auth = require('../../middlewares/auth');
 const router = Router()
@@ -13,8 +14,10 @@ router.use('/myfavorite', routeFavorite)
 //router.post('/login',userFreeControllers.login)
 // router.post('/singin',userFreeControllers.singIn)
 
-router.get('/me',auth ,async (req, res) =>{
-    let { user, token } = req.body;
+router.get('/me/:id',auth ,async (req, res) =>{
+    let {id } = req.params;
+    let user = await userInfo(id)
+    res.json(user)
 })
 
 
