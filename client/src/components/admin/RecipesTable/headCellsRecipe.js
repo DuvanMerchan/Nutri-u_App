@@ -7,6 +7,13 @@ export const headCellsRecipe = [
         label: 'Recipe ID',
     },
     {
+        id: 'apiId',
+        field: 'ApiId',
+        numeric: true,
+        disablePadding: true,
+        label: 'Api Recipe ID',
+    },
+    {
         id: 'name',
         numeric: false,
         disablePadding: false,
@@ -31,7 +38,7 @@ export const headCellsRecipe = [
         label: 'Banned',
     },
     {
-        id: 'user_id',
+        id: 'userId',
         numeric: false,
         disablePadding: false,
         label: 'User ID',

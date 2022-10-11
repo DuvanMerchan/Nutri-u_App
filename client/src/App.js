@@ -12,6 +12,8 @@ import {UserTable} from './components/admin/UsersTable/UserTable';
 import { Recovery } from './components/utils/forgot-password/recovery-password/recovery';
 import { Change } from './components/utils/forgot-password/change-password/change';
 import { ConfirmAccount } from './components/utils/confirmAccount/confirm';
+import AdminProfil from './components/admin/adminProfile/AdminProfil';
+import { RecipeTable } from './components/admin/RecipesTable/RecipeTable';
 
 
 
@@ -27,7 +29,9 @@ function App() {
       <Route exact path="/detail/:id" element={<RecipeDetail/>} />
       <Route exact path="/createrecipe" element={<CreateRecipe/>} />
       <Route exact path="/suscription" element={<Payment/>}/> 
-      <Route exact path="/table" element={<UserTable/>}/> 
+      <Route exact path="/admin/users" element={<UserTable/>}/> 
+      <Route exact path="/admin" element={<AdminProfil/>}/> 
+      <Route exact path="/admin/recipes" element={<RecipeTable />}/> 
       <Route exact path="/recovery-password" element={<Recovery/>}/>
       <Route exact path="/change-password/:token" element={<Change/>}/>
       <Route exact path="/confirm-account/:token" element={<ConfirmAccount/>}/>
