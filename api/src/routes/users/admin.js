@@ -61,7 +61,7 @@ router.get("/search/:id", auth, async(req, res) => {
   })
 
   
-router.patch('/search/:id', auth, async(req,res)=>{
+router.post('/search/:id', auth, async(req,res)=>{
     let { id } = req.params;
     let {banned} = req.body
     try {

@@ -81,17 +81,20 @@ export const getUsers = () => async (dispatch) => {
 }
 
 
-export const banUserById = (id) => async (dispatch) => {
+export const banUserById = (id,banned) => async (dispatch) => {
+    
+    
     try{
         let token = JSON.parse(sessionStorage.getItem('token'))
-        let res = await axios.put(`http://${url}/user/admin/search/${id}`,{
+        let res = await axios.post(`http://${url}/user/admin/search/${id}`,{banned},{
             headers:{
                 'Authorization': `Bearer ${token}`,
                 'Accept' : 'application/json',
                 'Content-Type': 'application/json'
             }
         })
-        dispatch(banUser(res.data))
+        
+        //dispatch(banUser(res.data))
     }catch(e){
         console.log(e)
     }

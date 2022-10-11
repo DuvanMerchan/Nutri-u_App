@@ -16,6 +16,7 @@ import { getComparator, stableSort} from '../TableHelpers/TableHelpers'
 import { NavBar } from '../../utils/nav/nav';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsers } from '../../../redux/actions/adminAction';
+import { banUserById } from '../../../redux/actions/adminAction';
 
 
 export const UserTable = () => {
@@ -70,7 +71,9 @@ const {usersList} = useSelector((store) => store.admin)
     const handleSelectAllClick = (event) => {
       if (event.target.checked) {
         const newSelected = usersList.map((n) => n.banned);
+       
         setSelected(newSelected);
+        
         return;
       }
       setSelected([]);
@@ -78,6 +81,7 @@ const {usersList} = useSelector((store) => store.admin)
   
     const handleClick = (event, name) => {
       const selectedIndex = selected.indexOf(name);
+      console.log(selectedIndex, "asdasdsa")
       let newSelected = [];
   
       if (selectedIndex === -1) {
@@ -108,6 +112,14 @@ const {usersList} = useSelector((store) => store.admin)
     const handleChangeDense = (event) => {
       setDense(event.target.checked);
     };
+
+    const handleClick2 = (event, user, estado) => {
+      
+      console.log(user, "ESTE ES USER ID")
+      console.log(estado, "ESTE ES EL ESTADO")
+      dispatch(banUserById(user,estado))
+
+    }
   
     const isSelected = (name) => selected.indexOf(name) !== -1;
   
@@ -142,7 +154,7 @@ const {usersList} = useSelector((store) => store.admin)
                   .map((row, index) => {
                     const isItemSelected = isSelected(row.username);
                     const labelId = `enhanced-table-checkbox-${index}`;
-  
+                    
                     return (
                       <TableRow
                         hover
@@ -155,6 +167,7 @@ const {usersList} = useSelector((store) => store.admin)
                       >
                         <TableCell padding="checkbox">
                           <Checkbox
+                            onClick={(event) => handleClick2(event, row.id, isItemSelected)}
                             color="primary"
                             checked={isItemSelected}
                             inputProps={{
