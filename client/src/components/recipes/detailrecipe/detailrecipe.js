@@ -28,33 +28,33 @@ const RecipeDetail =()=>{
 <div>
 <NavBar />
 
-<div class="wrapper2">
-<h1 className="name1">{recipe.name}</h1>
-      <a action="">
-        <p>
-        <h4 className="scrollable">Diet/s</h4>
-                {recipe.createdInDB?(<p className="scrollable1">{recipe.diets[0].name}</p>):<p className="scrollable1">{recipe.diets}</p>}
-        </p>
+<div className="detail1">
 
-        <p>
-        <h5 className="scrollable1">Health Score</h5>
+  
+      <div className="detail2">
+        <h1 className="font1">{recipe.name}</h1>
+      </div>
+
+        <div className="detail3">
+
+        <h4>Diet/s</h4>
+            {recipe.createdInDB?(<p>{recipe.diets[0].name}</p>):<p>{recipe.diets}</p>}
+
+        <h5>Health Score</h5>
                 <li>{recipe.healthScore}</li> 
-        </p>
 
-         <p class="input-file-wrapper2">
-        <img src={recipe.image} alt ='recipe' width={600}/>
-        </p>
+        </div>
 
-        <p>
-        <h5 className="scrollable1">Summary</h5>
-      {recipe.createdInDB?(<p>{recipe.summary}</p>):(<p className={style.sumary} dangerouslySetInnerHTML={{__html:recipe.summary}}/>)}
-        </p>
-      </a>
+        <div className="detail4">
+            <h5>Summary</h5>
+            {recipe.createdInDB?(<p>{recipe.summary}</p>):(<p dangerouslySetInnerHTML={{__html:recipe.summary}}/>)}
+        </div>
+        
+        <div className="detail5">
+          <img className="fontimg" src={recipe.image} alt ='recipe' width={700}/>
+        </div>
     </div>
-
     </div>
-
-
     )
 }
 
