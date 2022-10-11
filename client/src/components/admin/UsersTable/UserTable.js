@@ -1,65 +1,53 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import TableSortLabel from '@mui/material/TableSortLabel';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-import DeleteIcon from '@mui/icons-material/Delete';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import { visuallyHidden } from '@mui/utils';
-import pruebaUsers from './User'; //importar User de la DB
-import { headCellsUser } from '../UsersTable/headCellsUser';
 import EnhancedTableToolbar from '../TableHelpers/EnhancedTableToolbar';
 import EnhancedTableHead from '../TableHelpers/EnhancedTableHead';
 import { getComparator, stableSort} from '../TableHelpers/TableHelpers'
 import { NavBar } from '../../utils/nav/nav';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { getUsers } from '../../redux/actions/adminAction';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUsers } from '../../../redux/actions/adminAction';
+
 
 export const UserTable = () => {
 
-  const getAllUsers = /*async*/() => {  //PASAR A ASYNC AWAIT CUANDO MIGRE AL PF
-    try {
-        let userData = /*await*/pruebaUsers.map(e => {
-            return {
-                id: e.id,
-                username: e.username,
-                email: e.email,
-                password: e.password,
-                banned: e.banned,
-                admin: e.admin,
-                premium: e.premium,
-                nutricionist: e.nutricionist,
-                free: e.free,
-                logged: e.logged,
-            }
-        })
-        return userData
-    } catch (error) {
-        console.log(error)
-    }
-}
+//   const getAllUsers = /*async*/() => {  //PASAR A ASYNC AWAIT CUANDO MIGRE AL PF
+//     try {
+//         let userData = /*await*/pruebaUsers.map(e => {
+//             return {
+//                 id: e.id,
+//                 username: e.username,
+//                 email: e.email,
+//                 password: e.password,
+//                 banned: e.banned,
+//                 admin: e.admin,
+//                 premium: e.premium,
+//                 nutricionist: e.nutricionist,
+//                 free: e.free,
+//                 logged: e.logged,
+//             }
+//         })
+//         return userData
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
 
 
-const user = getAllUsers();
+const {usersList} = useSelector((store) => store.admin)
 
-  //  const dispatch = useDispatch()
 
-  //  const {user} = useSelector((store) => store.admin)
+   const dispatch = useDispatch()
+
 
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
@@ -69,9 +57,9 @@ const user = getAllUsers();
     const [userPerPage, setuserPerPage] = React.useState(15);
 
 
-    // React.useEffect(()=>{
-    //   dispatch(getUsers())
-    // },[])
+    React.useEffect(()=>{
+      dispatch(getUsers())
+    },[])
   
     const handleRequestSort = (event, property) => {
       const isAsc = orderBy === property && order === 'asc';
@@ -81,7 +69,7 @@ const user = getAllUsers();
   
     const handleSelectAllClick = (event) => {
       if (event.target.checked) {
-        const newSelected = user.map((n) => n.banned);
+        const newSelected = usersList.map((n) => n.banned);
         setSelected(newSelected);
         return;
       }
@@ -125,7 +113,7 @@ const user = getAllUsers();
   
     // Avoid a layout jump when reaching the last page with empty user.
     const emptyuser =
-      page > 0 ? Math.max(0, (1 + page) * userPerPage - user.length) : 0;
+      page > 0 ? Math.max(0, (1 + page) * userPerPage - usersList.length) : 0;
   
     return (<>
       <NavBar />
@@ -144,12 +132,12 @@ const user = getAllUsers();
                 orderBy={orderBy}
                 onSelectAllClick={handleSelectAllClick}
                 onRequestSort={handleRequestSort}
-                rowCount={user.length}
+                rowCount={usersList.length}
               />
               <TableBody>
                 {/* if you don't need to support IE11, you can replace the `stableSort` call with:
                    user.slice().sort(getComparator(order, orderBy)) */}
-                {stableSort(user, getComparator(order, orderBy))
+                {stableSort(usersList, getComparator(order, orderBy))
                   .slice(page * userPerPage, page * userPerPage + userPerPage)
                   .map((row, index) => {
                     const isItemSelected = isSelected(row.username);
@@ -210,7 +198,7 @@ const user = getAllUsers();
           <TablePagination
             userPerPageOptions={[5, 10, 25]}
             component="div"
-            count={user.length}
+            count={usersList.length}
             userPerPage={userPerPage}
             page={page}
             onPageChange={handleChangePage}

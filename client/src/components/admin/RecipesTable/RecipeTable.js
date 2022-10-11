@@ -1,62 +1,30 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import TableSortLabel from '@mui/material/TableSortLabel';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-import DeleteIcon from '@mui/icons-material/Delete';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import { visuallyHidden } from '@mui/utils';
-import pruebaRecipes from './Recipes'; //importar Recipes de la DB
-import { headCellsRecipe } from './headCellsRecipe';
-import EnhancedTableToolbar from './EnhancedTableToolbarRecipe';
-import EnhancedTableHead from './EnhancedTableHeadRecipe';
-import { getComparator, stableSort} from './TableHelpersRecipe'
-import { NavBar } from '../utils/nav/nav';    
-// import { useDispatch, useSelector } from 'react-redux';
+import EnhancedTableToolbar from '../TableHelpers/EnhancedTableToolbar';
+import EnhancedTableHead from '../TableHelpers/EnhancedTableHead';
+import { getComparator, stableSort} from '../TableHelpers/TableHelpers'
+import { NavBar } from '../../utils/nav/nav';   
+import { getRecipes } from '../../../redux/actions/adminAction';
+import { useDispatch, useSelector } from 'react-redux';
 // import { getUsers } from '../../redux/actions/adminAction';
 //import ResponsiveAppBar from '../admin_NavBar';
 
 export const RecipeTable = () => {
 
-  const getAllRecipes = /*async*/() => {  //PASAR A ASYNC AWAIT CUANDO MIGRE AL PF
-    try {
-        let recipeData = /*await*/pruebaRecipes.map(e => {
-            return {
-              id: e.id,
-              name: e.name,
-              healthScore: e.healthScore,
-              createdInDB: e.createdInDB,
-              banned: e.banned,
-              user_id: e.user_id,
-            }
-        })
-        return recipeData
-    } catch (error) {
-        console.log(error)
-    }
-}
+const dispatch = useDispatch()
 
-const recipe = getAllRecipes();
+const {recipesList} = useSelector((store) => store.admin)
 
-
-  //  const dispatch = useDispatch()
-
-  //  const {user} = useSelector((store) => store.admin)
 
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
@@ -66,9 +34,9 @@ const recipe = getAllRecipes();
     const [userPerPage, setuserPerPage] = React.useState(15);
 
 
-    // React.useEffect(()=>{
-    //   dispatch(getUsers())
-    // },[])
+    React.useEffect(()=>{
+      dispatch(getRecipes())
+    },[])
   
     const handleRequestSort = (event, property) => {
       const isAsc = orderBy === property && order === 'asc';
@@ -78,7 +46,7 @@ const recipe = getAllRecipes();
   
     const handleSelectAllClick = (event) => {
       if (event.target.checked) {
-        const newSelected = recipe.map((n) => n.banned);
+        const newSelected = recipesList.map((n) => n.banned);
         setSelected(newSelected);
         return;
       }
@@ -122,7 +90,7 @@ const recipe = getAllRecipes();
   
     // Avoid a layout jump when reaching the last page with empty user.
     const emptyuser =
-      page > 0 ? Math.max(0, (1 + page) * userPerPage - recipe.length) : 0;
+      page > 0 ? Math.max(0, (1 + page) * userPerPage - recipesList.length) : 0;
   
     return (<>
       <NavBar />  
@@ -141,12 +109,12 @@ const recipe = getAllRecipes();
                 orderBy={orderBy}
                 onSelectAllClick={handleSelectAllClick}
                 onRequestSort={handleRequestSort}
-                rowCount={recipe.length}
+                rowCount={recipesList.length}
               />
               <TableBody>
                 {/* if you don't need to support IE11, you can replace the `stableSort` call with:
                    user.slice().sort(getComparator(order, orderBy)) */}
-                {stableSort(recipe, getComparator(order, orderBy))
+                {stableSort(recipesList, getComparator(order, orderBy))
                   .slice(page * userPerPage, page * userPerPage + userPerPage)
                   .map((row, index) => {
                     const isItemSelected = isSelected(row.name);
@@ -183,7 +151,7 @@ const recipe = getAllRecipes();
                         <TableCell align="left">{row.healthScore}</TableCell>
                         <TableCell align="left">{row.createdInDB.toString()}</TableCell>
                         <TableCell align="left">{row.banned.toString()}</TableCell>
-                        <TableCell align="left">{row.user_id}</TableCell>
+                        <TableCell align="left">{row.userId}</TableCell>
   
                       </TableRow>
                     );
@@ -203,7 +171,7 @@ const recipe = getAllRecipes();
           <TablePagination
             userPerPageOptions={[10, 25, 50, 100]}
             component="div"
-            count={recipe.length}
+            count={recipesList.length}
             userPerPage={userPerPage}
             page={page}
             onPageChange={handleChangePage}
