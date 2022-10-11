@@ -19,11 +19,11 @@ const favoriteSelect = (e) =>{
     <div>
 <select className="Ordenar" onChange={favoriteSelect}>
                 <option value=''>Favorite List</option>
-                {favList?.map((f)=>(
+                {/* {favList?.map((f)=>(
                     <option value={f.id} key={f.id}>
                         {f.name}
                     </option>
-                ))}
+                ))} */}
             </select>
     </div>
   )

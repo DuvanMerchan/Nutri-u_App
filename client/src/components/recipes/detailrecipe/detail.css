@@ -24,7 +24,6 @@
 
  .detail2 {
   grid-area: name;
-
  }
 
  .font1 {
@@ -76,11 +75,11 @@
   transition: linear .3s;
  }
 
- favouritebtn:hover {
+ .favouritebtn:hover {
   color: #fff;
 }
 
-favouritebtn::before {
+.favouritebtn:before {
   content: "";
   position: absolute;
   top: 50%;
@@ -93,7 +92,7 @@ favouritebtn::before {
   z-index: -1;
 }
 
-favouritebtn:hover::before {
+.favouritebtn:hover:before {
   width: 100%;
   transform: translateY(-50%) translateX(-18px);
   transition: transform .25s cubic-bezier(0,0,.5,2);
