@@ -29,6 +29,10 @@ module.exports = (sequelize) => {
             type: DataTypes.TEXT,
             allowNull: true,
         },
+        banned:{
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+        },
 
         summary: {
             type: DataTypes.TEXT,
