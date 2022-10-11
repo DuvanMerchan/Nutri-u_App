@@ -22,7 +22,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 //import pruebaUsers from '../components/User'; //importar User de la DB
-import { headCellsUser } from './headCellsUser';
+import { headCellsUser } from '../UsersTable/headCellsUser';
 
 function EnhancedTableToolbar(props) {
     const { numSelected } = props;
