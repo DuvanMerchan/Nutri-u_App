@@ -22,11 +22,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 import pruebaUsers from './User'; //importar User de la DB
-import { headCellsUser } from './headCellsUser';
-import EnhancedTableToolbar from './EnhancedTableToolbar';
-import EnhancedTableHead from './EnhancedTableHead';
-import { getComparator, stableSort} from './TableHelpers'
-import { NavBar } from '../utils/nav/nav';
+import { headCellsUser } from '../UsersTable/headCellsUser';
+import EnhancedTableToolbar from '../TableHelpers/EnhancedTableToolbar';
+import EnhancedTableHead from '../TableHelpers/EnhancedTableHead';
+import { getComparator, stableSort} from '../TableHelpers/TableHelpers'
+import { NavBar } from '../../utils/nav/nav';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { getUsers } from '../../redux/actions/adminAction';
 
@@ -66,7 +66,7 @@ const user = getAllUsers();
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [dense, setDense] = React.useState(false);
-    const [userPerPage, setuserPerPage] = React.useState(5);
+    const [userPerPage, setuserPerPage] = React.useState(15);
 
 
     // React.useEffect(()=>{
