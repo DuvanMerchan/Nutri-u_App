@@ -42,7 +42,7 @@ export const postUser =(payload)=> async (dispatch) => {
     try{
         let res = await axios.post(`http://${url}/user/singin`, payload)
         console.log(res, 'res')
-        swal({title:res.data.message,icon: "success"}).then(function() {
+        swal({title:"Account created successfully, check your email to confirm it",icon: "success"}).then(function() {
             window.location.href = "/";
         })
     }catch(e){
@@ -82,7 +82,7 @@ export const postRecovery =(payload)=> async (dispatch) => {
     try{
         let res = await axios.post(`http://${url}/user/forgot-password`, payload)
         console.log(res, 'res')
-        swal({title:res.data.message,icon: "success",}).then(function() {
+        swal({title:"Success, Please check your email to recover your password",icon: "success",}).then(function() {
             window.location.href = "/";
         })
     }catch(e){
@@ -98,13 +98,13 @@ export const changePassword =(password,token)=> async (dispatch) => {
         let res = await axios.post(`http://${url}/user/new-password/${token}`, password)
         console.log(res, 'res')
         
-        swal({title:res.data.message,icon: "success",}).then(function() {
+        swal({title:"Your password was changed successfully",icon: "success",}).then(function() {
             window.location.href = "/login";
         })
     }catch(e){
         let respuesta= JSON.parse(e.request.response).message;
         console.log(e)
-        swal(respuesta)
+        swal("Your session expired, or token is invalid..")
     }
 }
 
@@ -114,11 +114,13 @@ export const confirmAcc =(token)=> async (dispatch) => {
         let res = await axios.get(`http://${url}/user/confirm/${token}`)
         console.log(res, 'res')
         
-        swal({title:res.data.message,icon: "success",})
+        swal({title:"Your account has been confirmed, thank you!",icon: "success",}).then(function() {
+            window.location.href = "/login";
+        })
     }catch(e){
         let respuesta= JSON.parse(e.request.response).message;
         console.log(e)
-        swal(respuesta)
+        swal("The session has expired, or your token is invalid")
     }
 }
 

@@ -41,7 +41,7 @@ export const Login = ({onLogin}) => {
     <div className="register-user">
       <NavBar />
       <h1>Log in to Nutri-u and get a better experience</h1>
-      {isLoginLoading && <strong>Checking credentials...</strong>}
+      {isLoginLoading && <strong className="checking">Checking credentials...</strong>}
       {!isLoginLoading && 
         <div className="register-Content">
           <div className="registerBody">
@@ -71,7 +71,7 @@ export const Login = ({onLogin}) => {
           
         </div>
       }
-      {hasLoginError && <strong>Credentials are invalid</strong>}
+      {hasLoginError && <strong className="invalid">Credentials are invalid</strong>}
     </div>
   );
 }
