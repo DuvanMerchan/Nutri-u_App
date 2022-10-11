@@ -7,3 +7,14 @@
     text-decoration: none;
     color: #2E2E2E;;
 }
+
+
+
+.card-title{
+    width: 230px;
+    font-size: 15px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      
+}
