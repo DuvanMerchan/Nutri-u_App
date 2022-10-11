@@ -12,8 +12,9 @@ import {UserTable} from './components/admin/UsersTable/UserTable';
 import { Recovery } from './components/utils/forgot-password/recovery-password/recovery';
 import { Change } from './components/utils/forgot-password/change-password/change';
 import { ConfirmAccount } from './components/utils/confirmAccount/confirm';
-import AdminProfil from './components/admin/adminProfile/AdminProfil';
+import AdminProfil from './pages/admin/adminProfile';
 import { RecipeTable } from './components/admin/RecipesTable/RecipeTable';
+import UserProfile from './pages/userBoart.js/userProfile';
 
 
 
@@ -23,8 +24,10 @@ function App() {
     <div className="App">
      <Routes>
       <Route exact path="/" element={<Home/>} />
+      <Route exact path="/home" element={<Home/>} />
       <Route exact path="/register" element={<Register/>} />
       <Route exact path='/login' element={<Login/>} />
+      <Route exact path='/me' element={<UserProfile />} />
       <Route exact path="/calculatorimc" element={<CalculatorIMC/>} />
       <Route exact path="/detail/:id" element={<RecipeDetail/>} />
       <Route exact path="/createrecipe" element={<CreateRecipe/>} />
