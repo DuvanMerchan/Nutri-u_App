@@ -1,6 +1,8 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Home } from './pages/home/Home';
+import { About } from './pages/about/About';
+import { Services } from './pages/services/Services';
 import { Register } from './components/forms/register';
 import { Login } from './components/forms/log-in';
 import RecipeDetail from './components/recipes/detailrecipe/detailrecipe';
@@ -25,6 +27,8 @@ function App() {
      <Routes>
       <Route exact path="/" element={<Home/>} />
       <Route exact path="/home" element={<Home/>} />
+      <Route exact path="/about" element={<About/>} />
+      <Route exact path="/services" element={<Services/>} />
       <Route exact path="/register" element={<Register/>} />
       <Route exact path='/login' element={<Login/>} />
       <Route exact path='/me' element={<UserProfile />} />
