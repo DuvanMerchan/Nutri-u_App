@@ -5,12 +5,8 @@ import { getIdList, getLists } from '../../redux/actions/useractions'
 const FavoriteList = (user) => {
 
     const dispatch = useDispatch()
-    const {favList} = useSelector((state) => state.user)
-    const {list} = useSelector((state) => state.user)
-    console.log('userId3',user)
-    useEffect(()=>{
-        dispatch(getLists(user.id))
-    },[])
+
+   // console.log('favList2',favList)
 const favoriteSelect = (e) =>{
     dispatch(getIdList(e.targe.value))
 }

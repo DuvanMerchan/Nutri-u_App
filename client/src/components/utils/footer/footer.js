@@ -64,9 +64,6 @@ Our main objective as a food application is to provide the client with different
                                 <li><a href="about">about</a></li>
                                 <li><a href="/services">services</a></li>
                                 <li><a href="/nustritionist">Nutritionist</a></li>
-                                <li><a href="/contact">Contact</a></li>
-
-                                <li><a href="/lates">Latest News</a></li>
                             </ul>
                         </div>
                     </div>
@@ -81,7 +78,7 @@ Our main objective as a food application is to provide the client with different
                             <div class="subscribe-form">
                                 <form action="#">
                                 <ul>
-                                <li><a href="/register">Register</a></li>
+                                <li><a href="/register">Sing UP</a></li>
                             </ul>
                                 </form>
                             </div>

@@ -23,6 +23,7 @@ const RecipeDetail =()=>{
         dispatch(getRecipeDetail(id));
         console.log(recipe,'ESTAMOS MOSTRANDO RECETA API')
     },[])
+
     
      return(
 <div className='detalles'>
