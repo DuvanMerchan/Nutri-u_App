@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { getUser, getUserById, getUserStatus, getAllList, getListById, addFavRecipe, removeFavRecipe,//createUser, deleteUser
+import { getUser, getUserById, getUserStatus, getAllList, getListById, addFavRecipe, removeFavRecipe,
+    updateNameList, deleteListById,//createUser, deleteUser
 } from '../userSlice'
 import swal from 'sweetalert';
 
@@ -193,7 +194,38 @@ export const removeFavorite =(listId,recipeId)=> async (dispatch) =>{
         console.log(error)
     }
 }
+export const changeListName =(listId,listName)=> async (dispatch) =>{
+    try {
 
+        console.log('listId,listName 1',listId,listName)
+        let token = JSON.parse(sessionStorage.getItem('token'))
+        let res = await axios.patch(`http://${url}/user/users/myfavorite/lists/${listId}`,listName,{
+            headers:{
+                'Authorization': `Bearer ${token}`,
+                'Accept' : 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        dispatch(updateNameList(res.data))
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const deleteList =(listId)=> async (dispatch) =>{
+    try {
+        let token = JSON.parse(sessionStorage.getItem('token'))
+        let res = await axios.delete(`http://${url}/user/users/myfavorite/lists/`,listId,{
+            headers:{
+                'Authorization': `Bearer ${token}`,
+                'Accept' : 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        dispatch(deleteListById(res.data))
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 // export const deleteUser = async (dispatch) => {
 //     try{

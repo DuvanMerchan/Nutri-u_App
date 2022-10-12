@@ -4,7 +4,7 @@ import FavoriteList from '../../components/usersBoart/FavoriteList';
 import Info from '../../components/usersBoart/Info';
 import List from '../../components/usersBoart/List';
 import { NavBar } from '../../components/utils/nav/nav';
-import { getIdList, getLists, getUserDetail } from '../../redux/actions/useractions';
+import { changeListName, deleteList, getIdList, getLists, getUserDetail } from '../../redux/actions/useractions';
 
 
 const UserProfile = () => {
@@ -19,32 +19,16 @@ const UserProfile = () => {
         dispatch(getLists())
     },[])
 
-    function handleUpdate(id, value){}
-    function handleDelete(id){}
+    function handleUpdate(id, value){
+      dispatch(changeListName(id, value))
+    }
+    function handleDelete(id){
+      dispatch(deleteList(id))
+    }
     function handleRenderList(id){
       dispatch(getIdList(id))
     }
 
-    function RenderList(){
-      return(<>
-        <h2>{list.name}</h2>
-        
-        {
-        (list.recipes.length>0)?
-        list.recipes.map(r=>{
-          return(
-          <>
-          <h3>{r.name}</h3>
-          <img className="fontimg" src={r.image} alt ='recipe' width={300}/>
-          {r.diets? r.diets.map(d=><span>{d.name}</span>): null}
-          </>
-          )
-        })
-      :(<span>This list don't have recipes</span>)
-      }
-      </>
-      )
-    }
 return (
     <div className='profileCon'>
       <NavBar />
@@ -65,7 +49,10 @@ return (
       ))}
   
       <div>
-          {(Object.entries(list).length>0)? <RenderList />:(
+          {(Object.entries(list).length>0)? 
+          <List  
+          list={list}
+          />:(
             <h2>select your list</h2>
           )}
       </div>

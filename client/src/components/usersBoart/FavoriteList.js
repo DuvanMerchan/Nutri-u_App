@@ -36,8 +36,8 @@ function RenderList(){
     return (
         <div>
            <button className='buttonListName' onClick={() => onRender(list.id)}>{list.name}</button>
-           <button className= 'edit' onClick={() => setIsEdit(true)}>✏️</button>
-           <button className= 'delete'  onClick={() => onDelete(list.id)}>🗑️</button>
+           <button className= 'edit' aria-label='editar' onClick={() => setIsEdit(true)}>✏️</button>
+           <button className= 'delete' aria-label='borrar' onClick={() => onDelete(list.id)}>🗑️</button>
         </div>
       )
 }
