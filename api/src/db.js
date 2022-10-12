@@ -27,15 +27,22 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 
-const { User,  Diet, Recipe, Ingredient, Payments, Favorites } = sequelize.models;
+const { User,  Diet, Recipe, Ingredient, Payments, Favorites, Post, Ranking} = sequelize.models;
 
 // hay que corregir estas relaciones
 User.hasMany(Diet, {as: "fav_diet", foreignKey: "userId"})
 User.hasMany(Recipe, {as: "new_recipe", foreignKey: "userId"})
 User.hasMany(Favorites, { foreignKey: "userId"})
+User.hasMany(Post, { foreignKey: "userId"})
+User.hasMany(Ranking, { foreignKey: "userId"})
 User.hasMany(Payments, {as: 'monthly_payment', foreignKey: 'userId'})
 Payments.belongsTo(User, {as: 'payment', foreignKey: 'paymentId'})
 Favorites.belongsTo(User)
+Post.belongsTo(User)
+Post.hasMany(Post,{as:'subPost'})
+Post.hasOne(Ranking, {foreignKey:'postId'})
+Ranking.belongsTo(User)
+Ranking.belongsTo(Post)
 Recipe.belongsTo(User,{ as: "author", foreignKey: "userId"})
 Diet.belongsToMany( Recipe,{ through: "diets_recipes"})
 Recipe.belongsToMany(Diet,{ through: "diets_recipes"})
