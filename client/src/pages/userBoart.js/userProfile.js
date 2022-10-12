@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-//import FavoriteList from '../../components/usersBoart/FavoriteList';
+import FavoriteList from '../../components/usersBoart/FavoriteList';
 import Info from '../../components/usersBoart/Info';
+import List from '../../components/usersBoart/List';
 import { NavBar } from '../../components/utils/nav/nav';
-import { getLists, getUserDetail } from '../../redux/actions/useractions';
+import { changeListName, deleteList, getIdList, getLists, getUserDetail } from '../../redux/actions/useractions';
+
 
 const UserProfile = () => {
 
@@ -11,25 +13,21 @@ const UserProfile = () => {
     const {user} =useSelector((state)=>state.user)
     const {favList} = useSelector((state) => state.user)
     const {list} = useSelector((state) => state.user)
-    console.log('userId3',user)
-    console.log('favList',favList)
+
     useEffect(()=>{
         dispatch(getUserDetail())
         dispatch(getLists())
     },[])
 
-    // const renderFavoriteList = () =>{
-    //   return(
-      
-    //   favList?.map(f=>{
-    //     // return(
-    //     //   <><button key={f.id} value={f.id}>{f.name}</button>
-    //     //   </>
-    //     console.log(f)
-    //     //)
-    //   })
-      
-    // )}
+    function handleUpdate(id, value){
+      dispatch(changeListName(id, value))
+    }
+    function handleDelete(id){
+      dispatch(deleteList(id))
+    }
+    function handleRenderList(id){
+      dispatch(getIdList(id))
+    }
 
 return (
     <div className='profileCon'>
@@ -39,8 +37,25 @@ return (
         user={user} />
       </div>
       <div>
-      {/* <div>{renderFavoriteList()}</div> */}
-      <div></div>
+      <h2>My Lists</h2>
+      {favList.map(f =>(
+        
+      <FavoriteList
+      key = {f.id}
+      list={f}
+      onUpdate={handleUpdate}
+      onDelete={handleDelete} 
+      onRender={handleRenderList}/>
+      ))}
+  
+      <div>
+          {(Object.entries(list).length>0)? 
+          <List  
+          list={list}
+          />:(
+            <h2>select your list</h2>
+          )}
+      </div>
       </div>
     </div>
   )

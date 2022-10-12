@@ -17,7 +17,6 @@ router.post('/newlist',auth ,async (req, res) =>{
 
 router.get('/allfavlist/:id', auth, async (req, res)=>{
     let {id} = req.params
-    console.log('userId2',id)
     let fav = await listFavorite(id)
     res.json(fav)
 })
@@ -45,7 +44,6 @@ router.get('/lists/:id', auth, async (req, res)=>{
 
 router.delete('/lists', auth, async (req, res)=>{
     let {listId} = req.body
-    console.log(listId)
     let list = await deleteList(listId)
     res.json(list)
 })
@@ -53,6 +51,7 @@ router.delete('/lists', auth, async (req, res)=>{
 router.patch('/lists/:listId', auth, async (req, res)=>{
     let {listId} = req.params
     let {listName} = req.body
+    console.log('listId,listName 2',listId,listName)
     let list = await updateList(listId, listName)
     res.json(list)
 })
