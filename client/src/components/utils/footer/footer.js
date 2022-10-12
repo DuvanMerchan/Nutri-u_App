@@ -81,7 +81,7 @@ Our main objective as a food application is to provide the client with different
                             <div class="subscribe-form">
                                 <form action="#">
                                 <ul>
-                                <li><a href="/register">Register</a></li>
+                                <li><a href="/register">Sing UP</a></li>
                             </ul>
                                 </form>
                             </div>
