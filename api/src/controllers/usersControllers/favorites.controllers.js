@@ -1,4 +1,7 @@
 const { User, Favorites, Recipe } = require("../../db");
+const axios = require("axios");
+const { getApiRecipeByID } = require("../recipecontrollers");
+const { API_KEY } = process.env;
 
 const createList = async (userId, listName) => {
   let user = await User.findByPk(userId);
@@ -50,6 +53,7 @@ const addingRecipe = async ( listId , recipeId) => {
       let recipe = await Recipe.findOne({
         where:{
           apiId:recipeId}})
+
       await list.addRecipe(recipe)
       return list
     }

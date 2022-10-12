@@ -13,7 +13,7 @@ export const Cards = () => {
     const { diets } = useSelector((state) => state.diets)
     // console.log('diets', diets)
 
-
+    console.log('recipes',recipes)
 
     function handleSortRecipes(e) {
       e.preventDefault();

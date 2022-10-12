@@ -17,7 +17,6 @@ router.post('/newlist',auth ,async (req, res) =>{
 
 router.get('/allfavlist/:id', auth, async (req, res)=>{
     let {id} = req.params
-    console.log('userId2',id)
     let fav = await listFavorite(id)
     res.json(fav)
 })
