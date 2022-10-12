@@ -1,7 +1,6 @@
 import React from "react";
 import { NavBar } from "../../components/utils/nav/nav";
 import "./About.css"
-import subimg1 from "./subimg1.jpg"
 
 export const About =()=>{
     
