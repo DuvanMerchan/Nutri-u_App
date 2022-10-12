@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
 
-    sequelize.define('payments', {
+    sequelize.define('payment', {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
@@ -18,11 +18,11 @@ module.exports = (sequelize) => {
             allowNull: false,
             defaultValue: false
         },
-        startDate:{
-            type: DataTypes.DATEONLY,         /*  2021-07-06.  */
-            allowNull: false,               
-        }
+        // startDate:{
+        //     type: DataTypes.DATEONLY,         /*  2021-07-06.  */
+        //     allowNull: false,               
+        // }
     }, {
-        timestamps: false,
+        timestamps: true,
     });
 };

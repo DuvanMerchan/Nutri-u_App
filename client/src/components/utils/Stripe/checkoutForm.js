@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from "react";
 import {
   CardElement,
-  // Elements,
-  // PaymentElement,
-  // PaymentRequestButtonElement,
+  Elements,
+  PaymentElement,
+  PaymentRequestButtonElement,
   useElements,
   useStripe,
-  // loadStripe
+  loadStripe
 } from "@stripe/react-stripe-js";
-import swal from 'sweetalert';
-import { NavBar } from "../nav/nav";
+import axios from 'axios';
 
 import style from './checkoutForm.module.css' 
-const { REACT_APP_HOST } =
-  process.env;
+
 // import subimg1 from "./subimg1.jpg"
 
 
@@ -50,7 +48,7 @@ export function PaymentForm() {
       const userLogged = JSON.parse(loggedUserSession)
       setUser(userLogged)
     }
-  },[])
+  })
 
   const [user, setUser] = useState('')
 
@@ -89,7 +87,7 @@ export function PaymentForm() {
         type: "card",
       });
 
-      const response = await fetch(`http://${REACT_APP_HOST}/user/premium`, {
+      const response = await fetch("http://localhost:5000/user/premium", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -119,17 +117,15 @@ export function PaymentForm() {
       console.log('ESTIIIII', data.respuesta)
       const confirm = await stripe.confirmCardPayment(data.respuesta.clientSecret);
       if (confirm.error) return alert("Payment unsuccessful!");
-      swal("Payment Successful! Subscription active.");
+      alert("Payment Successful! Subscription active.");
 
     } catch (err) {
       console.error(err);
-      swal("Payment failed! " + err.message);
+      alert("Payment failed! " + err.message);
     }
   };
 
   return (
-    <div>
-      <NavBar/>
     <div className={style.paymentContainer}>
       <div className={style.cardContainer}>
         <div style={{ width: "40%" }}>
@@ -144,7 +140,6 @@ export function PaymentForm() {
         </div>
 
       </div>
-    </div>
     </div>
   );
 }

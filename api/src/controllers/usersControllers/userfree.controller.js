@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { User } = require("../../db.js");
+const { User, Payment } = require("../../db.js");
 const { HOST_EMAIL, PORT_EMAIL, EMAIL, EMAIL_PASS, DB_HOST, DB_PORT } = process.env;
 const Stripe = require('stripe')
 
@@ -8,12 +8,10 @@ const stripe = new Stripe('sk_test_51LpumKJocvWwgusfR19jzAn2K6nOtr99mMwbcQpJUMWL
 
 const changeToPremium = async (userEmail, userName, paymentMethod) =>{
 
-    const user = await User.findOne({where:{email: userEmail}})
-
-
-    try {
-
-      const customer = await stripe.customers.create({
+  
+  try {
+    
+    const customer = await stripe.customers.create({
         email: userEmail,
         name: userName,
         payment_method: paymentMethod,
@@ -23,7 +21,7 @@ const changeToPremium = async (userEmail, userName, paymentMethod) =>{
       const product = await stripe.products.create({
         name: 'Monthly subscription',
       })
-
+      
       const subscription = await stripe.subscriptions.create({
       customer: customer.id,
       items: [
@@ -38,13 +36,28 @@ const changeToPremium = async (userEmail, userName, paymentMethod) =>{
           },
         },
       ],
-
+      
       payment_settings: {
         payment_method_types: ["card"],
         save_default_payment_method: "on_subscription",
       },
         expand: ["latest_invoice.payment_intent"],
-    });
+      });
+      
+    const user = await User.findOne({where:{email: userEmail}})
+    console.log('sos vos?¡',user)
+    const factura = await Payment.findOrCreate({where:{
+      paymenthID: subscription.id,
+      succesfull: true,
+      userId: user.id
+      }
+    })
+    
+    console.log('facturaa',factura)
+    await user.addPayments(factura)
+    user.update({ premium: true })
+    
+    
     // console.log('ESTOOO',subscription)
     return {
       message: 'Subscription successfully initiated',
@@ -52,7 +65,7 @@ const changeToPremium = async (userEmail, userName, paymentMethod) =>{
       subscriptionId: subscription.id
     }
 
-    } catch(error) {
+  } catch(error) {
         console.log('Change to premium error',error);
         return JSON.stringify({ message: error.message });
     }
