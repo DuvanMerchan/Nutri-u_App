@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./log-in.css";
 import { useLocation } from "wouter";
+import { useNavigate } from "react-router-dom"
 
 import { NavBar } from "../utils/nav/nav";
 
@@ -11,6 +12,7 @@ export const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [, navigate] = useLocation();
+  const navigate2 = useNavigate()
 
   const [userLogged, setUserLogged] = useState({
     email: "",
@@ -20,7 +22,7 @@ export const Login = ({ onLogin }) => {
 
   useEffect(() => {
     if (isLogged) {
-      navigate("/home");
+      navigate2("/me");
       onLogin && onLogin();
     }
   }, [isLogged, navigate, onLogin]);
