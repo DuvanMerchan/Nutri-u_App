@@ -6,7 +6,7 @@ const {
   DB_USER, DB_PASSWORD, DB_HOST
 } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/nutri-u`, {
+const sequelize = new Sequelize(`postgres://${process.env.DB_USER || DB_USER}:${process.env.DB_PASSWORD || DB_PASSWORD}@${process.env.DB_HOST || DB_HOST}/${process.env.DB_NAME || "nutri-u"}`, {
   logging: false,
   native: false, 
 });

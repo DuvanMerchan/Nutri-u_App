@@ -7,7 +7,7 @@ const dietTypes = require('./src/utils/apispoon')
 
 // Syncing all the models at once.
 conn.sync({ alter: true }).then(() => {
-  server.listen(DB_PORT, () => {
+  server.listen(process.env.PORT || DB_PORT, () => {
     console.log(`%s listening at ${DB_PORT}`); // eslint-disable-line no-console
  
     dietTypes.forEach(async d =>{           
