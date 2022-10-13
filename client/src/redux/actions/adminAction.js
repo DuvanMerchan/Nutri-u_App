@@ -5,8 +5,9 @@ import { getAllRecipes, getAllUsers, getRecipeById, getUserById, banUser, banRec
 
 //-------------------- RUTAS --------------------------
 //import {REACT_APP_HOST} from process.env
-require('dotenv').config()
-const url = process.env.REACT_APP_HOST || 'localhost:5001'
+import dotenv from 'dotenv'
+dotenv.config()
+const url = process.env.REACT_APP_HOST 
 
 //const token = JSON.parse(sessionStorage.getItem('token'))
 
@@ -14,7 +15,7 @@ const url = process.env.REACT_APP_HOST || 'localhost:5001'
 export const getRecipes = ()=> async (dispatch) => {
     try{
         let token = JSON.parse(sessionStorage.getItem('token'))
-        let res = await axios.get(`http://${url}/recipes`,{
+        let res = await axios.get(`${url}/recipes`,{
             headers:{
                 'Authorization': `Bearer ${token}`,
                 'Accept' : 'application/json',
@@ -31,7 +32,7 @@ export const getRecipes = ()=> async (dispatch) => {
 export const getRecipeDetail =(id)=> async (dispatch) => {
     try{
         let token = JSON.parse(sessionStorage.getItem('token'))
-        let res = await axios.get(`http://${url}/recipe/${id}`,{
+        let res = await axios.get(`${url}/recipe/${id}`,{
             headers:{
                 'Authorization': `Bearer ${token}`,
                 'Accept' : 'application/json',
@@ -48,7 +49,7 @@ export const getRecipeDetail =(id)=> async (dispatch) => {
 export const getUserDetail = (id) => async (dispatch) => {
     try{
         let token = JSON.parse(sessionStorage.getItem('token'))
-        let res = await axios.get(`http://${url}/user/admin/search/${id}`,{
+        let res = await axios.get(`${url}/user/admin/search/${id}`,{
             headers:{
                 'Authorization': `Bearer ${token}`,
                 'Accept' : 'application/json',
@@ -66,7 +67,7 @@ export const getUsers = () => async (dispatch) => {
     try{
         let token = JSON.parse(sessionStorage.getItem('token'))
         
-        let res = await axios.get(`http://${url}/user/admin/search`,{
+        let res = await axios.get(`${url}/user/admin/search`,{
             headers:{
                 'Authorization': `Bearer ${token}`,
                 'Accept' : 'application/json',
@@ -85,7 +86,7 @@ export const banUserById = (id,banned) => async (dispatch) => {
     
     try{
         let token = JSON.parse(sessionStorage.getItem('token'))
-        let res = await axios.post(`http://${url}/user/admin/search/${id}`,{banned},{
+        let res = await axios.post(`${url}/user/admin/search/${id}`,{banned},{
             headers:{
                 'Authorization': `Bearer ${token}`,
                 'Accept' : 'application/json',
@@ -120,7 +121,7 @@ export const banUserById = (id,banned) => async (dispatch) => {
 export const newAdmin = (payload) => async (dispatch) => {
     try{
         let token = JSON.parse(sessionStorage.getItem('token'))
-        let res = await axios.post(`http://${url}/user/admin/singin`, payload,{
+        let res = await axios.post(`${url}/user/admin/singin`, payload,{
             headers:{
                 'Authorization': `Bearer ${token}`,
                 'Accept' : 'application/json',
