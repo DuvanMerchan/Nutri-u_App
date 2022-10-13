@@ -1,7 +1,4 @@
 const { User, Favorites, Recipe } = require("../../db");
-const axios = require("axios");
-const { getApiRecipeByID } = require("../recipecontrollers");
-const { API_KEY } = process.env;
 
 const createList = async (userId, listName) => {
   let user = await User.findByPk(userId);
@@ -64,8 +61,12 @@ const addingRecipe = async ( listId , recipeId) => {
 
 const listById = async (listId) => {
   try {
-    let list = await Favorites.findByPk(listId, { include: Recipe } )
-    return list
+    if (!listId) {
+      return {}
+    } else {
+      let list = await Favorites.findByPk(listId, { include: Recipe } )
+      return list
+    }
   } catch (error) {
     console.log( error);
   }
@@ -76,7 +77,6 @@ const listByName = async () => {};
 const deleteList = async (listId) => {
   try {
     let list = await Favorites.findByPk(listId, { include: Recipe } ) 
-    console.log(list)
     let listName = list.name
     await list.destroy()
     return(`the list ${listName} has being delete`)

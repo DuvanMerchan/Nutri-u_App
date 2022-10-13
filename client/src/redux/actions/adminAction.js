@@ -1,6 +1,5 @@
 import axios from 'axios'
-import { useContext } from 'react'
-import Context from '../../Context/UserContext'
+// eslint-disable-next-line
 import { getAllRecipes, getAllUsers, getRecipeById, getUserById, banUser, banRecipe, postAdmin, updateUser } from '../adminSlice'
 
 

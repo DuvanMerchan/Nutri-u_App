@@ -182,56 +182,64 @@ export const addFavorite =(listId,recipeId)=> async (dispatch) =>{
 export const removeFavorite =(listId,recipeId)=> async (dispatch) =>{
     try {
         let token = JSON.parse(sessionStorage.getItem('token'))
-        let res = await axios.patch(`http://${url}/user/users/myfavorite/lists/${listId}`,recipeId,{
+        await axios.patch(`http://${url}/user/users/myfavorite/lists/recipes/${listId}`,{recipeId:recipeId},{
             headers:{
                 'Authorization': `Bearer ${token}`,
                 'Accept' : 'application/json',
                 'Content-Type': 'application/json'
             }
         })
-        dispatch(removeFavRecipe(res.data))
+        //dispatch(removeFavRecipe(res.data))
     } catch (error) {
         console.log(error)
     }
 }
+export const createList = (listName) =>async(dispatch)=>{
+    try {
+        let user = JSON.parse(sessionStorage.getItem('user'))
+        let token = JSON.parse(sessionStorage.getItem('token'))
+        await axios.post(`http://${url}/user/users/myfavorite/newlist/`, {
+        listName:listName,
+        userId:user.id
+        },{
+            headers:{
+                'Authorization': `Bearer ${token}`,
+                'Accept' : 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const changeListName =(listId,listName)=> async (dispatch) =>{
     try {
-
-        console.log('listId,listName 1',listId,listName)
         let token = JSON.parse(sessionStorage.getItem('token'))
-        let res = await axios.patch(`http://${url}/user/users/myfavorite/lists/${listId}`,listName,{
+        await axios.patch(`http://${url}/user/users/myfavorite/lists/listName/${listId}`, {
+        listName:listName
+        },{
             headers:{
                 'Authorization': `Bearer ${token}`,
                 'Accept' : 'application/json',
                 'Content-Type': 'application/json'
-            }
+            },
         })
-        dispatch(updateNameList(res.data))
     } catch (error) {
         console.log(error)
     }
 }
-export const deleteList =(listId)=> async (dispatch) =>{
+export const deleteList =(listId)=> async(dispatch) =>{
     try {
         let token = JSON.parse(sessionStorage.getItem('token'))
-        let res = await axios.delete(`http://${url}/user/users/myfavorite/lists/`,listId,{
-            headers:{
+        await axios.delete(`http://${url}/user/users/myfavorite/lists/`,
+        {headers:{
                 'Authorization': `Bearer ${token}`,
                 'Accept' : 'application/json',
                 'Content-Type': 'application/json'
-            }
-        })
-        dispatch(deleteListById(res.data))
+            },
+            data:{ listId:listId}})
     } catch (error) {
         console.log(error)
     }
 }
-
-// export const deleteUser = async (dispatch) => {
-//     try{
-//         let res = await axios.delete()
-//         dispatch(deleteUser(res.data))
-//     }catch(e){
-//         console.log(e)
-//     }
-// }
