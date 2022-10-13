@@ -6,8 +6,10 @@ import swal from 'sweetalert';
 
 
 //-------------------- RUTAS --------------------------
-require('dotenv').config()
-const url = process.env.REACT_APP_HOST || 'localhost:5001'
+import dotenv from "dotenv"
+dotenv.config()
+
+const url = process.env.REACT_APP_HOST
 
 
 //-------------------- ACTIONS -----------------------
