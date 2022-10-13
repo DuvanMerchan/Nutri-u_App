@@ -89,7 +89,7 @@ export function PaymentForm() {
         type: "card",
       });
 
-      const response = await fetch(`http://${REACT_APP_HOST}/user/premium`, {
+      const response = await fetch(`${REACT_APP_HOST}/user/premium`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
