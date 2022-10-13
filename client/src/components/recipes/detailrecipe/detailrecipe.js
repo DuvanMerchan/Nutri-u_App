@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 //import {spinner} from '../../utils/spinner/spinner.js';
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, //useState 
@@ -10,12 +10,13 @@ import { NavBar } from '../../utils/nav/nav';
 //import {check} from "./check.png"
 
 import style from './detail.css'
+import SelectFavList from '../../utils/SelectFavList/SelectFavList';
 
 const RecipeDetail =()=>{
     
     const dispatch = useDispatch();
     const { id } = useParams();
-    //const [recipeDetail, setRecipeDetail ] = useState({})
+    const [show, setShow ] = useState(false)
     const recipe = useSelector(state => state.recipes.detail)
     //setRecipeDetail(recipe)  
 
@@ -46,7 +47,11 @@ const RecipeDetail =()=>{
         </div>
 
         <div className="detail6">
-          <button className="favouritebtn">Favourite</button>
+          {show?(<><button onClick={()=>{setShow(false)}}>X</button>
+          <SelectFavList
+          /></>)
+          :(<button className="favouritebtn" onClick={()=>{setShow(true)} }>Favourite</button>)
+          }
         </div>
 
         <div className="detail4">

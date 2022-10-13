@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import FavoriteList from '../../components/usersBoart/FavoriteList';
 import Info from '../../components/usersBoart/Info';
 import List from '../../components/usersBoart/List';
+import NewList from '../../components/usersBoart/NewList';
 import { NavBar } from '../../components/utils/nav/nav';
-import { changeListName, deleteList, getIdList, getLists, getUserDetail } from '../../redux/actions/useractions';
+import { changeListName, createList, deleteList, getIdList, getLists, getUserDetail, removeFavorite } from '../../redux/actions/useractions';
 
 
 const UserProfile = () => {
@@ -16,14 +17,47 @@ const UserProfile = () => {
 
     useEffect(()=>{
         dispatch(getUserDetail())
+    },[])
+    useEffect(()=>{
         dispatch(getLists())
     },[])
 
     function handleUpdate(id, value){
-      dispatch(changeListName(id, value))
+      try {
+        dispatch(changeListName(id, value))
+        setTimeout(()=>{
+          dispatch(getLists())
+        },100)
+      } catch (error) {
+        console.log(error)
+      }
     }
-    function handleDelete(id){
-      dispatch(deleteList(id))
+    function handleDelete(listId){
+      try {
+        alert('Do you wanna delete this list?')
+        dispatch(deleteList(listId))
+        setTimeout(()=>{
+          dispatch(getLists())
+          dispatch(getIdList())
+        },100)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    function onDeleteRecipe(listId,recipeId) {
+      
+      alert('Do you wanna delete this recipe?')
+      dispatch(removeFavorite(listId,recipeId))
+      setTimeout(()=>{
+        dispatch(getLists())
+        dispatch(getIdList(listId))
+      },100)
+    }
+    function onCreate(listName){
+      dispatch(createList(listName))
+      setTimeout(()=>{
+        dispatch(getLists())
+      },100)
     }
     function handleRenderList(id){
       dispatch(getIdList(id))
@@ -38,19 +72,24 @@ return (
       </div>
       <div>
       <h2>My Lists</h2>
-      {favList.map(f =>(
-        
+      <NewList
+      onCreate={onCreate} />
+      {(favList.length>0)?
+      favList.map(f =>(<>
       <FavoriteList
       key = {f.id}
+      user= {user}
       list={f}
       onUpdate={handleUpdate}
       onDelete={handleDelete} 
-      onRender={handleRenderList}/>
-      ))}
+      onRender={handleRenderList}/></>
+      ))
+    : null}
   
       <div>
           {(Object.entries(list).length>0)? 
           <List  
+          onDeleteRecipe={onDeleteRecipe}
           list={list}
           />:(
             <h2>select your list</h2>

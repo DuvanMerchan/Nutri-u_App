@@ -27,8 +27,8 @@ export const userSlice = createSlice({
       state.list = action.payload;
     },
     updateNameList: (state, action) => {
-      state.list = action.payload;
       state.favList = action.payload;
+      state.list = action.payload;
     },
     deleteListById: (state, action) => {
       state.favList = action.payload;
