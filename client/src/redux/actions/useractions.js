@@ -8,9 +8,7 @@ import swal from 'sweetalert';
 //-------------------- RUTAS --------------------------
 import dotenv from "dotenv"
 dotenv.config()
-
-const url = process.env.REACT_APP_HOST
-
+const url = process.env.REACT_APP_HOST 
 
 //-------------------- ACTIONS -----------------------
 
