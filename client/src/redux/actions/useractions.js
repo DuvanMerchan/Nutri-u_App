@@ -6,9 +6,10 @@ import swal from 'sweetalert';
 
 
 //-------------------- RUTAS --------------------------
-import dotenv from "dotenv"
+import dotenv from 'dotenv'
 dotenv.config()
 const url = process.env.REACT_APP_HOST 
+
 
 //-------------------- ACTIONS -----------------------
 
@@ -93,6 +94,7 @@ export const postUser =(payload)=> async (dispatch) => {
 }
 
 export const logIn = (email, password) => async (dispatch) =>{
+    console.log("HOLA SOY DOT", url)
     try {
         let res = await axios.post(`http://${url}/user/login`, email, password)
         dispatch(getUser(res.data))
