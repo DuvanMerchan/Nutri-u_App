@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import FavoriteList from '../../components/usersBoart/FavoriteList';
 import Info from '../../components/usersBoart/Info';
@@ -14,7 +14,33 @@ const UserProfile = () => {
     const {user} =useSelector((state)=>state.user)
     const {favList} = useSelector((state) => state.user)
     const {list} = useSelector((state) => state.user)
+
+    const [ image, setImage ] = useState("")
+    const [ loading, setLoading ] = useState(false)
+
+    const uploadImage = async (e) => {
+      const files = e.target.files;
+      const data = new FormData();
+      data.append("file", files[0])
+      data.append("upload_preset", "images");
+      setLoading(true)
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/dq4zroj42/image/upload",
+        {
+          method: "POST",
+          body: data,
+        }
+      )
+      const file = await res.json();
+      setImage(file.secure_url)
+      console.log(file.secure_url)
+      setLoading(false)
+    }
+
+
+
     const navigate2 = useNavigate()
+
 
     useEffect(()=>{
         if(!loggedUserSession){navigate2("/home")}
@@ -72,6 +98,22 @@ return (
         <Info
         user={user} />
       </div>
+
+          <div>
+            {loading ? (<h3>Loading picture...</h3>) : (<img src={image} style={{width: "300px"}}/>)}
+          </div>
+          
+        <div>
+          <input
+            type="file"
+            name="file"
+            placeholeder="Profile Picture"
+            onChange={uploadImage}
+            >
+          </input>
+        </div>
+
+
       <div>
       <h2>My Lists</h2>
       <NewList
