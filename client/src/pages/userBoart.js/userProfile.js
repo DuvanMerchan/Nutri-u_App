@@ -6,14 +6,20 @@ import List from '../../components/usersBoart/List';
 import NewList from '../../components/usersBoart/NewList';
 import { NavBar } from '../../components/utils/nav/nav';
 import { changeListName, createList, deleteList, getIdList, getLists, getUserDetail, removeFavorite } from '../../redux/actions/useractions';
+
 import "./userProfile.css"
 
-const UserProfile = () => {
 
+import { useNavigate } from "react-router-dom"
+
+
+const UserProfile = () => {
+    const loggedUserSession = window.sessionStorage.getItem("user")
     const dispatch = useDispatch()
     const {user} =useSelector((state)=>state.user)
     const {favList} = useSelector((state) => state.user)
     const {list} = useSelector((state) => state.user)
+
     const [ image, setImage ] = useState("")
     const [ loading, setLoading ] = useState(false)
 
@@ -36,7 +42,13 @@ const UserProfile = () => {
       setLoading(false)
     }
 
+
+
+    const navigate2 = useNavigate()
+
+
     useEffect(()=>{
+        if(!loggedUserSession){navigate2("/home")}
         dispatch(getUserDetail())
     },[])
     useEffect(()=>{

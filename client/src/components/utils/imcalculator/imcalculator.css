@@ -1,0 +1,16 @@
+.imc-calculator{
+    background: #56ab2f;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #a8e063, #56ab2f);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #a8e063, #56ab2f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    max-width: 800px;
+    align-items: center;
+    border-radius: 10px;
+    color: white
+}
+
+.area-input-calculator h1{
+    justify-content: center;
+}
