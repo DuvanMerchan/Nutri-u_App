@@ -46,7 +46,7 @@ export function PaymentForm() {
     try {
 
       const paymentMethod = await stripe.createPaymentMethod({
-        card: elements.getElement("card"),
+        card: elements.getElement("cardNumber"),
         type: "card",
       });
 
@@ -78,29 +78,49 @@ export function PaymentForm() {
     }
   };
 
+  //style 
+  const inputStyle = {
+    iconColor: '#c4f0ff',
+    color: '#ff0',
+    fontWeight: '500',
+    fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
+    fontSize: '16px',
+    fontSmoothing: 'antialiased',
+    ':-webkit-autofill': {
+      color: '#fce883',
+    },
+    '::placeholder': {
+      color: '#87BBFD',
+    },
+}
+
   return (
     <div>
       <NavBar/>
     <div className={style.paymentContainer}>
       <div className={style.cardContainer}>
-        <div>
-          <CardElement />
-          {/* <input type='text' placeholder='name'/>
-          <FpxBankElement />
-          <CardNumberElement />
-          <CardExpiryElement />
-          <CardCvcElement /> */}
+        <div >
+          <label>Card Number</label>
+          <CardNumberElement className={style.cardInputWrapper} options={{
+        style: {
+          base: inputStyle,
+        },
+      }}/>
+          <label>Card Expiry Date</label>
+          <CardExpiryElement className={style.cardInputWrapper} options={{
+        style: {
+          base: inputStyle,
+        },
+      }}/>
+          <label>Card CVC</label>
+          <CardCvcElement className={style.cardInputWrapper} options={{
+        style: {
+          base: inputStyle,
+        },
+      }}/>
+          <br/>
           <button onClick={createSubscription} class="btn btn-secondary">Subscribe - 5 USD</button>
         </div>
-        {/* <div style={{ width: "40%" }}>
-          <input type='text' placeholder='name'/>
-          <FpxBankElement />
-          <CardNumberElement />
-          <CardExpiryElement />
-          <CardCvcElement />
-          <button onClick={createSubscription} class="btn btn-secondary">Subscribe - 5 USD</button>
-        </div> */}
-
       </div>
     </div>
     </div>
