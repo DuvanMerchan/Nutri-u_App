@@ -6,6 +6,10 @@ import {
   // PaymentRequestButtonElement,
   useElements,
   useStripe,
+  CardNumberElement,
+  CardExpiryElement,
+  FpxBankElement,
+  CardCvcElement
   // loadStripe
 } from "@stripe/react-stripe-js";
 import swal from 'sweetalert';
@@ -14,32 +18,6 @@ import { NavBar } from "../nav/nav";
 import style from './checkoutForm.module.css' 
 const { REACT_APP_HOST } =
   process.env;
-// import subimg1 from "./subimg1.jpg"
-
-
-// const appearance = {
-//   theme: 'night',
-//   labels: 'floating'
-// };
-
-const appearance = {
-   theme: 'night',
-  labels: 'floating',
-
-  variables: {
-    colorPrimary: '#0570de',
-    colorBackground: '#ffffff',
-    colorText: '#30313d',
-    colorDanger: '#df1b41',
-    fontFamily: 'Ideal Sans, system-ui, sans-serif',
-    spacingUnit: '2px',
-    borderRadius: '4px',
-    // See all possible variables below
-  }
-};
-
-// Pass the appearance object to the Elements instance
-// const elements = stripe.elements({clientSecret, appearance});
 
 
 export function PaymentForm() {
@@ -57,28 +35,6 @@ export function PaymentForm() {
   const stripe = useStripe();
   const elements = useElements();
 
-  // const element = elements.create('card', {
-  //   style: {
-  //     base: {
-  //       iconColor: '#c4f0ff',
-  //       color: '#fff',
-  //       fontWeight: '500',
-  //       fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
-  //       fontSize: '16px',
-  //       fontSmoothing: 'antialiased',
-  //       ':-webkit-autofill': {
-  //         color: '#fce883',
-  //       },
-  //       '::placeholder': {
-  //         color: '#87BBFD',
-  //       },
-  //     },
-  //     invalid: {
-  //       iconColor: '#FFC7EE',
-  //       color: '#FFC7EE',
-  //     },
-  //   },
-  // });
 
   const createSubscription = async () => {
     
@@ -101,16 +57,6 @@ export function PaymentForm() {
         }),
       });
 
-      // const response = await axios.post('localhost:5000/user/premium',{
-      //   headers: {
-      //          "Content-Type": "application/json",
-      //        },
-      //        body: JSON.stringify({
-      //         userName: storageLocal.username,
-      //         userEmail: storageLocal.email,
-      //         paymentMethod: paymentMethod.paymentMethod.id,
-      //        })
-      // })
 
       if (!response.ok) return alert("Payment unsuccessful!");
       const data = await response.json();
@@ -132,16 +78,28 @@ export function PaymentForm() {
       <NavBar/>
     <div className={style.paymentContainer}>
       <div className={style.cardContainer}>
-        <div style={{ width: "40%" }}>
-          {/* <input className={style.cardNumber}/>
+        <form onSubmit={createSubscription}>
+            {/* <input className={style.cardNumber}/>
           <input className={style.expiration}/>
           <input className={style.cvc}/>
           <input className={style.country}/>
           <br /> */}
+          <input type='text' placeholder='name'/>
+          <FpxBankElement />
+          <CardNumberElement />
+          <CardExpiryElement />
+          <CardCvcElement />
           
-          <CardElement />
           <button onClick={createSubscription} class="btn btn-secondary">Subscribe - 5 USD</button>
-        </div>
+        </form>
+        {/* <div style={{ width: "40%" }}>
+          <input type='text' placeholder='name'/>
+          <FpxBankElement />
+          <CardNumberElement />
+          <CardExpiryElement />
+          <CardCvcElement />
+          <button onClick={createSubscription} class="btn btn-secondary">Subscribe - 5 USD</button>
+        </div> */}
 
       </div>
     </div>
