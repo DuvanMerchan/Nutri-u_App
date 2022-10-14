@@ -6,7 +6,7 @@ import List from '../../components/usersBoart/List';
 import NewList from '../../components/usersBoart/NewList';
 import { NavBar } from '../../components/utils/nav/nav';
 import { changeListName, createList, deleteList, getIdList, getLists, getUserDetail, removeFavorite } from '../../redux/actions/useractions';
-
+import "./userProfile.css"
 
 const UserProfile = () => {
 
@@ -87,16 +87,20 @@ const UserProfile = () => {
 return (
     <div className='profileCon'>
       <NavBar />
-      <div>
+
+<div className="userprofile"> 
+
+      <div className="username1">
         <Info
         user={user} />
       </div>
 
-          <div>
-            {loading ? (<h3>Loading picture...</h3>) : (<img src={image} style={{width: "300px"}}/>)}
+          <div className="userimage">
+            {loading ? (<h3>Loading picture...</h3>) : (<img className="userimage1"src={image} style={{width: "600px"}}/>)}
           </div>
           
-        <div>
+        <div className="upload1">
+          <h5>Upload your profile picture</h5>
           <input
             type="file"
             name="file"
@@ -106,8 +110,7 @@ return (
           </input>
         </div>
 
-
-      <div>
+      <div className="list">
       <h2>My Lists</h2>
       <NewList
       onCreate={onCreate} />
@@ -123,16 +126,21 @@ return (
       ))
     : null}
   
-      <div>
-          {(Object.entries(list).length>0)? 
-          <List  
-          onDeleteRecipe={onDeleteRecipe}
-          list={list}
-          />:(
-            <h2>select your list</h2>
-          )}
       </div>
+
+        <div className="list1">
+            {(Object.entries(list).length>0)? 
+            <List  
+            onDeleteRecipe={onDeleteRecipe}
+            list={list}
+            />:(
+              <h2>select your list</h2>
+            )}
+        </div>
+
+
       </div>
+
     </div>
   )
 }
