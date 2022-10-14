@@ -1,4 +1,5 @@
 import React from 'react';
+import "./imcalculator.css"
 import { useState } from 'react';
 
 
@@ -60,11 +61,12 @@ export const CalculatorIMC= ()=>{
   }
 
   return(
-   <div className="app">
-      <div className="area-input">
+   <div className="imc-calculator">
+      <div className="area-input-calculator">
       <h1>Calculadora de IMC</h1>
       <span>Vamos Calcular su IMC ?</span>
           <input 
+            className='form-control'
             type="text"
             placeholder="Peso en KG Ej: 75"
             value={peso}
@@ -72,13 +74,14 @@ export const CalculatorIMC= ()=>{
           />
 
           <input 
+            className='form-control'
             type="text"
             placeholder="Altura en CM Ej: 170"
             value={altura}
             onChange={ (e) => setAltura(e.target.value) }
           />
 
-          <button onClick={calcularIMC}>
+          <button className="btn btn-primary" onClick={calcularIMC}>
             Calcular
           </button>
 
