@@ -49,7 +49,7 @@ const changeToPremium = async (userEmail, userName, paymentMethod) =>{
     // console.log('sos vos?¡',user)
     const factura = await Payment.findOrCreate({where:{
       paymenthID: subscription.id,
-    }})
+}})
     
     // console.log('facturaa',factura)
     await user.addMonthly_payment(factura.dataValues)

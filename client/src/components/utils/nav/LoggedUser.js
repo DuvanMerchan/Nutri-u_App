@@ -4,7 +4,7 @@ import img from "./logo";
 
 const LoggedUser = (user) => {
     const renderPages = (user) =>{
-        if (user.free) {}
+        // if (user.free) {}
         if(user.premium){
                 return(<>
                 <li class="nav-item"> <a class="nav-link" href="/">Home</a></li>
