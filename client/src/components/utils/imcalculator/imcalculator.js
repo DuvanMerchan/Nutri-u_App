@@ -15,7 +15,7 @@ export const CalculatorIMC= ()=>{
 
   function calcularIMC (){
 
-    const alt = altura / 100;
+    const alt = altura / 100; 
     const imc = peso / (alt * alt);
 
     if(altura === "" && peso === ""){
