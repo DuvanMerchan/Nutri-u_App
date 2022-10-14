@@ -1,0 +1,56 @@
+.userprofile {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 0fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+
+      "username1 username1 username1 username1 username1 userimage userimage userimage userimage userimage userimage"
+      "username1 username1 username1 username1 username1 userimage userimage userimage userimage userimage userimage"
+      ". . . . . userimage userimage userimage userimage userimage userimage"
+      "list list list list1 list1 userimage userimage userimage userimage userimage userimage"
+      "list list list list1 list1 userimage userimage userimage userimage userimage userimage"
+      "list list list list1 list1 userimage userimage userimage userimage userimage userimage"
+      "list list list list1 list1 . . . . . ."
+      "list list list list1 list1 . . . . . ."
+      "list list list list1 list1 . . . . . ."
+      "list list list list1 list1 . . . . . ."
+      "list list list list1 list1 upload1 upload1 upload1 upload1 upload1 upload1"; 
+
+      max-width: 1400px;
+      height: 1000px;
+      margin: 0 auto;
+      padding: 1em; 
+      background: #f9f9f9;
+      border: 1px solid #c1c1c1;
+}
+.username1 { 
+    grid-area: username1;
+    margin-top: 50px;
+    margin-left: 170px;
+}
+.userimage { 
+    margin-top: 15px;
+    grid-area: userimage;
+    margin-left: 130px;
+}
+
+.userimage1 {
+    border-radius: 4%;
+}
+
+.upload1 { 
+    grid-area: upload1;
+    margin-top: 300px;
+    margin-left: 430px;
+}
+
+.list { 
+    grid-area: list;
+    margin-left: 80px;
+}
+
+.list1 { 
+    grid-area: list1; 
+    margin-left: 30px;
+}
