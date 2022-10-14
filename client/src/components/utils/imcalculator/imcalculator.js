@@ -1,6 +1,7 @@
 import React from 'react';
 import "./imcalculator.css"
 import { useState } from 'react';
+import swal from 'sweetalert';
 
 
 export const CalculatorIMC= ()=>{
@@ -18,9 +19,9 @@ export const CalculatorIMC= ()=>{
     const imc = peso / (alt * alt);
 
     if(altura === "" && peso === ""){
-        alert("[ERROR 404] Por favor, rellene el peso y la altura correctamente !");
+      swal("Debes insertar ambos datos, Peso y Altura");
     }else if(!alt){
-        alert("[ERROR 404] Por favor, rellene el peso y la altura correctamente !");
+      swal("Por favor, rellene el peso y la altura correctamente !");
         
     }else if (imc < 16.9){
      setMensagem(`Estas muy bajo de peso!`);
@@ -61,6 +62,7 @@ export const CalculatorIMC= ()=>{
   }
 
   return(
+    <div className='IMC'>
    <div className="imc-calculator">
       <div className="area-input-calculator">
       <h1>Calculadora de IMC</h1>
@@ -88,12 +90,13 @@ export const CalculatorIMC= ()=>{
             <h2>
                 {mensagem} <br/>
                 {efeitos} <br/>
-                {imcMessage}
+                
             </h2>
+            <h3>
+            {imcMessage}
+            </h3>
       </div>
-      <footer className='footer'>
-          &copy; 2022 Nutry-U
-      </footer>
+   </div>
    </div>
   );
 }
