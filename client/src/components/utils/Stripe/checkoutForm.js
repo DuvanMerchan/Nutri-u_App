@@ -14,7 +14,7 @@ import {
 } from "@stripe/react-stripe-js";
 import swal from 'sweetalert';
 import { NavBar } from "../nav/nav";
-
+import { useNavigate } from "react-router-dom"
 import style from './checkoutForm.module.css' 
 const { REACT_APP_HOST } =
   process.env;
@@ -22,13 +22,18 @@ const { REACT_APP_HOST } =
 
 export function PaymentForm() {
 
+  const navigate2 = useNavigate()
   useEffect(() => {
     const loggedUserSession = window.sessionStorage.getItem("user")
     if(loggedUserSession){
       const userLogged = JSON.parse(loggedUserSession)
       setUser(userLogged)
     }
+    if(!loggedUserSession){
+      navigate2("/home")
+    }
   },[])
+  
 
   const [user, setUser] = useState('')
 
@@ -78,19 +83,15 @@ export function PaymentForm() {
       <NavBar/>
     <div className={style.paymentContainer}>
       <div className={style.cardContainer}>
-        <form onSubmit={createSubscription}>
-            {/* <input className={style.cardNumber}/>
-          <input className={style.expiration}/>
-          <input className={style.cvc}/>
-          <input className={style.country}/>
-          <br /> */}
-          <input type='text' placeholder='name'/>
+        <div>
+          <CardElement />
+          {/* <input type='text' placeholder='name'/>
           <FpxBankElement />
           <CardNumberElement />
           <CardExpiryElement />
-          <CardCvcElement />
+          <CardCvcElement /> */}
           <button onClick={createSubscription} class="btn btn-secondary">Subscribe - 5 USD</button>
-        </form>
+        </div>
         {/* <div style={{ width: "40%" }}>
           <input type='text' placeholder='name'/>
           <FpxBankElement />

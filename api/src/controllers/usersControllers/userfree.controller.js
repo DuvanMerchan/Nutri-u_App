@@ -49,12 +49,12 @@ const changeToPremium = async (userEmail, userName, paymentMethod) =>{
     // console.log('sos vos?¡',user)
     const factura = await Payment.findOrCreate({where:{
       paymenthID: subscription.id,
-}})
+    }})
     
-    // console.log('facturaa',factura)
-    await user.addMonthly_payment(factura.dataValues)
-    user.update({ premium: true })
-
+    console.log('facturaa',factura)
+    user.addMonthly_payment(factura.dataValues)
+      user.update({ premium: true })
+    
 
     return {
       message: 'Subscription successfully initiated',

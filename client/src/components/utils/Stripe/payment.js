@@ -23,10 +23,10 @@ const stripePromise = loadStripe("pk_test_51LpumKJocvWwgusfuIDgKMDWBBTXIYMiqNNp1
 //  };
 
 //  const options = {
-//     appearance
+//     appearance,
+//     clientSecret
 //  }
 export function Payment () {
-
 
     return(
         <Elements stripe={stripePromise}>
