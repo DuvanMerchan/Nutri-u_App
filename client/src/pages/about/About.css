@@ -1,0 +1,51 @@
+
+.about1 {
+    position: relative; 
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 6em;
+}
+
+.about1:before {
+    content: "";
+
+    background-image: url("./subimg1.jpg");
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.35;
+}
+
+.aboutc {   
+    color: black; 
+    font-weight: 600;
+}
+
+
+.about2 {
+    text-align: center;
+    font-size: 50px;
+}
+
+.aboutli {
+    text-align: center;
+    font-size: 35px;
+    margin-top: 80px;
+    text-shadow: 0px 0px 90px rgb(0, 0, 0);
+}
+
+.aboutp {
+    text-align: center;
+    margin-top:45px;
+    font-size: 25px;
+    margin-left: 400px;
+    margin-right: 400px;
+    text-shadow: 0px 0px 90px rgb(0, 0, 0);
+}

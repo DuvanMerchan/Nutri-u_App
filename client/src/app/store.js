@@ -2,6 +2,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import diets from '../redux/dietsSlice';
 import ingredients from '../redux/ingredientSlice';
 import recipes from '../redux/recipeSlice';
+import user from '../redux/userSlice';
+import admin from '../redux/adminSlice';
 
 
 export const store = configureStore({
@@ -9,6 +11,7 @@ export const store = configureStore({
     recipes: recipes,
     diets: diets,
     ingredients: ingredients,
-    // users:users,
+    user:user,
+    admin:admin,
   },
 });
