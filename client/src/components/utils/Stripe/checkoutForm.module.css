@@ -18,7 +18,25 @@
 }
 
 .cardInputWrapper{
-    border: 2px solid #00f;
+    text-decoration: none;
+    background-color: rgba(92, 91, 91, 0.261);
+    border: 2px solid rgb(40, 114, 17);
     border-radius: 8px;
     padding: 20px 4px;
+}
+
+.cardInputWrapper:focus{
+    outline:none;
+    background-color: rgba(92, 91, 91, 0.261);
+    border: 2px solid rgb(40, 114, 17);
+    border-radius: 8px;
+    padding: 20px 4px;
+} 
+
+.label{
+    font-size: 18px;
+}
+
+.button{
+    padding-left: 40px;
 }
