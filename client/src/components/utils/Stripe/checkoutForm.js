@@ -46,7 +46,7 @@ export function PaymentForm() {
     try {
 
       const paymentMethod = await stripe.createPaymentMethod({
-        card: elements.getElement("card"),
+        card: elements.getElement("cardNumber"),
         type: "card",
       });
 
@@ -67,40 +67,53 @@ export function PaymentForm() {
       const data = await response.json();
       // const datae = JSON.parse(data)
 
-      console.log('ESTIIIII', data.respuesta)
+      // console.log('ESTIIIII', data.respuesta)
       const confirm = await stripe.confirmCardPayment(data.respuesta.clientSecret);
       if (confirm.error) return alert("Payment unsuccessful!");
-      swal("Payment Successful! Subscription active.");
+      swal("Payment Successful! Subscription active.").then(navigate2('/home'))
+      
 
     } catch (err) {
-      console.error(err);
-      swal("Payment failed! " + err.message);
+      // console.error(err);
+      swal("Payment failed! Please checkout the given information" );
     }
   };
+
+  //style 
+  const inputStyle = {
+    iconColor: '#c4f0ff',
+    color: '#ff0',
+    fontWeight: '500',
+    fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
+    fontSize: '16px',
+    fontSmoothing: 'antialiased',
+    ':-webkit-autofill': {
+      color: '#fce883',
+    },
+    '::placeholder': {
+      color: '#87BBFD',
+    },
+}
 
   return (
     <div>
       <NavBar/>
     <div className={style.paymentContainer}>
       <div className={style.cardContainer}>
-        <div>
-          <CardElement />
-          {/* <input type='text' placeholder='name'/>
-          <FpxBankElement />
-          <CardNumberElement />
-          <CardExpiryElement />
-          <CardCvcElement /> */}
+        <div >
+          <label className={style.label}>Card Name:</label>
+          <br/>
+          <input className={style.cardInputWrapper} placeholder='Name'/>
+          <br/>
+          <label className={style.label}>Card Number:</label>
+          <CardNumberElement className={style.cardInputWrapper} />
+          <label className={style.label}>Card Expiry Date:</label>
+          <CardExpiryElement className={style.cardInputWrapper} />
+          <label className={style.label}>Card CVC:</label>
+          <CardCvcElement className={style.cardInputWrapper} />
+          <br/>
           <button onClick={createSubscription} class="btn btn-secondary">Subscribe - 5 USD</button>
         </div>
-        {/* <div style={{ width: "40%" }}>
-          <input type='text' placeholder='name'/>
-          <FpxBankElement />
-          <CardNumberElement />
-          <CardExpiryElement />
-          <CardCvcElement />
-          <button onClick={createSubscription} class="btn btn-secondary">Subscribe - 5 USD</button>
-        </div> */}
-
       </div>
     </div>
     </div>
