@@ -1,5 +1,5 @@
 const { Router } = require("express");
-
+const profiles = require('./profiles')
 const { User } = require("../../db");
 const usersRoutes = require("./users");
 const adminRoutes = require("./admin");
@@ -53,5 +53,7 @@ router.post('/premium', async (req,res) =>{
 
 router.post("/forgot-password", forgotPassword)
 router.post("/new-password/:token", newPassword)
+router.use("/profiles", profiles);
+
 
 module.exports = router;

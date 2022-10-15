@@ -245,3 +245,19 @@ export const deleteList =(listId)=> async(dispatch) =>{
         console.log(error)
     }
 }
+
+export const addCalculator =(payload)=> async (dispatch) =>{
+    try {
+        let token = JSON.parse(sessionStorage.getItem('token'))
+        let res = await axios.post(`${url}/user/profiles/calculator`,payload,{
+            headers:{
+                'Authorization': `Bearer ${token}`,
+                'Accept' : 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+       // dispatch(addFavRecipe(res.data))
+    } catch (error) {
+        console.log(error)
+    }
+}
