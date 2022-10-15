@@ -15,7 +15,7 @@ import {
 import swal from 'sweetalert';
 import { NavBar } from "../nav/nav";
 import { useNavigate } from "react-router-dom"
-import style from './checkoutForm.module.css' 
+import './checkoutForm.css' 
 const { REACT_APP_HOST } =
   process.env;
 
@@ -98,21 +98,36 @@ export function PaymentForm() {
   return (
     <div>
       <NavBar/>
-    <div className={style.paymentContainer}>
-      <div className={style.cardContainer}>
+    <div className='paymentContainer'>
+      <div className='promotion'>
+          <h1 className='title'>Why you have to be a Premium User?</h1>
+          <br/>
+          <div className='listDiv'>
+            <ul className='list'>
+              <li>✅ You can chat with real nutritionists</li>
+              <li>✅ You can see more details from the recipes you search</li>
+              <li>✅ You will have more slots in your favourite recipe list</li>
+              <li>✅ you will have exclusive access to the new features that we implement in the future</li>
+            </ul>
+          </div>
+          <br/>
+      </div>   
+      <div className='cardContainer'>
         <div >
-          <label className={style.label}>Card Name:</label>
+          <h1>BE PREMIUM NOW!</h1>
           <br/>
-          <input className={style.cardInputWrapper} placeholder='Name'/>
+          {/* <label className='label'>Card Name:</label>
           <br/>
-          <label className={style.label}>Card Number:</label>
-          <CardNumberElement className={style.cardInputWrapper} />
-          <label className={style.label}>Card Expiry Date:</label>
-          <CardExpiryElement className={style.cardInputWrapper} />
-          <label className={style.label}>Card CVC:</label>
-          <CardCvcElement className={style.cardInputWrapper} />
+          <input className='nameInput' placeholder='Name'/> */}
           <br/>
-          <button onClick={createSubscription} class="btn btn-secondary">Subscribe - 5 USD</button>
+          <label className='label'>Card Number:</label>
+          <CardNumberElement className='cardInputWrapper' />
+          <label className='label'>Card Expiry Date:</label>
+          <CardExpiryElement className='cardInputWrapper' />
+          <label className='label'>Card CVC:</label>
+          <CardCvcElement className='cardInputWrapper' />
+          <br/>
+          <button onClick={createSubscription} className='button' class="btn btn-secondary">Subscribe - 5 USD</button>
         </div>
       </div>
     </div>
