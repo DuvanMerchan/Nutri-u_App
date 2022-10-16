@@ -1,12 +1,23 @@
 import React from 'react';
 import "./imcalculator.css"
 import { useState } from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import swal from 'sweetalert';
+import { addCalculator } from '../../../redux/actions/useractions';
 
 
 export const CalculatorIMC= ()=>{
 
+  const dispatch = useDispatch()
+
   const [peso, setPeso] = useState("");
   const [altura, setAltura] = useState("");
+
+  const user = window.sessionStorage.getItem("user")
+  let userLogged
+  if(user){
+   userLogged = JSON.parse(user)
+}
 
   const [mensagem, setMensagem] = useState("");
   const [efeitos, setEfeitos] = useState("");
@@ -14,18 +25,18 @@ export const CalculatorIMC= ()=>{
 
   function calcularIMC (){
 
-    const alt = altura / 100;
+    const alt = altura / 100; 
     const imc = peso / (alt * alt);
 
     if(altura === "" && peso === ""){
-        alert("[ERROR 404] Por favor, rellene el peso y la altura correctamente !");
+      swal("Debes insertar ambos datos, Peso y Altura");
     }else if(!alt){
-        alert("[ERROR 404] Por favor, rellene el peso y la altura correctamente !");
+      swal("Por favor, rellene el peso y la altura correctamente !");
         
     }else if (imc < 16.9){
      setMensagem(`Estas muy bajo de peso!`);
      setEfeitos(`Efectos secundarios: pérdida de cabello, infertilidad, períodos menstruales perdidos.`);
-     setImcMessage(`Seu IMC é: ${imc.toFixed(2)}`);
+     setImcMessage(`Su IMC : ${imc.toFixed(2)}`);
      
    }else if(imc >= 17 && imc < 18.4){
     setMensagem(`Estas bajo de peso !`);
@@ -56,11 +67,24 @@ export const CalculatorIMC= ()=>{
     setEfeitos(`Efectos secundarios: reflujo, dificultad para moverse, úlceras de decúbito, diabetes, ataque cardíaco, accidente cerebrovascular.`);
     setImcMessage(`Su IMC es: ${imc.toFixed(2)}`);
    }
-     setPeso("");
-     setAltura("");
+    
   }
 
+  const userId = userLogged?userLogged.id:"nada";
+
+  const handleCalculator = (e) =>{
+      e.preventDefault()
+      dispatch(addCalculator({userId,peso,altura,imcMessage}))
+      setImcMessage("")
+      setPeso("")
+      setAltura("")
+      setEfeitos("SAVE IN YOUR PROFILE SUCCESS !!!")
+      setMensagem(``);
+  }
+
+    
   return(
+    <div className='IMC'>
    <div className="imc-calculator">
       <div className="area-input-calculator">
       <h1>Calculadora de IMC</h1>
@@ -88,12 +112,17 @@ export const CalculatorIMC= ()=>{
             <h2>
                 {mensagem} <br/>
                 {efeitos} <br/>
-                {imcMessage}
+                
             </h2>
+            <h3>
+            {imcMessage}
+            </h3>
       </div>
-      <footer className='footer'>
-          &copy; 2022 Nutry-U
-      </footer>
+      <div>
+        
+      </div>
+      <button className="btn btn-secondary" disabled={imcMessage.length === 0} onClick={handleCalculator} >Save in profile</button>
+   </div>
    </div>
   );
 }
