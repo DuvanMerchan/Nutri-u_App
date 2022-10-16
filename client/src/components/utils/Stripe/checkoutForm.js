@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import {
   CardElement,
-  // Elements,
-  // PaymentElement,
-  // PaymentRequestButtonElement,
+  Elements,
+  PaymentElement,
+  PaymentRequestButtonElement,
   useElements,
   useStripe,
+
   CardNumberElement,
   CardExpiryElement,
   FpxBankElement,
@@ -19,6 +20,38 @@ import './checkoutForm.css'
 const { REACT_APP_HOST } =
   process.env;
 
+import axios from 'axios';
+
+import style from './checkoutForm.module.css' 
+
+// import subimg1 from "./subimg1.jpg"
+
+
+// const appearance = {
+//   theme: 'night',
+//   labels: 'floating'
+// };
+
+const appearance = {
+   theme: 'night',
+  labels: 'floating',
+
+  variables: {
+    colorPrimary: '#0570de',
+    colorBackground: '#ffffff',
+    colorText: '#30313d',
+    colorDanger: '#df1b41',
+    fontFamily: 'Ideal Sans, system-ui, sans-serif',
+    spacingUnit: '2px',
+    borderRadius: '4px',
+    // See all possible variables below
+  }
+};
+
+// Pass the appearance object to the Elements instance
+// const elements = stripe.elements({clientSecret, appearance});
+
+
 
 export function PaymentForm() {
 
@@ -29,11 +62,13 @@ export function PaymentForm() {
       const userLogged = JSON.parse(loggedUserSession)
       setUser(userLogged)
     }
+
     if(!loggedUserSession){
       navigate2("/home")
     }
   },[])
   
+
 
   const [user, setUser] = useState('')
 
@@ -51,6 +86,7 @@ export function PaymentForm() {
       });
 
       const response = await fetch(`${REACT_APP_HOST}/user/premium`, {
+
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -70,12 +106,14 @@ export function PaymentForm() {
       // console.log('ESTIIIII', data.respuesta)
       const confirm = await stripe.confirmCardPayment(data.respuesta.clientSecret);
       if (confirm.error) return alert("Payment unsuccessful!");
+
       swal("Payment Successful! Subscription active.").then(navigate2('/home'))
       
 
     } catch (err) {
       // console.error(err);
       swal("Payment failed! Please checkout the given information" );
+
     }
   };
 
@@ -96,6 +134,7 @@ export function PaymentForm() {
 }
 
   return (
+
     <div>
       <NavBar/>
     <div className='paymentContainer'>
@@ -128,9 +167,9 @@ export function PaymentForm() {
           <CardCvcElement className='cardInputWrapper' />
           <br/>
           <button onClick={createSubscription} className='button' class="btn btn-secondary">Subscribe - 5 USD</button>
+
         </div>
       </div>
-    </div>
     </div>
   );
 }
