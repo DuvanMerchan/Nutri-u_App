@@ -32,7 +32,7 @@ const FavoriteList = ({ list, onUpdate, onDelete, onRender }) => {
   }
   function RenderList() {
     return (
-      <div>
+      <div className="lists-container">
         <button className="buttonListName" onClick={() => onRender(list.id)}>
           {list.name}
         </button>

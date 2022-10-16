@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { getAllPost, createPost,countRanking,  getRecipePost, addRanking, updatePost, updateRanking, deletePost } = require("../../controllers/usersControllers/PostRanking.controllers");
+const { getAllPost, createPost,countRanking,  getRecipePost, addRanking, updatePost, updateRanking, deletePost, getUserRanking } = require("../../controllers/usersControllers/PostRanking.controllers");
 const router = Router()
 const auth = require('../../middlewares/auth');
 
@@ -14,16 +14,22 @@ router.post('/:userId',auth,  async (req,res)=>{
     let post = await createPost(userId, content, recipeId)
     res.json(post)
 })
-router.get('/recipe/:recipeId', async (req,res)=>{
+router.get('/ranking/:recipeId', auth, async (req,res)=>{
     let {recipeId} = req.params
-    let post = await getRecipePost(recipeId)
-    res.json(post)
+    let {userId} = req.body
+    let rank = await getUserRanking(userId , recipeId)
+    res.json(Math.round(rank))
 })
-router.get('/reciperank/:recipeId', auth, async (req,res)=>{
-    let {recipeId} = req.params
-    let rank = await countRanking(recipeId)
-    res.json(rank)
-})
+// router.get('/recipe/:recipeId', async (req,res)=>{
+//     let {recipeId} = req.params
+//     let post = await getRecipePost(recipeId)
+//     res.json(post)
+// })
+// router.get('/reciperank/:recipeId', async (req,res)=>{
+//     let {recipeId} = req.params
+//     let rank = await countRanking(recipeId)
+//     res.json(rank)
+// })
 router.patch('/post/:postId', auth, async (req,res)=>{
     let {postId} = req.params
     let {content} = req.body
@@ -34,13 +40,13 @@ router.post('/ranking/:recipeId', auth, async (req,res)=>{
     let {recipeId} = req.params
     let {ranking, userId} = req.body
     let rank = await addRanking(userId , recipeId, ranking)
-    res.json(rank)
+    res.json(Math.round(rank))
 })
-router.patch('/up-ranking', auth, async (req,res)=>{
-    let {ranking, rankingId} = req.body
-    let rank = await updateRanking(ranking, rankingId)
-    res.json(rank)
-})
+// router.patch('/up-ranking', auth, async (req,res)=>{
+//     let {ranking, rankingId} = req.body
+//     let rank = await updateRanking(ranking, rankingId)
+//     res.json(rank)
+// })
 router.delete('/post/:postId', auth, async (req,res)=>{
     let {postId} = req.params
     console.log('postId',postId)

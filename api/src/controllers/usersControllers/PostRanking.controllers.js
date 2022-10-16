@@ -56,14 +56,33 @@ const countRanking = async (recipeId) =>{
         console.log(error)
     }
 }
+const getUserRanking =async(userId , recipeId)=>{
+try {
+    let rank = await findOne({
+        where:{
+            userId,recipeId
+        }})
+    return rank
+} catch (error) {
+    console.log(error)
+}
+}
 
 const addRanking =async (userId , recipeId, ranking) =>{
     try {
         let user = await User.findByPk(userId)
         let recipe = await Recipe.findByPk(recipeId)
+        let rank = await Ranking.findOne({
+            where:{
+                userId,recipeId
+            }
+        })
             if (!user || !recipe) {
                 throw new Error('need more data')
             }else{
+                if (rank) {
+                return await rank.update({ranking:ranking})
+                } else {
                 let newRanking = await Ranking.create({
                     ranking,
                     userId,
@@ -71,7 +90,7 @@ const addRanking =async (userId , recipeId, ranking) =>{
                 await user.addRanking(newRanking)
                 await recipe.addRanking(newRanking)
                 return await Recipe.findByPk(recipeId, { include: Ranking } )
-            }
+            }}
     } catch (error) {
         console.log(error)
     }
@@ -107,6 +126,7 @@ module.exports ={
     getAllPost,
     createPost,
     getRecipePost,
+    getUserRanking,
     addRanking,
     countRanking,
     updateRanking,

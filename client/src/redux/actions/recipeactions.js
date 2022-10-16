@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {getAllRecipes, orderByRating, getRecipesByName,
-    getRecipeById,createRecipe, filterByDiet, getDiets_Recipe, getAllPost
+    getRecipeById,createRecipe, filterByDiet, getDiets_Recipe, getAllPost, getRanking
 } from '../recipeSlice'
 
 //-------------------- RUTAS --------------------------
@@ -9,7 +9,6 @@ import {getAllRecipes, orderByRating, getRecipesByName,
 import dotenv from 'dotenv'
 dotenv.config()
 const url = process.env.REACT_APP_HOST || 'http://localhost:5001'
-console.log('process.env.REACT_APP_HOST',process.env.REACT_APP_HOST)
 
 //-------------------- ACTIONS ------------------------
 export const getRecipes = ()=> async (dispatch) => {
@@ -65,8 +64,16 @@ export const filterDiet =(payload)=>async (dispatch)=>{
 
 export const getRecipePost = (recipeId) => async (dispatch)=>{
     try {
-        let res = await axios.get(`${url}/user/users/post/recipe/${recipeId}`)
+        let res = await axios.get(`${url}/recipe/post/${recipeId}`)
         dispatch(getAllPost(res.data))
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const getTotalRanking = (recipeId) => async (dispatch)=>{
+    try {
+        let res = await axios.get(`${url}/recipe/reciperank/${recipeId}`)
+        dispatch(getRanking(res.data))
     } catch (error) {
         console.log(error)
     }

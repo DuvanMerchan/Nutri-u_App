@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, //useState 
 } from 'react';
-import { getRecipeDetail, getRecipePost,} from '../../../redux/actions/recipeactions';
+import { getRecipeDetail, getRecipePost, getTotalRanking,} from '../../../redux/actions/recipeactions';
 import { useParams } from 'react-router-dom';
 import { NavBar } from '../../utils/nav/nav';
 
@@ -17,6 +17,7 @@ import Post from "./helper/Post";
 import useUser from "../../../hooks/useUser";
 import { createPost, deletePost, updatePost } from "../../../redux/actions/postAction";
 import NewPost from "./helper/NewPost";
+import RankingPost from './helper/RankingPost';
 
 const RecipeDetail =()=>{
     
@@ -26,12 +27,17 @@ const RecipeDetail =()=>{
     const { isLogged, logout } = useUser();
     const recipe = useSelector((state) => state.recipes.detail);
     const { detailPost } = useSelector((state) => state.recipes);
+    const rankingTotal = useSelector((state) => state.recipes.ranking)
     //setRecipeDetail(recipe)  
 
     useEffect(() => {
         dispatch(getRecipeDetail(id));
         dispatch(getRecipePost(id));
+        dispatch(getTotalRanking(id))
     },[])
+    useEffect(() => {
+      dispatch(getTotalRanking(id))
+  },[rankingTotal])
     function handleUpdate(postId, value) {
       try {
         dispatch(updatePost(postId, value))
@@ -78,6 +84,13 @@ const RecipeDetail =()=>{
 
         <h5>Health Score</h5>
                 <li>{recipe.healthScore}</li> 
+        </div>
+        <div className='ranking'>
+          <h3>Users calification</h3>
+          {<h3>{rankingTotal?rankingTotal:'No ranking'}</h3>} 
+          <div>
+          {isLogged? <RankingPost recipeId={id} />:null}
+          </div>
         </div>
 
         <div className="detail6">
