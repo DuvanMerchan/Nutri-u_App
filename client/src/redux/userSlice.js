@@ -6,6 +6,7 @@ export const userSlice = createSlice({
     user: {},
     favList: [],
     list: {},
+    profile:{}
   },
   reducers: {
     getUser: (state, action) => {
@@ -33,7 +34,9 @@ export const userSlice = createSlice({
     deleteListById: (state, action) => {
       state.favList = action.payload;
     },
-
+    getProfile: (state, action) => {
+      state.profile = action.payload;
+    },
     // getUserStatus: (state, action)=>{
     //     state.logged = action.payload
     // },
@@ -58,6 +61,7 @@ export const {
   getUserStatus,
   createUser,
   deleteUser,
+  getProfile,
 } = userSlice.actions;
 
 export default userSlice.reducer;
