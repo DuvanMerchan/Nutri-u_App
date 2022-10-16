@@ -10,7 +10,7 @@ import {
 } from "@stripe/react-stripe-js";
 import swal from 'sweetalert';
 import { NavBar } from "../nav/nav";
-
+import { useNavigate } from "react-router-dom"
 import style from './checkoutForm.module.css' 
 const { REACT_APP_HOST } =
   process.env;
@@ -44,11 +44,16 @@ const appearance = {
 
 export function PaymentForm() {
 
+  const navigate2 = useNavigate()
+
   useEffect(() => {
     const loggedUserSession = window.sessionStorage.getItem("user")
     if(loggedUserSession){
       const userLogged = JSON.parse(loggedUserSession)
       setUser(userLogged)
+    }
+    if(!loggedUserSession){
+      navigate2("/home")
     }
   },[])
 
@@ -89,7 +94,7 @@ export function PaymentForm() {
         type: "card",
       });
 
-      const response = await fetch(`http://${REACT_APP_HOST}/user/premium`, {
+      const response = await fetch(`${REACT_APP_HOST}/user/premium`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { User } = require("../../db.js");
+const { User, Payment } = require("../../db.js");
 const { HOST_EMAIL, PORT_EMAIL, EMAIL, EMAIL_PASS, DB_HOST, DB_PORT } = process.env;
 const Stripe = require('stripe')
 
@@ -8,7 +8,6 @@ const stripe = new Stripe('sk_test_51LpumKJocvWwgusfR19jzAn2K6nOtr99mMwbcQpJUMWL
 
 const changeToPremium = async (userEmail, userName, paymentMethod) =>{
 
-    const user = await User.findOne({where:{email: userEmail}})
 
 
     try {
@@ -46,6 +45,17 @@ const changeToPremium = async (userEmail, userName, paymentMethod) =>{
         expand: ["latest_invoice.payment_intent"],
     });
     // console.log('ESTOOO',subscription)
+    const user = await User.findOne({where:{email: userEmail}})
+    // console.log('sos vos?¡',user)
+    const factura = await Payment.findOrCreate({where:{
+      paymenthID: subscription.id,
+    }})
+    
+    // console.log('facturaa',factura)
+    await user.addMonthly_payment(factura.dataValues)
+    user.update({ premium: true })
+
+
     return {
       message: 'Subscription successfully initiated',
       clientSecret: subscription.latest_invoice.payment_intent.client_secret,
