@@ -1,0 +1,26 @@
+.forgot{
+    text-decoration: none;
+    font-size: 20px;
+    padding-left: 15px;
+    color: wheat;
+}
+
+#buttonLogin{
+    margin-right: 10px;
+}
+
+.space10{
+    padding: 5px;
+}
+
+.invalid{
+    color: brown;
+    justify-content: center;
+    display: flex;
+}
+
+.checking{
+    color: green;
+    justify-content: center;
+    display: flex;
+}

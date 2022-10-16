@@ -3,14 +3,35 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
 
     sequelize.define('user', {
+        id: {
+            allowNull: false,
+            primaryKey: true,
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4, 
+          },
+        username:{
+            allowNull: false,
+            unique: true,
+            type:DataTypes.STRING,
+            validate:{
+                isAlphanumeric: true,
+                len:[1,255],
+            }
+        },
         email:{
             type: DataTypes.STRING,
             allowNull: false,
-            primaryKey: true,
             validate: {
-                isEmail: {
-                msg: "Must be a valid e-mail address"},
+                isEmail: true
             }
+        },
+        password:{
+            allowNull: false,
+            type:DataTypes.STRING,
+        },
+        banned:{
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
         },
         admin:{
             type: DataTypes.BOOLEAN,
@@ -24,9 +45,17 @@ module.exports = (sequelize) => {
             type: DataTypes.BOOLEAN,
             defaultValue: false,
         },
-        guest:{
+        free:{
             type: DataTypes.BOOLEAN,
             defaultValue: true,
+        },
+        emailVerified:{
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+        },
+        logged:{
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         }
     }, {
         timestamps: false,

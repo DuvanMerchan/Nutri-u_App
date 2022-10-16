@@ -1,0 +1,27 @@
+.card-title {
+    text-decoration: none;
+    color: #2E2E2E;;
+}
+
+.card-text {
+    text-decoration: none;
+    color: #2E2E2E;;
+}
+
+
+
+.card-title{
+    width: 230px;
+    font-size: 15px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      
+}
+
+.col:hover {
+    transition: 0.2s;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.377);
+    transform: translateY(-8px);
+    opacity: 80%;
+}

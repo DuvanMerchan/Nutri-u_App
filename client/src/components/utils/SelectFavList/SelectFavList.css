@@ -1,0 +1,9 @@
+.list-contein{
+    display: grid;
+    grid-template-rows: 20% 80%;
+    align-items: center;
+}
+.checked-item {
+    background-color:rgb(84, 185, 89);
+    padding:0.1em 0.2em;
+  }
