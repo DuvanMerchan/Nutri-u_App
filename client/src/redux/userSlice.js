@@ -26,6 +26,14 @@ export const userSlice = createSlice({
     removeFavRecipe: (state, action) => {
       state.list = action.payload;
     },
+    updateNameList: (state, action) => {
+      state.favList = action.payload;
+      state.list = action.payload;
+    },
+    deleteListById: (state, action) => {
+      state.favList = action.payload;
+    },
+
     // getUserStatus: (state, action)=>{
     //     state.logged = action.payload
     // },
@@ -45,6 +53,8 @@ export const {
   getListById,
   addFavRecipe,
   removeFavRecipe,
+  updateNameList,
+  deleteListById,
   getUserStatus,
   createUser,
   deleteUser,

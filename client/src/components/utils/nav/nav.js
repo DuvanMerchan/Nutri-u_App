@@ -5,15 +5,20 @@ import useUser from "../../../hooks/useUser";
 import { useRoute } from "wouter";
 import LoggedUser from "./LoggedUser";
 import { NavAbout } from "./NavAbout";
+import { useNavigate } from "react-router-dom"
 
 export const NavBar = () => {
   const user = JSON.parse(sessionStorage.getItem("user"));
+
+  const navigate2 = useNavigate() 
 
   const {isLogged,logout} = useUser()
   const [match] = useRoute("/login");
   const handleClick = e => {
 	e.preventDefault()
 	logout()
+
+	navigate2("/home")
   }
   const renderButtonLogin =({isLogged}) =>{
 	return isLogged ? 

@@ -1,5 +1,7 @@
 import React from 'react';
+import "./imcalculator.css"
 import { useState } from 'react';
+import swal from 'sweetalert';
 
 
 export const CalculatorIMC= ()=>{
@@ -13,13 +15,13 @@ export const CalculatorIMC= ()=>{
 
   function calcularIMC (){
 
-    const alt = altura / 100;
+    const alt = altura / 100; 
     const imc = peso / (alt * alt);
 
     if(altura === "" && peso === ""){
-        alert("[ERROR 404] Por favor, rellene el peso y la altura correctamente !");
+      swal("Debes insertar ambos datos, Peso y Altura");
     }else if(!alt){
-        alert("[ERROR 404] Por favor, rellene el peso y la altura correctamente !");
+      swal("Por favor, rellene el peso y la altura correctamente !");
         
     }else if (imc < 16.9){
      setMensagem(`Estas muy bajo de peso!`);
@@ -60,11 +62,13 @@ export const CalculatorIMC= ()=>{
   }
 
   return(
-   <div className="app">
-      <div className="area-input">
+    <div className='IMC'>
+   <div className="imc-calculator">
+      <div className="area-input-calculator">
       <h1>Calculadora de IMC</h1>
       <span>Vamos Calcular su IMC ?</span>
           <input 
+            className='form-control'
             type="text"
             placeholder="Peso en KG Ej: 75"
             value={peso}
@@ -72,25 +76,27 @@ export const CalculatorIMC= ()=>{
           />
 
           <input 
+            className='form-control'
             type="text"
             placeholder="Altura en CM Ej: 170"
             value={altura}
             onChange={ (e) => setAltura(e.target.value) }
           />
 
-          <button onClick={calcularIMC}>
+          <button className="btn btn-primary" onClick={calcularIMC}>
             Calcular
           </button>
 
             <h2>
                 {mensagem} <br/>
                 {efeitos} <br/>
-                {imcMessage}
+                
             </h2>
+            <h3>
+            {imcMessage}
+            </h3>
       </div>
-      <footer className='footer'>
-          &copy; 2022 Nutry-U
-      </footer>
+   </div>
    </div>
   );
 }

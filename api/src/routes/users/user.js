@@ -43,7 +43,7 @@ router.get("/confirm/:token", confirmAccount);
 router.post('/premium', async (req,res) =>{
     let {userEmail, userName, paymentMethod} = req.body
     let respuesta = await changeToPremium(userEmail, userName, paymentMethod)
-    console.log('estoo', JSON.stringify(respuesta))
+    // console.log('estoo', JSON.stringify(respuesta))
     res.json({
         respuesta
     })

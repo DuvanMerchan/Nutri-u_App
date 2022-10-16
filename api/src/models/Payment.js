@@ -2,6 +2,7 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
 
+
     sequelize.define('payment', {
         id: {
             type: DataTypes.UUID,
@@ -22,6 +23,7 @@ module.exports = (sequelize) => {
         //     type: DataTypes.DATEONLY,         /*  2021-07-06.  */
         //     allowNull: false,               
         // }
+
     }, {
         timestamps: true,
     });

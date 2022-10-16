@@ -1,6 +1,8 @@
 import axios from "axios"
 import { filterByIngredient, getAllIngredients, getIngredientDetail } from "../ingredientSlice"
-
+import dotenv from 'dotenv'
+dotenv.config()
+const url = process.env.REACT_APP_HOST 
 
 
 export const getIngredients = async (dispatch) =>{
