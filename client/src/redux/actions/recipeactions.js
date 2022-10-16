@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {getAllRecipes, orderByRating, getRecipesByName,
-    getRecipeById,createRecipe, filterByDiet, getDiets_Recipe
+    getRecipeById,createRecipe, filterByDiet, getDiets_Recipe, getAllPost
 } from '../recipeSlice'
 
 //-------------------- RUTAS --------------------------
@@ -8,7 +8,8 @@ import {getAllRecipes, orderByRating, getRecipesByName,
 //import {REACT_APP_HOST} from process.env
 import dotenv from 'dotenv'
 dotenv.config()
-const url = process.env.REACT_APP_HOST 
+const url = process.env.REACT_APP_HOST || 'http://localhost:5001'
+console.log('process.env.REACT_APP_HOST',process.env.REACT_APP_HOST)
 
 //-------------------- ACTIONS ------------------------
 export const getRecipes = ()=> async (dispatch) => {
@@ -62,7 +63,14 @@ export const filterDiet =(payload)=>async (dispatch)=>{
     }
 }
 
-
+export const getRecipePost = (recipeId) => async (dispatch)=>{
+    try {
+        let res = await axios.get(`${url}/user/users/post/recipe/${recipeId}`)
+        dispatch(getAllPost(res.data))
+    } catch (error) {
+        console.log(error)
+    }
+}
 // export const getByName = async (dispatch) => {
 //     try{
 //         let res = await axios.get(`http://${url}/recipes?${name}`)

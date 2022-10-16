@@ -1,23 +1,39 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getLists } from '../../../redux/actions/useractions'
+import { addFavorite, getLists } from '../../../redux/actions/useractions'
+import './SelectFavList.css'
 
-const SelectFavList = () => {
+const SelectFavList = ({recipeId}) => {
     const dispatch = useDispatch()
     const {favList} = useSelector((state) => state.user)
     const {list} = useSelector((state) => state.user)
+   
 
   useEffect(()=>{
     dispatch(getLists())
   },[])
 
+  const handleCheck = (event) => {
+    if (event.target.checked) {
+       dispatch(addFavorite(event.target.value, recipeId))
+        // if(!event.target.checked){
+
+        // }
+    } 
+  };
+
+
     return (
-    <div>
-      {
+    <div className='list-contein'>
+        <h3>My favorite list</h3>
+      {favList?
         favList.map((f)=>{
             return(
-            <span>{f.name}</span>
-        )})
+            <div key={f.id}>
+                <input value={f.id} type='checkbox' onChange={handleCheck} />
+                <span>{f.name}</span>
+            </div>
+        )}):null
       }
     </div>
  )
