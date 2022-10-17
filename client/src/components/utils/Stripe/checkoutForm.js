@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from "react";
 import {
-  CardElement,
-  // Elements,
-  // PaymentElement,
-  // PaymentRequestButtonElement,
   useElements,
   useStripe,
   CardNumberElement,
   CardExpiryElement,
-  FpxBankElement,
   CardCvcElement
-  // loadStripe
 } from "@stripe/react-stripe-js";
 import swal from 'sweetalert';
 import { NavBar } from "../nav/nav";
@@ -79,21 +73,7 @@ export function PaymentForm() {
     }
   };
 
-  //style 
-  const inputStyle = {
-    iconColor: '#c4f0ff',
-    color: '#ff0',
-    fontWeight: '500',
-    fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
-    fontSize: '16px',
-    fontSmoothing: 'antialiased',
-    ':-webkit-autofill': {
-      color: '#fce883',
-    },
-    '::placeholder': {
-      color: '#87BBFD',
-    },
-}
+
 
   return (
     <div>
@@ -134,5 +114,3 @@ export function PaymentForm() {
     </div>
   );
 }
-
-// export default PaymentForm;
