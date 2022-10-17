@@ -37,7 +37,7 @@ const FavoriteList = ({ list, onUpdate, onDelete, onRender }) => {
           {list.name}
         </button>
         <button
-          className="edit"
+          className="buttonEdit"
           aria-label="edit"
           onClick={() => setIsEdit(true)}
         >
@@ -52,7 +52,7 @@ const FavoriteList = ({ list, onUpdate, onDelete, onRender }) => {
           </svg>
         </button>
         <button
-          className="delete"
+          className="buttonDelete"
           aria-label="delete"
           onClick={() => onDelete(list.id)}
         >
