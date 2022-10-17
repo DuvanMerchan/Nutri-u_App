@@ -78,22 +78,30 @@ const RecipeDetail = () => {
     <div className="detalles">
       <NavBar />
 
-      <div className="detail1">
-        <h1 className="font1">{recipe.name}</h1>
-        <div className="detailcontent">
-          <div className="detailrigth">
-            <div className="detail3">
-              <h4>Diet/s</h4>
+      <div className="detailcontainer">
+        
+        <div className="detailname">
+          <h1>{recipe.name}</h1>
+        </div>
+
+
+          <div className="detaildietsfavourite">
+
+            <div className="detaildiets">
+              <h4 className="detaildietstittle">Diet/s</h4>
               {recipe.createdInDB ? (
                 <p>{recipe.diets[0].name}</p>
               ) : (
                 <p>{recipe.diets}</p>
               )}
 
-              <h5>Health Score</h5>
+              <h5 className="detaildietstittle">Health Score</h5>
               <li>{recipe.healthScore}</li>
             </div>
-            <div className="detail6">
+
+          </div>
+
+            <div className="detailfavourite">
               <button className="favouritebtn" onClick={openModal}>
                 Favorite
               </button>
@@ -101,32 +109,35 @@ const RecipeDetail = () => {
                 <SelectFavList recipeId={recipe.id} />
               </Modal>
             </div>
-            <div className="ranking">
-              <h3>Users calification</h3>
+
+
+            <div className="detailranking">
+              <h3 className="detaildietstittle">Users calification</h3>
               {<h5>{rankingTotal ? rankingTotal : "No ranking"}</h5>}
               <div className="rankingValue">
                 {isLogged ? <RankingPost recipeId={id} /> : null}
               </div>
             </div>
-          </div>
-          <div className="detail5">
+            
+          <div className="detailimagen">
             <img
               className="fontimg"
               src={recipe.image}
               alt="recipe"
-              width={400}
+              width={900}
             />
           </div>
-        </div>
-        <div className="detail4">
-          <h5>Summary</h5>
+
+        <div className="detailsummary">
+          <h5 className="detaildietstittle">Summary</h5>
           {recipe.createdInDB ? (
-            <p>{recipe.summary}</p>
+            <p className="detailsummarytext">{recipe.summary}</p>
           ) : (
-            <p dangerouslySetInnerHTML={{ __html: recipe.summary }} />
+            <p className="detailsummarytext" dangerouslySetInnerHTML={{ __html: recipe.summary }} />
           )}
         </div>
-        <div>
+
+        <div className="detailcoments">
           <h2>coments</h2>
           {isLogged ? <NewPost onCreate={handleCreate} /> : null}
           {detailPost
@@ -142,6 +153,7 @@ const RecipeDetail = () => {
               })
             : null}
         </div>
+
       </div>
     </div>
   );
