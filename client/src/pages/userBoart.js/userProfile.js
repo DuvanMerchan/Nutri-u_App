@@ -24,7 +24,6 @@ const UserProfile = () => {
     const {list} = useSelector((state) => state.user)
     const {profile} = useSelector((state) => state.user)
 
-
     const [ image, setImage ] = useState("")
     const [ loading, setLoading ] = useState(false)
 
@@ -218,6 +217,7 @@ return (
 
         <div className='post' >
           <h3>Your post</h3>
+          <div>
         {userPost.length>0?
           userPost.map(post=>{
         return(
@@ -226,6 +226,7 @@ return (
           />
         )
       }) :null}
+        </div>
         </div>
       
 

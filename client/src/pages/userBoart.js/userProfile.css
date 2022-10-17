@@ -1,5 +1,6 @@
  .userprofile {
     display: grid;
+    padding: 15px;
     grid-auto-flow: column; /*
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
     grid-template-rows: 1fr 1fr 0fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
@@ -83,7 +84,6 @@
     justify-content: space-around;
 }
 .list-container{
-    background-color: beige;
     display: grid;
     grid-template-columns: 300px 450px;
 }
@@ -154,6 +154,11 @@
 .buttonListName,.ButtonNewLIst, .buttonEdit, .buttonDelete:hover {
     background: linear-gradient(#dfdfdf, #ededed);
   }
+.post{
+    display: grid;
+    justify-content: center;
+    padding-bottom: 15px;
+}
 
 /*
 .list1 { 

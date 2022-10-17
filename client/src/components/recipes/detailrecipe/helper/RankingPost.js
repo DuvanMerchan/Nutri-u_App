@@ -35,7 +35,7 @@ const dispatch = useDispatch()
     value={ranking}
     onChange={handleInputChange}
     />
-    <button onClick={handleClickPost}>Vote!</button>
+    <button className='buttonVote' onClick={handleClickPost}>Vote!</button>
 </form>
   )
 }

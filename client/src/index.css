@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital@1&family=Fraunces:opsz@9..144&family=Merriweather:ital,wght@0,300;1,300&family=Oswald:wght@300;400;700&family=Roboto+Serif:ital,opsz,wght@0,8..144,400;0,8..144,700;1,8..144,300&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +12,22 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+h1{
+  color: rgb(64, 219, 64);
+}
+h2{
+  color: rgb(82, 167, 82);
+  font-family: 'Merriweather', serif;
+}
+h3{
+  color: rgb(38, 148, 38);
+  font-family: 'Cabin:ital', serif;
+}
+h4{
+  color: rgb(59, 141, 59);
+  font-family: 'Cabin:ital', serif;
+} 
+h5{
+  word-wrap: break-word;
 }
