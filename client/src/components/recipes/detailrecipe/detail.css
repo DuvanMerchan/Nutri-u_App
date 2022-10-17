@@ -1,71 +1,81 @@
 
-.detail1 {
-  display: grid;
-  padding: 10px; 
-  /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+.detailcontainer {
+
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
   gap: 0px 0px; 
   grid-template-areas: 
-    "name name name name name name name name name"
-    "name name name name name name name name name"
-    "data data image image image image image image image"
-    "data data image image image image image image image"
-    "data data image image image image image image image"
-    "favourite favourite image image image image image image image"
-    "favourite favourite image image image image image image image"
-    "summary summary summary summary summary summary summary summary summary"
-    "summary summary summary summary summary summary summary summary summary"; 
+    "detailname detailname detailname detailname detailname detailname detailname detailname detailname detailname detailname detailfavourite detailfavourite"
+    "detailname detailname detailname detailname detailname detailname detailname detailname detailname detailname detailname detailfavourite detailfavourite"
+    "detaildietsfavourite detaildietsfavourite detaildietsfavourite detaildietsfavourite detaildietsfavourite detailimagen detailimagen detailimagen detailimagen detailimagen detailimagen detailimagen detailimagen"
+    "detaildietsfavourite detaildietsfavourite detaildietsfavourite detaildietsfavourite detaildietsfavourite detailimagen detailimagen detailimagen detailimagen detailimagen detailimagen detailimagen detailimagen"
+    "detaildietsfavourite detaildietsfavourite detaildietsfavourite detaildietsfavourite detaildietsfavourite detailimagen detailimagen detailimagen detailimagen detailimagen detailimagen detailimagen detailimagen"
+    "detaildietsfavourite detaildietsfavourite detaildietsfavourite detaildietsfavourite detaildietsfavourite detailimagen detailimagen detailimagen detailimagen detailimagen detailimagen detailimagen detailimagen"
+    "detailranking detailranking detailranking detailranking detailranking detailimagen detailimagen detailimagen detailimagen detailimagen detailimagen detailimagen detailimagen"
+    "detailranking detailranking detailranking detailranking detailranking detailimagen detailimagen detailimagen detailimagen detailimagen detailimagen detailimagen detailimagen"
+    "detailcoments detailcoments detailcoments detailcoments detailcoments detailsummary detailsummary detailsummary detailsummary detailsummary detailsummary detailsummary detailsummary"
+    "detailcoments detailcoments detailcoments detailcoments detailcoments detailsummary detailsummary detailsummary detailsummary detailsummary detailsummary detailsummary detailsummary"
+    "detailcoments detailcoments detailcoments detailcoments detailcoments detailsummary detailsummary detailsummary detailsummary detailsummary detailsummary detailsummary detailsummary"
+    "detailcoments detailcoments detailcoments detailcoments detailcoments detailsummary detailsummary detailsummary detailsummary detailsummary detailsummary detailsummary detailsummary"
+    "detailcoments detailcoments detailcoments detailcoments detailcoments detailsummary detailsummary detailsummary detailsummary detailsummary detailsummary detailsummary detailsummary"; 
 
   max-width: 1500px;
   margin: 0 auto;
   padding: 1em; 
   background: #f9f9f9;
-  border: 1px solid #c1c1c1; */
+  border: 1px solid #c1c1c1; 
  }
- .detailcontent{
-  display: grid;
-  grid-template-columns: 40% 55%;
- }
- .detailrigth{
-  padding: 10px;
- }
- /*.detail2 {
-   grid-area: name; 
- }*/
 
- .font1 {
-  font-size: 50px;
- }
-/* 
- .detail3 {
-  grid-area: data; 
-   margin-left: 80px; 
+ .detailname { 
+  grid-area: detailname; 
 }
 
-.detail4 {
-   grid-area: summary; 
-  padding: 1em; 
- }
-
- .detail5 {
-
-  /* grid-area: image; */
-  /* margin-left: 250px; */
-
-  /* grid-area: 2 / 3 / 6 / 6;
-  margin-bottom: 45px;
-  margin-top: 80px;
-  margin-left: 250px; 
- }
-
- .detail6{
-   grid-area: favourite; 
-  margin-left: 80px; 
- } */
+.detailimagen { 
+  grid-area: detailimagen; 
+  margin-top: 30px;
+}
 
  .fontimg {
   border-radius: 4px;
  }
+
+ .detaildietsfavourite { 
+  margin-top: 30px;
+  padding-left: 4em;
+  grid-area: detaildietsfavourite; 
+}
+
+.detaildietstittle {
+  font-size: 35px;
+}
+
+.detaildiets {
+  font-size: 20px;
+}
+
+.detailfavourite { 
+  grid-area: detailfavourite;
+}
+
+.detailranking { 
+  grid-area: detailranking; 
+  padding-left: 4em;
+}
+
+.detailsummary { 
+  margin-top: 50px;
+  grid-area: detailsummary;
+ }
+
+ .detailsummarytext  {
+  font-size: 20px;
+ }
+
+ .detailcoments { 
+  padding-left: 4em;
+  grid-area: detailcoments; 
+}
 
  .favouritebtn{
   display: flex;
