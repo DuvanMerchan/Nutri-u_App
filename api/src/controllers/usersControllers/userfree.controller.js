@@ -63,6 +63,7 @@ const changeToPremium = async (userEmail, userName, paymentMethod) =>{
     paymentNotification(userEmail,recibo)
     
     
+    
     return {
       message: 'Subscription successfully initiated',
       clientSecret: subscription.latest_invoice.payment_intent.client_secret,
