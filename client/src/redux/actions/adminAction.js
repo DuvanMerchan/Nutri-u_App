@@ -7,7 +7,7 @@ import { getAllRecipes, getAllUsers, getRecipeById, getUserById, banUser, banRec
 //import {REACT_APP_HOST} from process.env
 import dotenv from 'dotenv'
 dotenv.config()
-const url = process.env.REACT_APP_HOST 
+const url = process.env.REACT_APP_HOST || 'http://localhost:5001'
 
 //const token = JSON.parse(sessionStorage.getItem('token'))
 

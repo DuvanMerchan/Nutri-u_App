@@ -1,5 +1,5 @@
 const { Router } = require("express");
-
+const profiles = require('./profiles')
 const { User } = require("../../db");
 const usersRoutes = require("./users");
 const adminRoutes = require("./admin");
@@ -43,7 +43,7 @@ router.get("/confirm/:token", confirmAccount);
 router.post('/premium', async (req,res) =>{
     let {userEmail, userName, paymentMethod} = req.body
     let respuesta = await changeToPremium(userEmail, userName, paymentMethod)
-    console.log('estoo', JSON.stringify(respuesta))
+    // console.log('estoo', JSON.stringify(respuesta))
     res.json({
         respuesta
     })
@@ -53,5 +53,7 @@ router.post('/premium', async (req,res) =>{
 
 router.post("/forgot-password", forgotPassword)
 router.post("/new-password/:token", newPassword)
+router.use("/profiles", profiles);
+
 
 module.exports = router;
