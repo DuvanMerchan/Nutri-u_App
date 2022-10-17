@@ -46,12 +46,21 @@
     width: 250px;
     justify-content: space-around;
 }
+.list-container{
+    background-color: beige;
+    display: grid;
+    grid-template-columns: 300px 450px;
+}
 .lists-container{
     background-color: none;
 }
 .buttonListName{
     width: 180px;
-    border: none;
+    color:#777777;
+    border-color:#dcdcdc;
+    box-shadow:inset 0px 1px 0px 0px #ffffff;
+    text-shadow:inset 0px 1px 0px #ffffff;
+    background:linear-gradient(#ededed, #dfdfdf);
 }
 /*
 .userimage1 {
@@ -69,6 +78,24 @@
     /* grid-area: list;
     margin-left: 80px; */
 }
+
+.ButtonNewLIst, .buttonEdit, .buttonDelete{
+  color:#777777;
+  border-color:#dcdcdc;
+  font-weight:bold;
+  border-top-left-radius:6px;
+  border-top-right-radius:6px;
+  border-bottom-left-radius:6px;
+  border-bottom-right-radius:6px;
+  box-shadow:inset 0px 1px 0px 0px #ffffff;
+  text-shadow:inset 0px 1px 0px #ffffff;
+  background:linear-gradient(#ededed, #dfdfdf);
+}
+
+.buttonListName,.ButtonNewLIst, .buttonEdit, .buttonDelete:hover {
+    background: linear-gradient(#dfdfdf, #ededed);
+  }
+
 /*
 .list1 { 
     grid-area: list1; 
