@@ -15,6 +15,7 @@ const { REACT_APP_HOST } =
 
 
 export function PaymentForm() {
+  
 
   const navigate2 = useNavigate()
   useEffect(() => {
