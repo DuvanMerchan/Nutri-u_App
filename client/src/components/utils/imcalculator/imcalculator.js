@@ -105,7 +105,7 @@ export const CalculatorIMC= ()=>{
             onChange={ (e) => setAltura(e.target.value) }
           />
 
-          <button className="btn btn-primary" onClick={calcularIMC}>
+          <button className="btn btn-primary" onClick={calcularIMC}> 
             Calcular
           </button>
 
