@@ -26,9 +26,9 @@ const UserProfile = () => {
     const {list} = useSelector((state) => state.user)
     const {profile} = useSelector((state) => state.user)
 
-    const [ image, setImage ] = useState("")
+    const [ image, setImage ] = useState("https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg")
     const [ loading, setLoading ] = useState(false)
-
+    const ImgProfile = "https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
     const uploadImage = async (e) => {
       
       const files = e.target.files;
@@ -44,9 +44,11 @@ const UserProfile = () => {
         }
       )
       const file = await res.json();
+      
       setImage(file.secure_url)
       console.log(file.secure_url)
       setLoading(false)
+      
     }
 
     const navigate2 = useNavigate()
@@ -62,8 +64,6 @@ const UserProfile = () => {
     },[])
     useEffect(()=>{
       dispatch(getProfileData(userId))
-      
-      
     },[dispatch])
     console.log("hola soy getProfileData", profile)
     function handleUpdate(id, value){
@@ -116,8 +116,12 @@ const UserProfile = () => {
 
     const postImg = (e) => {
       e.preventDefault()
+      
       dispatch(uploadImg({userId,image}))
     }
+
+
+    
 
 return (
     <div className='profileCon'>
@@ -129,10 +133,29 @@ return (
         <Info
         user={user} />
     </div>
-     
+
+    <div className='Hola'>
+    { !profile.length?<div className='profiledetalles'>
+              
     <div className="userimage">
         {loading ? (<h3>Loading picture...</h3>) : (<img className="userimage1"src={image} />)}
     </div>
+          
+          </div>:
+        profile.map((el) => {
+            
+          return (
+            <div className='profiledetalles'>
+              <div className="userimage">
+        {loading ? (<h3>Loading picture...</h3>) : (<img className="userimage1"src={el.imgperfil} />)}
+    </div>
+                            
+            </div>
+          )  
+        })}
+    </div>
+     
+    
           
         {/* <div className="upload1">       
           <label for="files" class="btn-cam">📷</label>
@@ -147,8 +170,8 @@ return (
         </div> */}
 
          <div className='upload1'>
-            <label>upload 📷</label>
-            <input className='upfiled' type="file" name="file" placeholeder="Profile Picture" onChange={uploadImage}></input>
+            <label onChange={postImg}>upload 📷</label>
+            <input className='upfiled' type="file" name="file" placeholeder="Profile Picture" onChange={uploadImage} ></input>
           </div>
 
 
