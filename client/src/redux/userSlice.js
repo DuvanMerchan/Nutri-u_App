@@ -6,7 +6,10 @@ export const userSlice = createSlice({
     user: {},
     favList: [],
     list: {},
-    profile:{}
+    userPost: [],
+    post:{},
+    ranking:0,
+    profile:[]
   },
   reducers: {
     getUser: (state, action) => {
@@ -34,9 +37,19 @@ export const userSlice = createSlice({
     deleteListById: (state, action) => {
       state.favList = action.payload;
     },
-    getProfile: (state, action) => {
+    getUserPosts:(state, action) => {
+      state.userPost = action.payload;
+    },
+    getUserPost:(state, action) => {
+      state.post = action.payload;
+    },
+    getRanking:(state, action) => {
+      state.ranking = action.payload;
+    },
+    getProfile:(state, action) => {
       state.profile = action.payload;
     },
+
     // getUserStatus: (state, action)=>{
     //     state.logged = action.payload
     // },
@@ -58,10 +71,13 @@ export const {
   removeFavRecipe,
   updateNameList,
   deleteListById,
+  getUserPosts,
+  getUserPost,
   getUserStatus,
   createUser,
   deleteUser,
-  getProfile,
+  getRanking,
+  getProfile
 } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -1,12 +1,13 @@
 const {Router} = require('express');
 const { userInfo } = require('../../controllers/usersControllers/users.controllers');
-const { changeToPremium } = require('../../controllers/usersControllers/userfree.controller');
 const auth = require('../../middlewares/auth');
 const router = Router()
 
 const routeFavorite = require('./favorites')
+const routePost = require('./post')
 
 router.use('/myfavorite', routeFavorite)
+router.use('/post', routePost)
 
 // router.patch('/premium', (req,res) =>{
 //     let user = changeToPremium()

@@ -10,16 +10,20 @@ import { changeListName, createList, deleteList, getIdList, getLists, getUserDet
 import "./userProfile.css"
 
 
-import { useNavigate, useRevalidator } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import { getPosts } from '../../redux/actions/postAction';
+import UserPost from '../../components/usersBoart/UserPost';
 
 
 const UserProfile = () => {
     const loggedUserSession = window.sessionStorage.getItem("user")
     const dispatch = useDispatch()
     const {user} =useSelector((state)=>state.user)
+    const {userPost} =useSelector((state)=>state.user)
     const {favList} = useSelector((state) => state.user)
     const {list} = useSelector((state) => state.user)
     const {profile} = useSelector((state) => state.user)
+
 
     const [ image, setImage ] = useState("")
     const [ loading, setLoading ] = useState(false)
@@ -52,7 +56,7 @@ const UserProfile = () => {
     useEffect(()=>{
         if(!loggedUserSession){navigate2("/home")}
         dispatch(getUserDetail())
-        
+        dispatch(getPosts())
     },[])
     useEffect(()=>{
         dispatch(getLists())
@@ -152,11 +156,28 @@ return (
         <Info
         user={user} />
       </div>
-
-      <div className="list">
+        <div>
+          <div className="userimage">
+            {loading ? (<h3>Loading picture...</h3>) : (<img className="userimage1"src={image} style={{width: "50px"}}/>)}
+          </div>
+          
+        <div className="upload1">
+          <h5>Upload your profile picture</h5>
+          <input
+            type="file"
+            name="file"
+            placeholeder="Profile Picture"
+            onChange={uploadImage}
+            >
+          </input>
+        </div></div>
+        </div>
+        <div className="list-container">
+        <div className='list'>
+          <div className='name-list'>
       <h2>My Lists</h2>
       <NewList
-      onCreate={onCreate} />
+      onCreate={onCreate} /></div>
       {(favList.length>0)?
       favList.map(f =>(<>
       <FavoriteList
@@ -168,8 +189,8 @@ return (
       onRender={handleRenderList}/></>
       ))
     : null}
-  
-      </div>
+    </div>
+    
 
         <div className="list1">
             {(Object.entries(list).length>0)? 
@@ -180,9 +201,20 @@ return (
               <h2>select your list</h2>
             )}
         </div>
+    </div>
 
-
-      </div>
+        <div className='post' >
+          <h3>Your post</h3>
+        {userPost.length>0?
+          userPost.map(post=>{
+        return(
+          <UserPost
+          post={post} 
+          />
+        )
+      }) :null}
+        </div>
+      
 
     </div>
   )
