@@ -10,14 +10,14 @@ import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-import EnhancedTableToolbar from '../TableHelpers/EnhancedTableToolbar';
-import EnhancedTableHead from '../TableHelpers/EnhancedTableHead';
-import { getComparator, stableSort} from '../TableHelpers/TableHelpers'
+import EnhancedRecipesTableToolbar from './EnhancedRecipesTableToolbar';
+import EnhancedRecipesTableHead from './EnhancedRecipesTableHead';
+import { getComparator, stableSort } from '../TableHelpers/TableHelpers'
 import { NavBar } from '../../utils/nav/nav';   
-import { getRecipes } from '../../../redux/actions/adminAction';
 import { useDispatch, useSelector } from 'react-redux';
-// import { getUsers } from '../../redux/actions/adminAction';
-//import ResponsiveAppBar from '../admin_NavBar';
+import { getRecipes, banRecipeById } from '../../../redux/actions/adminAction';
+
+
 
 export const RecipeTable = () => {
 
@@ -31,7 +31,7 @@ const {recipesList} = useSelector((store) => store.admin)
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [dense, setDense] = React.useState(false);
-    const [userPerPage, setuserPerPage] = React.useState(15);
+    const [recipesPerPage, setrecipesPerPage] = React.useState(15);
 
 
     React.useEffect(()=>{
@@ -55,6 +55,7 @@ const {recipesList} = useSelector((store) => store.admin)
   
     const handleClick = (event, name) => {
       const selectedIndex = selected.indexOf(name);
+      console.log(selectedIndex, "SELECTED INDEX")
       let newSelected = [];
   
       if (selectedIndex === -1) {
@@ -77,8 +78,8 @@ const {recipesList} = useSelector((store) => store.admin)
       setPage(newPage);
     };
   
-    const handleChangeuserPerPage = (event) => {
-      setuserPerPage(parseInt(event.target.value, 10));
+    const handleChangerecipesPerPage = (event) => {
+      setrecipesPerPage(parseInt(event.target.value, 10));
       setPage(0);
     };
   
@@ -88,22 +89,22 @@ const {recipesList} = useSelector((store) => store.admin)
   
     const isSelected = (name) => selected.indexOf(name) !== -1;
   
-    // Avoid a layout jump when reaching the last page with empty user.
-    const emptyuser =
-      page > 0 ? Math.max(0, (1 + page) * userPerPage - recipesList.length) : 0;
+    // Avoid a layout jump when reaching the last page with empty recipe.
+    const emptyrecipes =
+      page > 0 ? Math.max(0, (1 + page) * recipesPerPage - recipesList.length) : 0;
   
     return (<>
-      <NavBar />  
+      <NavBar/>
       <Box sx={{ width: '100%' }}>
         <Paper sx={{ width: '100%', mb: 2 }}>
-          <EnhancedTableToolbar numSelected={selected.length} />  {/*ACA TENGO QUE VER COMO LE PASO EL ID PARA BANEARLO*/}
+          <EnhancedRecipesTableToolbar numSelected={selected.length} />  {/*ACA TENGO QUE VER COMO LE PASO EL ID PARA BANEARLO*/}
           <TableContainer>
             <Table
               sx={{ minWidth: 750 }}
               aria-labelledby="tableTitle"
               size={dense ? 'small' : 'medium'}
             >
-              <EnhancedTableHead
+              <EnhancedRecipesTableHead
                 numSelected={selected.length}
                 order={order}
                 orderBy={orderBy}
@@ -113,9 +114,9 @@ const {recipesList} = useSelector((store) => store.admin)
               />
               <TableBody>
                 {/* if you don't need to support IE11, you can replace the `stableSort` call with:
-                   user.slice().sort(getComparator(order, orderBy)) */}
+                   recipe.slice().sort(getComparator(order, orderBy)) */}
                 {stableSort(recipesList, getComparator(order, orderBy))
-                  .slice(page * userPerPage, page * userPerPage + userPerPage)
+                  .slice(page * recipesPerPage, page * recipesPerPage + recipesPerPage)
                   .map((row, index) => {
                     const isItemSelected = isSelected(row.name);
                     const labelId = `enhanced-table-checkbox-${index}`;
@@ -150,16 +151,17 @@ const {recipesList} = useSelector((store) => store.admin)
                         <TableCell align="left">{row.name}</TableCell>
                         <TableCell align="left">{row.healthScore}</TableCell>
                         <TableCell align="left">{row.createdInDB.toString()}</TableCell>
-                        <TableCell align="left">{row.banned.toString()}</TableCell>
-                        <TableCell align="left">{row.userId}</TableCell>
+                        {console.log(row.banned, "BANNED")}
+                        {/* <TableCell align="left">{row.banned.toString()}</TableCell> */}
+                        {/* <TableCell align="left">{row.user_id}</TableCell> */}
   
                       </TableRow>
                     );
                   })}
-                {emptyuser > 0 && (
+                {emptyrecipes > 0 && (
                   <TableRow
                     style={{
-                      height: (dense ? 33 : 53) * emptyuser,
+                      height: (dense ? 33 : 53) * emptyrecipes,
                     }}
                   >
                     <TableCell colSpan={6} />
@@ -169,13 +171,13 @@ const {recipesList} = useSelector((store) => store.admin)
             </Table>
           </TableContainer>
           <TablePagination
-            userPerPageOptions={[10, 25, 50, 100]}
+            recipesPerPageOptions={[10, 25, 50, 100]}
             component="div"
             count={recipesList.length}
-            userPerPage={userPerPage}
+            recipesPerPage={recipesPerPage}
             page={page}
             onPageChange={handleChangePage}
-            onuserPerPageChange={handleChangeuserPerPage}
+            onrecipesPerPageChange={handleChangerecipesPerPage}
           />
         </Paper>
         <FormControlLabel
