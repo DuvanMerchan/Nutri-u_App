@@ -1,113 +1,139 @@
- .userprofile {
-    display: grid;
-    padding: 15px;
-    grid-auto-flow: column; /*
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
-    grid-template-rows: 1fr 1fr 0fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
-    gap: 0px 0px; 
-    grid-template-areas: 
 
-      "username1 username1 username1 username1 username1 userimage userimage userimage userimage userimage userimage"
-      "username1 username1 username1 username1 username1 userimage userimage userimage userimage userimage userimage"
-      ". . . . . userimage userimage userimage userimage userimage userimage"
-      "list list list list1 list1 userimage userimage userimage userimage userimage userimage"
-      "list list list list1 list1 userimage userimage userimage userimage userimage userimage"
-      "list list list list1 list1 userimage userimage userimage userimage userimage userimage"
-      "list list list list1 list1 . . . . . ."
-      "list list list list1 list1 . . . . . ."
-      "list list list list1 list1 . . . . . ."
-      "list list list list1 list1 . . . . . ."
-      "list list list list1 list1 upload1 upload1 upload1 upload1 upload1 upload1"; 
+ .profileprincipal {
+    display: grid; 
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "username1 username1 username1 username1 username1 upload1 upload1 userimage userimage userimage userimage"
+    "username1 username1 username1 username1 username1 btn-btn-secondary btn-btn-secondary userimage userimage userimage userimage"
+    "userinfo userinfo userinfo userinfo userinfo modifyibm modifyibm userimage userimage userimage userimage"
+    "userinfo userinfo userinfo userinfo userinfo . . userimage userimage userimage userimage"
+    "userinfo userinfo userinfo userinfo userinfo . . yourpost yourpost yourpost yourpost"
+    "mylists mylists mylists mylists selectyourlist selectyourlist selectyourlist yourpost yourpost yourpost yourpost"
+    "mylists mylists mylists mylists selectyourlist selectyourlist selectyourlist yourpost yourpost yourpost yourpost"
+    "mylists mylists mylists mylists selectyourlist selectyourlist selectyourlist yourpost yourpost yourpost yourpost"
+    "mylists mylists mylists mylists selectyourlist selectyourlist selectyourlist yourpost yourpost yourpost yourpost"
+    "mylists mylists mylists mylists selectyourlist selectyourlist selectyourlist yourpost yourpost yourpost yourpost"
+    "mylists mylists mylists mylists selectyourlist selectyourlist selectyourlist yourpost yourpost yourpost yourpost"; 
 
-      max-width: 1400px;
-      height: 1000px;
-      margin: 0 auto;
-      padding: 1em; 
-      background: #f9f9f9;
-      border: 1px solid #c1c1c1;
-      background-color: green;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 1em; 
+    background: #f9f9f9;
+    border: 1px solid #c1c1c1; 
+
+
 }
-.username1 { 
+/* .username1 { 
     grid-area: username1;
     margin-top: 50px;
     margin-left: 170px;
-}*/
+} */
+
+.username1 { 
+
+grid-area: username1;
  }
 
- .profileprincipal{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+ .userimage {
+ grid-area: userimage;
+ margin-top: 50px;
+ margin-left: 90px;
 }
 
-.profilesecond{
+.upload1 { 
+    grid-area: upload1; 
+}
+
+/* .profilesecond{
     display:flex;
     justify-content: center;
-}
+} */
 
-.profiledetalles{
+.btn-btn-secondary { 
+    grid-area: btn-btn-secondary;
+ }
+
+/* .profiledetalles{
     display: flex;
     justify-content: center;
-}
+} */
 
-.profiledetalles h3 {
+/* .profiledetalles h3 {
     font-size: 16px;
     padding: 5px;
-}
+} */
 
-.username1{
-    display: flex;
-    justify-content: center;
-}
+.userinfo { grid-area: userinfo; }
+
+
+.modifyibm { 
+    grid-area: modifyibm;
+ }
 
  .userimage1 {
-    min-width: 200px;
-    max-width: 200px;
-    min-height: 200px;
-    max-height: 200px;
-    width: 200px;
-    height: 200px;
+    min-width: 400px;
+    max-width: 400px;
+    min-height: 400px;
+    max-height: 400px;
+    width: 400px;
+    height: 400px;
     border-radius: 100%;
     border: solid 5px black;
 }
 
-.userimage h3{
+/* .userimage h3{
     min-width: 200px;
     max-width: 200px;
     min-height: 200px;
     max-height: 200px;
+} */
+
+.selectyourlist { 
+    grid-area: selectyourlist;
+ }
+
+.mylists { 
+    grid-area: mylists; 
 }
 
-.name-list{
+.yourpost { 
+    grid-area: yourpost;
+    margin-top: 100px;
+ }
+
+/* .name-list{
     display: flex;
     width: 250px;
     justify-content: space-around;
 }
-.list-container{
+.mylists{
     display: grid;
     grid-template-columns: 300px 450px;
 }
 .lists-container{
     background-color: none;
-}
-.buttonListName{
+} */
+
+/* .buttonListName{
     width: 180px;
     color:#777777;
     border-color:#dcdcdc;
     box-shadow:inset 0px 1px 0px 0px #ffffff;
     text-shadow:inset 0px 1px 0px #ffffff;
     background:linear-gradient(#ededed, #dfdfdf);
-}
+} */
 
-.upload1 input{
+/* .upload1 input{
     background-color: blueviolet;
     display: none;
-}
+} */
 
-.modifyibm{
+/* .modifyibm{
     display: flex;
     justify-content: center;
-}
+} */
 /*
 .userimage1 {
     min-width: 200px;
@@ -132,11 +158,11 @@
     
 }
 */
-.list { 
+/* .list { 
     display: grid;
-    /* grid-area: list;
-    margin-left: 80px; */
-}
+    grid-area: list;
+    margin-left: 80px; 
+} */
 
 .ButtonNewLIst, .buttonEdit, .buttonDelete{
   color:#777777;

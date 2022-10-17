@@ -121,7 +121,7 @@ export const CalculatorIMC= ()=>{
       <div>
         
       </div>
-      <button className="btn btn-secondary" disabled={imcMessage.length === 0} onClick={handleCalculator} >Save in profile</button>
+      <button className="btn-secondary" disabled={imcMessage.length === 0} onClick={handleCalculator} >Save in profile</button>
       <a className="btn btn-primary" href='/me'>Go to Profile!</a>
    </div>
    
