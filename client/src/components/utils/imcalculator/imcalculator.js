@@ -105,7 +105,7 @@ export const CalculatorIMC= ()=>{
             onChange={ (e) => setAltura(e.target.value) }
           />
 
-          <button className="btn btn-primary" onClick={calcularIMC}>
+          <button className="btn btn-primary" onClick={calcularIMC}> 
             Calcular
           </button>
 
@@ -122,7 +122,9 @@ export const CalculatorIMC= ()=>{
         
       </div>
       <button className="btn btn-secondary" disabled={imcMessage.length === 0} onClick={handleCalculator} >Save in profile</button>
+      <a className="btn btn-primary" href='/me'>Go to Profile!</a>
    </div>
+   
    </div>
   );
 }

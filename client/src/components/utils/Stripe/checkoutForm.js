@@ -15,7 +15,7 @@ import {
 import swal from 'sweetalert';
 import { NavBar } from "../nav/nav";
 import { useNavigate } from "react-router-dom"
-import './checkoutForm.css' 
+//import './checkoutForm.css' 
 const { REACT_APP_HOST } =
   process.env;
 
