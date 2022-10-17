@@ -8,7 +8,6 @@ const stripePromise = loadStripe("pk_test_51LpumKJocvWwgusfuIDgKMDWBBTXIYMiqNNp1
 
 export function Payment () {
 
-
     return(
         <Elements stripe={stripePromise}>
             <PaymentForm/>

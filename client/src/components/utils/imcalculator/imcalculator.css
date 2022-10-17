@@ -1,4 +1,10 @@
+.IMC{
+    padding-top: 20px;
+}
+
+
 .imc-calculator{
+   margin-bottom: 20px;
     background: #56ab2f;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #a8e063, #56ab2f);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #a8e063, #56ab2f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -8,9 +14,34 @@
     max-width: 800px;
     align-items: center;
     border-radius: 10px;
-    color: white
+    color: white;
+    padding-bottom: 200px;
 }
 
 .area-input-calculator h1{
     justify-content: center;
+}
+
+.imc-calculator h2{
+    max-width: 500px;
+    padding-top: 10px;
+    position: absolute;
+    font-size: 14px;
+}
+
+.imc-calculator h3{
+    padding-top: 150px;
+    position: absolute;
+    justify-content: center;
+    
+}
+
+
+.IMC .form-control{
+    margin: 10px;
+}
+
+.IMC .btn-secondary{
+    margin-top: 185px;
+    margin-left: -110px;
 }

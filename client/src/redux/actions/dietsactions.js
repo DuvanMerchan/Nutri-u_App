@@ -4,7 +4,7 @@ import { //filterByDiet,
 
     import dotenv from 'dotenv'
     dotenv.config()
-    const url = process.env.REACT_APP_HOST 
+    const url = process.env.REACT_APP_HOST || 'http://localhost:5001'
 
 
 export const getDiets =()=>async (dispatch)=>{

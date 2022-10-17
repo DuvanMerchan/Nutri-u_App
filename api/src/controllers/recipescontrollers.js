@@ -2,7 +2,7 @@ const axios = require ("axios")
 const { API_KEY } = process.env
 const { Recipe, Diet } = require("../db.js")
 // import  dietTypes  from '../utils/apispoon'
-
+const uuid = require('uuid');
 
 
 const getApiRecipes = async() => {
@@ -14,6 +14,7 @@ const getApiRecipes = async() => {
         if(results !== 0 ) {
             let dishRecipe = await results?.map((e) => {
                 return {
+                    //id: uuid.v4(),
                     id: e.id,
                     name: e.title,
                     healthScore: e.healthScore,
@@ -72,6 +73,7 @@ const getApiNameRecipes = async(name) => {
         if(results !==0) {
             let dishName = results?.map((el) => {
                 return {
+
                     id: el.id,
                     name: el.title,
                     healthScore: el.healthScore,
