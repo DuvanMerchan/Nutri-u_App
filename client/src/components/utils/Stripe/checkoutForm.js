@@ -15,7 +15,7 @@ import {
 import swal from 'sweetalert';
 import { NavBar } from "../nav/nav";
 import { useNavigate } from "react-router-dom"
-//import './checkoutForm.css' 
+import './checkoutForm.css' 
 const { REACT_APP_HOST } =
   process.env;
 
@@ -104,17 +104,17 @@ export function PaymentForm() {
           <br/>
           <div className='listDiv'>
             <ul className='list'>
-              <li>✅ You can chat with real nutritionists</li>
-              <li>✅ You can see more details from the recipes you search</li>
-              <li>✅ You will have more slots in your favourite recipe list</li>
-              <li>✅ you will have exclusive access to the new features that we implement in the future</li>
+              <li>✅ You can chat with real nutritionists.</li>
+              <li>✅ You can see more details from the recipes you search.</li>
+              <li>✅ You will have more slots in your favourite recipe list.</li>
+              <li>✅ You will have exclusive access to the new features that we implement in the future.</li>
             </ul>
           </div>
           <br/>
       </div>   
+          <h1>BE PREMIUM NOW!</h1>
       <div className='cardContainer'>
         <div >
-          <h1>BE PREMIUM NOW!</h1>
           <br/>
           {/* <label className='label'>Card Name:</label>
           <br/>
