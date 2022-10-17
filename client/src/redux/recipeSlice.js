@@ -7,6 +7,8 @@ export const recipesSlice = createSlice({
         recipes:[],
         detail:{},
         allrecipes:[],
+        detailPost: [],
+        ranking: 0
     },
     
     reducers:{
@@ -30,6 +32,12 @@ export const recipesSlice = createSlice({
         },
         deleteRecipe: (state, action)=>{
             state.recipes = action.payload
+        },
+        getAllPost:  (state, action)=>{
+            state.detailPost = action.payload
+        },
+        getRanking: (state, action)=>{
+            state.ranking = action.payload
         },
         orderByRating: (state, action)=>{
             // eslint-disable-next-line
@@ -75,6 +83,6 @@ export const recipesSlice = createSlice({
     }
 })
 
-export const {getAllRecipes, getRecipeById, getRecipesByName, createRecipe, deleteRecipe, orderByRating, filterByDiet, getDiets_Recipe} = recipesSlice.actions
+export const {getAllRecipes, getRecipeById, getAllPost, getRanking, getRecipesByName, createRecipe, deleteRecipe, orderByRating, filterByDiet, getDiets_Recipe} = recipesSlice.actions
 
 export default recipesSlice.reducer

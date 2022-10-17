@@ -3,7 +3,8 @@ const router = Router();
 const Recipe = require("../db");
 const { getApiRecipeByID, createRecipe, deleteRecipe, updateRecipe } = require("../controllers/recipecontrollers");
 
-const auth = require('../middlewares/auth')
+const auth = require('../middlewares/auth');
+const { countRanking, getRecipePost } = require("../controllers/usersControllers/PostRanking.controllers");
 
 router.get("/:id", async (req, res) => {
   let { id } = req.params;
@@ -17,7 +18,16 @@ router.get("/:id", async (req, res) => {
       .json({ error: "error getting that specific recipe" });
   }
 });
-
+router.get('/reciperank/:recipeId', async (req,res)=>{
+  let {recipeId} = req.params
+  let rank = await countRanking(recipeId)
+  res.json(Math.round(rank))
+})
+router.get('/post/:recipeId', async (req,res)=>{
+  let {recipeId} = req.params
+  let post = await getRecipePost(recipeId)
+  res.json(post)
+})
 router.post("/", auth,async (req, res) => {
   const {
     name,

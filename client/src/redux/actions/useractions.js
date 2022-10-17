@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { getUser, getUserById, getUserStatus, getAllList, getListById, addFavRecipe, removeFavRecipe,
-    updateNameList, deleteListById,//createUser, deleteUser
+    updateNameList, deleteListById, getProfile,//createUser, deleteUser
 } from '../userSlice'
 import swal from 'sweetalert';
 
@@ -241,6 +241,55 @@ export const deleteList =(listId)=> async(dispatch) =>{
                 'Content-Type': 'application/json'
             },
             data:{ listId:listId}})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const addCalculator =(payload)=> async (dispatch) =>{
+    try {
+        let token = JSON.parse(sessionStorage.getItem('token'))
+        let res = await axios.post(`${url}/user/profiles/calculator`,payload,{
+            headers:{
+                'Authorization': `Bearer ${token}`,
+                'Accept' : 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+       // dispatch(addFavRecipe(res.data))
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const uploadImg =(payload)=> async (dispatch) =>{
+    try {
+        let token = JSON.parse(sessionStorage.getItem('token'))
+        let res = await axios.post(`${url}/user/profiles/uploadimg`,payload,{
+            headers:{
+                'Authorization': `Bearer ${token}`,
+                'Accept' : 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+       // dispatch(addFavRecipe(res.data))
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getProfileData =(userId) => async (dispatch) =>{
+    try {
+        let token = JSON.parse(sessionStorage.getItem('token'))
+        let res = await axios.get(`${url}/user/profiles/profiles/${userId}` ,{
+            headers:{
+                'Authorization': `Bearer ${token}`,
+                'Accept' : 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        //console.log("soy RESSSS", res.data)
+        dispatch(getProfile(res.data))
     } catch (error) {
         console.log(error)
     }

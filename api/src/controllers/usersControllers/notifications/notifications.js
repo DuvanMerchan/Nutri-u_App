@@ -58,9 +58,28 @@ if(email && token){
 
 }
 
+async function paymentNotification(email, recibo){
+    let transporter = nodemailer.createTransport({
+        host: `${HOST_EMAIL}`,
+        port:`${PORT_EMAIL}`,
+        secure:false,
+        auth:{
+            user:`${EMAIL}`,
+            pass:`${EMAIL_PASS}`
+        }
+    });
+    return transporter.sendMail({
+        from: "nutri.u.contact@gmail.com",
+        to: email,
+        subject:"Your suscription to Nutri-U has been successful!",
+        html:`<p>You are a Premium User now, enjoy!<br/> <br/>You can download your invoice here: <br/> ${recibo}<a href="nutri.u.contact@gmail.com">nutri.u.contact@gmail.com</a></p>`,
+    })
+    
+}
 
 module.exports = {
     //adminLogin,
     bannedUserNotification,
-    changePasswordNotification
+    changePasswordNotification,
+    paymentNotification
 }
