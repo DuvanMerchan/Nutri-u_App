@@ -15,7 +15,7 @@ import {
 import swal from 'sweetalert';
 import { NavBar } from "../nav/nav";
 import { useNavigate } from "react-router-dom"
-//import './checkoutForm.css' 
+import './checkoutForm.css' 
 const { REACT_APP_HOST } =
   process.env;
 
@@ -75,7 +75,7 @@ export function PaymentForm() {
 
     } catch (err) {
       // console.error(err);
-      swal("Payment failed! Please checkout the given information" );
+      swal("Payment failed! Please checkout the given information", `Error message: ${err.message}`  );
     }
   };
 
@@ -112,9 +112,9 @@ export function PaymentForm() {
           </div>
           <br/>
       </div>   
+      <h1>BE PREMIUM NOW!</h1>
       <div className='cardContainer'>
         <div >
-          <h1>BE PREMIUM NOW!</h1>
           <br/>
           {/* <label className='label'>Card Name:</label>
           <br/>
