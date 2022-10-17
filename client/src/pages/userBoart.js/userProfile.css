@@ -32,16 +32,51 @@
     margin-left: 170px;
 }*/
  }
-.userimage { 
-    /* margin-top: 15px;
-    grid-area: userimage;
-    margin-left: 130px; */
-    
-    border: solid;
-    width: 100px;
-    height: 100px;
 
+ .profileprincipal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.profilesecond{
+    display:flex;
+    justify-content: center;
+}
+
+.profiledetalles{
+    display: flex;
+    justify-content: center;
+}
+
+.profiledetalles h3 {
+    font-size: 16px;
+    padding: 5px;
+}
+
+.username1{
+    display: flex;
+    justify-content: center;
+}
+
+ .userimage1 {
+    min-width: 200px;
+    max-width: 200px;
+    min-height: 200px;
+    max-height: 200px;
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    border: solid 5px black;
+}
+
+.userimage h3{
+    min-width: 200px;
+    max-width: 200px;
+    min-height: 200px;
+    max-height: 200px;
+}
+
 .name-list{
     display: flex;
     width: 250px;
@@ -62,6 +97,16 @@
     box-shadow:inset 0px 1px 0px 0px #ffffff;
     text-shadow:inset 0px 1px 0px #ffffff;
     background:linear-gradient(#ededed, #dfdfdf);
+}
+
+.upload1 input{
+    background-color: blueviolet;
+    display: none;
+}
+
+.modifyibm{
+    display: flex;
+    justify-content: center;
 }
 /*
 .userimage1 {

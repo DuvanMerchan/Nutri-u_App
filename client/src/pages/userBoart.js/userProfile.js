@@ -150,27 +150,40 @@ return (
         </div>
      </div>
 
-<div className="userprofile"> 
-
-      <div className="username1">
+     <div className="username1">
         <Info
         user={user} />
       </div>
-        <div>
-          <div className="userimage">
-            {loading ? (<h3>Loading picture...</h3>) : (<img className="userimage1"src={image} style={{width: "50px"}}/>)}
-          </div>
+
+     <div className='profilesecond'>
+     { !profile.length?<div className='profiledetalles'>
+              <h3>Peso: 0 Kg</h3>
+              <h3>Height: 0 Cm</h3>
+              <h3>IBM: 0</h3>
           
-        <div className="upload1">
-          <h5>Upload your profile picture</h5>
-          <input
-            type="file"
-            name="file"
-            placeholeder="Profile Picture"
-            onChange={uploadImage}
-            >
-          </input>
-        </div></div>
+          </div>:
+        profile.map((el) => {
+            
+          return (
+            <div className='profiledetalles'>
+              <h3>Peso: {el.peso} Kg</h3>
+              <h3>Height: {el.altura} Cm</h3>
+              <h3>IBM: {el.imc}</h3>
+
+                
+            </div>
+          )  
+        })}
+     </div>
+
+     <div className='modifyibm'>
+       <a href='/calculatorimc'>Modify IBM</a>
+     </div>
+
+<div className="userprofile"> 
+
+      
+        
         </div>
         <div className="list-container">
         <div className='list'>
