@@ -22,7 +22,7 @@ const UserProfile = () => {
     const {userPost} =useSelector((state)=>state.user)
     const {favList} = useSelector((state) => state.user)
     const {list} = useSelector((state) => state.user)
-
+    const {profile} = useSelector((state) => state.user)
 
     const [ image, setImage ] = useState("")
     const [ loading, setLoading ] = useState(false)
