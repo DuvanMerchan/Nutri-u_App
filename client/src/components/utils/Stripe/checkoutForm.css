@@ -5,7 +5,7 @@
 
 .cardContainer{
     display: flex;
-    max-width: 800px;
+    max-width: 500px;
     justify-content: center;
     background: #56ab2f;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #a8e063, #56ab2f);  /* Chrome 10-25, Safari 5.1-6 */
