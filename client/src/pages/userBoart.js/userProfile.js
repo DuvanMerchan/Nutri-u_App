@@ -1,3 +1,5 @@
+
+
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import FavoriteList from '../../components/usersBoart/FavoriteList';
@@ -46,8 +48,6 @@ const UserProfile = () => {
       console.log(file.secure_url)
       setLoading(false)
     }
-
-
 
     const navigate2 = useNavigate()
 
@@ -117,7 +117,6 @@ const UserProfile = () => {
     const postImg = (e) => {
       e.preventDefault()
       dispatch(uploadImg({userId,image}))
-      
     }
 
 return (
@@ -126,13 +125,16 @@ return (
 
      <div className='profileprincipal'>
       
+    <div className="username1">
+        <Info
+        user={user} />
+    </div>
      
-     <div className="userimage">
-            {loading ? (<h3>Loading picture...</h3>) : (<img className="userimage1"src={image} />)}
-          </div>
+    <div className="userimage">
+        {loading ? (<h3>Loading picture...</h3>) : (<img className="userimage1"src={image} />)}
+    </div>
           
-        <div className="upload1">
-          
+        {/* <div className="upload1">       
           <label for="files" class="btn-cam">📷</label>
           <input className='upfiled'
             id='files'
@@ -142,19 +144,19 @@ return (
             onChange={uploadImage}
             >
           </input>
-          <button  className='btn btn-secondary'  onClick={postImg}>Save</button>
-        </div>
-        <div className='caract'>
-          
-        </div>
-     </div>
+        </div> */}
 
-     <div className="username1">
-        <Info
-        user={user} />
-      </div>
+         <div className='upload1'>
+            <label>upload 📷</label>
+            <input className='upfiled' type="file" name="file" placeholeder="Profile Picture" onChange={uploadImage}></input>
+          </div>
 
-     <div className='profilesecond'>
+
+          <div>
+            <button  className='btn btn-secondary'  onClick={postImg}>Save Image</button>
+          </div>
+
+     <div className='userinfo'>
      { !profile.length?<div className='profiledetalles'>
               <h3>Peso: 0 Kg</h3>
               <h3>Height: 0 Cm</h3>
@@ -167,9 +169,7 @@ return (
             <div className='profiledetalles'>
               <h3>Peso: {el.peso} Kg</h3>
               <h3>Height: {el.altura} Cm</h3>
-              <h3>IBM: {el.imc}</h3>
-
-                
+              <h3>IBM: {el.imc}</h3>               
             </div>
           )  
         })}
@@ -179,17 +179,12 @@ return (
        <a href='/calculatorimc'>Modify IBM</a>
      </div>
 
-<div className="userprofile"> 
-
-      
-        
-        </div>
-        <div className="list-container">
-        <div className='list'>
+        <div className='mylists'>
           <div className='name-list'>
-      <h2>My Lists</h2>
-      <NewList
-      onCreate={onCreate} /></div>
+              <h2>My Lists</h2>
+              <NewList
+              onCreate={onCreate}/>
+          </div>
       {(favList.length>0)?
       favList.map(f =>(<>
       <FavoriteList
@@ -203,8 +198,7 @@ return (
     : null}
     </div>
     
-
-        <div className="list1">
+        <div className="selectyourlist">
             {(Object.entries(list).length>0)? 
             <List  
             onDeleteRecipe={onDeleteRecipe}
@@ -213,11 +207,10 @@ return (
               <h2>select your list</h2>
             )}
         </div>
-    </div>
 
-        <div className='post' >
+        <div className='yourpost' >
           <h3>Your post</h3>
-          <div>
+          <div className="yourpostlist">
         {userPost.length>0?
           userPost.map(post=>{
         return(
@@ -227,11 +220,13 @@ return (
         )
       }) :null}
         </div>
-        </div>
+      </div>
       
-
+        </div>
     </div>
   )
 }
 
 export default UserProfile
+
+
