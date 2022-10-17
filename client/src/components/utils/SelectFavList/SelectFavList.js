@@ -26,6 +26,7 @@ const SelectFavList = ({recipeId}) => {
     return (
     <div className='list-contein'>
         <h3>My favorite list</h3>
+        <div className='favList'>
       {favList?
         favList.map((f)=>{
             return(
@@ -34,7 +35,7 @@ const SelectFavList = ({recipeId}) => {
                 <span>{f.name}</span>
             </div>
         )}):null
-      }
+      }</div>
     </div>
  )
 }

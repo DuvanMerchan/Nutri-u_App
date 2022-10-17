@@ -22,7 +22,7 @@ const NewPost = ({ onCreate }) => {
           onChange={handleChange}
           value={newValue}
         />
-        <button className="buttonCreate" onClick={handleClickCreate}>
+        <button className="buttonCreatePost" onClick={handleClickCreate}>
           Public
         </button>
       </form>

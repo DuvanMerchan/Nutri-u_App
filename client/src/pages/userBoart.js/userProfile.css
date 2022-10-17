@@ -1,5 +1,6 @@
  .userprofile {
     display: grid;
+    padding: 15px;
     grid-auto-flow: column; /*
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
     grid-template-rows: 1fr 1fr 0fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
@@ -23,14 +24,14 @@
       margin: 0 auto;
       padding: 1em; 
       background: #f9f9f9;
-      border: 1px solid #c1c1c1;
+      border: 1px solid #c1c1c1;*/
 }
 .username1 { 
-    grid-area: username1;
-    margin-top: 50px;
-    margin-left: 170px;
-}*/
- }
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+ 
 .userimage { 
     /* margin-top: 15px;
     grid-area: userimage;
@@ -47,7 +48,6 @@
     justify-content: space-around;
 }
 .list-container{
-    background-color: beige;
     display: grid;
     grid-template-columns: 300px 450px;
 }
@@ -95,6 +95,11 @@
 .buttonListName,.ButtonNewLIst, .buttonEdit, .buttonDelete:hover {
     background: linear-gradient(#dfdfdf, #ededed);
   }
+.post{
+    display: grid;
+    justify-content: center;
+    padding-bottom: 15px;
+}
 
 /*
 .list1 { 

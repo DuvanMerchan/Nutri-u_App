@@ -23,7 +23,6 @@ const UserProfile = () => {
     const {favList} = useSelector((state) => state.user)
     const {list} = useSelector((state) => state.user)
 
-
     const [ image, setImage ] = useState("")
     const [ loading, setLoading ] = useState(false)
 
@@ -107,10 +106,6 @@ return (
 
 <div className="userprofile"> 
 
-      <div className="username1">
-        <Info
-        user={user} />
-      </div>
         <div>
           <div className="userimage">
             {loading ? (<h3>Loading picture...</h3>) : (<img className="userimage1"src={image} style={{width: "50px"}}/>)}
@@ -126,6 +121,11 @@ return (
             >
           </input>
         </div></div>
+        <div className="username1">
+        <Info
+        user={user} />
+      </div>
+        
         </div>
         <div className="list-container">
         <div className='list'>
@@ -160,6 +160,7 @@ return (
 
         <div className='post' >
           <h3>Your post</h3>
+          <div>
         {userPost.length>0?
           userPost.map(post=>{
         return(
@@ -168,6 +169,7 @@ return (
           />
         )
       }) :null}
+        </div>
         </div>
       
 

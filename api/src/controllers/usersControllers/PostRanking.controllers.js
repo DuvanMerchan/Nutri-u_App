@@ -2,7 +2,28 @@ const { User, Post, Recipe, Ranking } = require("../../db");
 
 const getAllPost = async (userId) =>{
     try {
-        return await User.findByPk(userId, { include: Post } )
+        let user = await User.findByPk(userId, { include: Post } )
+        let posts = user.posts
+        let post =[]
+        // console.log('user',user);
+        // console.log('posts',posts);
+        //return await User.findByPk(userId, { include: Post } )
+        if (posts) {
+            await Promise.allSettled(
+            await posts.map(async p=>{
+                let recipe = await Recipe.findByPk(p.recipeId)
+                post.push({
+                    userId:p.dataValues.id,
+                    username: user.dataValues.username,
+                    content:p.dataValues.content,
+                    recipeId: recipe.dataValues.id,
+                    recipeImg:recipe.dataValues.image,
+                    recipeName:recipe.dataValues.name,
+                })}))
+                console.log('post',post);
+        return post
+        }
+
     } catch (error) {
         console.log(error)
     }}

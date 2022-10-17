@@ -3,6 +3,12 @@
     grid-template-rows: 20% 80%;
     align-items: center;
 }
+h3{
+  padding: 15px;
+}
+.favList{
+    overflow-y: scroll;
+}
 .checked-item {
     background-color:rgb(84, 185, 89);
     padding:0.1em 0.2em;
