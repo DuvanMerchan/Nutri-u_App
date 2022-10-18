@@ -89,11 +89,12 @@ const RecipeDetail = () => {
 
             <div className="detaildiets">
               <h4 className="detaildietstittle">Diet/s</h4>
-              {recipe.createdInDB ? (
-                <p>{recipe.diets[0].name}</p>
-              ) : (
-                <p>{recipe.diets}</p>
-              )}
+              {console.log(recipe.diets)}
+              {recipe.diets? recipe.diets.map(r=>{
+                return<p>{r.name}</p>
+              }
+                
+              ) : null}
 
               <h5 className="detaildietstittle">Health Score</h5>
               <li>{recipe.healthScore}</li>
