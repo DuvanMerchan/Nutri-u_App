@@ -7,7 +7,7 @@ import { getAllRecipes, getAllUsers, getRecipeById, getUserById, banUser, banRec
 //import {REACT_APP_HOST} from process.env
 import dotenv from 'dotenv'
 dotenv.config()
-const url = process.env.REACT_APP_HOST 
+const url = process.env.REACT_APP_HOST || 'http://localhost:5001'
 
 //const token = JSON.parse(sessionStorage.getItem('token'))
 
@@ -22,6 +22,7 @@ export const getRecipes = ()=> async (dispatch) => {
                 'Content-Type': 'application/json'
             }
         })
+        console.log(res.data, "RECIPES")
         dispatch(getAllRecipes(res.data))
     }catch(e){
         console.log(e.message)
@@ -101,9 +102,25 @@ export const banUserById = (id,banned) => async (dispatch) => {
 }
 
 
+// export const banRecipeById = (id,banned) => async (dispatch) => {
+//     try{
+//         let token = JSON.parse(sessionStorage.getItem('token'))
+//         let res = await axios.post(`${url}/recipe/admin/${id}`,{banned},{
+//             headers:{
+//                 'Authorization': `Bearer ${token}`,
+//                 'Accept' : 'application/json',
+//                 'Content-Type': 'application/json'
+//             }
+//         })
+//         //dispatch(banRecipe(res.data))
+//     }catch(e){
+//         console.log(e)
+//     }
+
+
 // export const banRecipeById = (id) => async (dispatch) => {
 //     try{
-        let token = JSON.parse(sessionStorage.getItem('token'))
+//        let token = JSON.parse(sessionStorage.getItem('token'))
 //         let res = await axios.put(`http://${url}/recipe/admin/search/${id}`,{
         //     headers:{
         //         'Authorization': `Bearer ${token}`,
