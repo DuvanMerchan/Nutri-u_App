@@ -152,7 +152,7 @@ const {recipesList} = useSelector((store) => store.admin)
                         <TableCell align="left">{row.healthScore}</TableCell>
                         <TableCell align="left">{row.createdInDB.toString()}</TableCell>
                         {console.log(row.banned, "BANNED")}
-                        {/* <TableCell align="left">{row.banned.toString()}</TableCell> */}
+                        <TableCell align="left">{row.banned.toString()}</TableCell>
                         {/* <TableCell align="left">{row.user_id}</TableCell> */}
   
                       </TableRow>

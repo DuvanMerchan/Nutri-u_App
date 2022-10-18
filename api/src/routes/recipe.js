@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const router = Router();
 const Recipe = require("../db");
-const { getApiRecipeByID, createRecipe, deleteRecipe, updateRecipe } = require("../controllers/recipecontrollers");
+const { getApiRecipeByID, createRecipe, deleteRecipe, updateRecipe, recipeBanned } = require("../controllers/recipecontrollers");
 
 const auth = require('../middlewares/auth');
 const { countRanking, getRecipePost } = require("../controllers/usersControllers/PostRanking.controllers");
@@ -87,6 +87,18 @@ router.put("/:id",auth, async (req, res) => {
     res.send(e.message);
   }
 });
+
+router.put("/banned/:id",auth, async (req, res) => {
+  let { id } = req.params;
+  let {banned} = req.body
+  try {
+    let recipe = await recipeBanned(id,banned)
+    res.send(`Recipe ${id} banned successfully`);
+  } catch (e) {
+    res.send(e.message);
+  }
+});
+
 
 
 module.exports = router;

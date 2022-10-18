@@ -19,7 +19,7 @@ const getApiRecipes = async() => {
                     name: e.title,
                     healthScore: e.healthScore,
                     image: e.image,
-                    banned: e.banned,
+                    banned: false,
                     summary: e.summary,
                     //cuisines: e.cuisines?.map(ele => ele),
                     //dishTypes: e.dishTypes?.map(ele => ele),
