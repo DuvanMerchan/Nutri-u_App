@@ -22,6 +22,7 @@ export const getRecipes = ()=> async (dispatch) => {
                 'Content-Type': 'application/json'
             }
         })
+        console.log(res.data, "RECIPES")
         dispatch(getAllRecipes(res.data))
     }catch(e){
         console.log(e.message)
