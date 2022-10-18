@@ -77,6 +77,7 @@ export function PaymentForm() {
     } catch (err) {
       // console.error(err);
       swal("Payment failed! Please checkout the given information", `Error message: ${err.message}`  );
+      setLoader(true)
     }
   };
 
