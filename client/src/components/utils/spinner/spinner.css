@@ -8,7 +8,8 @@
   }
 
   .spinnerContainer {
-    position: relative;
+    position: absolute;
+    padding-bottom: 120px;
     width: 100vw;
     height: 60vh;
     display: flex;
