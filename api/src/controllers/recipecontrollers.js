@@ -82,15 +82,7 @@ const updateRecipe = async (id) => {
   }
 }
 
-const recipeBanned =async(id,banned) =>{
-  try {
-      let recipe = await Recipe.findByPk(id)
-      await recipe.update({banned: banned})
-      return recipe 
-  } catch (error) {
-      console.log(error)
-  }
-}
+
 
 
 module.exports = {
@@ -98,5 +90,4 @@ module.exports = {
   createRecipe,
   deleteRecipe,
   updateRecipe,
-  recipeBanned
 };
