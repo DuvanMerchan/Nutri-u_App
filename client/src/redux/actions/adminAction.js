@@ -120,7 +120,7 @@ export const banUserById = (id,banned) => async (dispatch) => {
 
 // export const banRecipeById = (id) => async (dispatch) => {
 //     try{
-        let token = JSON.parse(sessionStorage.getItem('token'))
+//        let token = JSON.parse(sessionStorage.getItem('token'))
 //         let res = await axios.put(`http://${url}/recipe/admin/search/${id}`,{
         //     headers:{
         //         'Authorization': `Bearer ${token}`,
