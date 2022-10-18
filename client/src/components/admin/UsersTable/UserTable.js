@@ -31,11 +31,12 @@ const {usersList} = useSelector((store) => store.admin)
     const [page, setPage] = React.useState(0);
     const [dense, setDense] = React.useState(false);
     const [userPerPage, setuserPerPage] = React.useState(15);
+    const [banned, setBanned] = React.useState(false)
 
 
     React.useEffect(()=>{
       dispatch(getUsers())
-    },[])
+    },[banned])
   
     const handleRequestSort = (event, property) => {
       const isAsc = orderBy === property && order === 'asc';
@@ -91,7 +92,8 @@ const {usersList} = useSelector((store) => store.admin)
       console.log(user, "ESTE ES USER ID")
       console.log(estado, "ESTE ES EL ESTADO")
       dispatch(banUserById(user,estado))
-
+      if(banned === true) setBanned(false)
+      else setBanned(true)
     }
   
     const isSelected = (name) => selected.indexOf(name) !== -1;
@@ -137,7 +139,7 @@ const {usersList} = useSelector((store) => store.admin)
                       >
                         <TableCell padding="checkbox">
                           <Checkbox
-                            onClick={(event) => handleClick2(event, row.id, isItemSelected)}
+                            onChange={(event) => handleClick2(event, row.id, isItemSelected)}
                             color="primary"
                             checked={isItemSelected}
                             inputProps={{
