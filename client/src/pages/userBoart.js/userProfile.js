@@ -232,7 +232,7 @@ return (
         </div>
 
         <div className='yourpost' >
-          <h3>Your post</h3>
+          <h3>The post you Reviewed</h3>
           <div className="yourpostlist">
         {userPost.length>0?
           userPost.map(post=>{
