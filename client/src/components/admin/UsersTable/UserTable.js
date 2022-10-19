@@ -47,7 +47,7 @@ export const UserTable = () => {
 const {usersList} = useSelector((store) => store.admin)
 
 
-   const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
 
     const [order, setOrder] = React.useState('asc');
@@ -56,7 +56,12 @@ const {usersList} = useSelector((store) => store.admin)
     const [page, setPage] = React.useState(0);
     const [dense, setDense] = React.useState(false);
     const [userPerPage, setuserPerPage] = React.useState(15);
+    const [click, setClick] = React.useState(false)
 
+    React.useEffect(() => {
+      dispatch(getUsers())
+    },[click])
+    
 
     React.useEffect(()=>{
       dispatch(getUsers())
@@ -114,14 +119,18 @@ const {usersList} = useSelector((store) => store.admin)
     };
 
     const handleClick2 = (event, user, estado) => {
-      
+      console.log(event.target.checked, "ESTE ES EL EVENT")
       console.log(user, "ESTE ES USER ID")
       console.log(estado, "ESTE ES EL ESTADO")
-      dispatch(banUserById(user,estado))
-
+      click ? setClick(false) : setClick(true)
+      dispatch(banUserById(user,event.target.checked))
+      dispatch(getUsers())
     }
   
-    const isSelected = (name) => selected.indexOf(name) !== -1;
+    const isSelected = (id) => { 
+      let usuario = usersList.find((user) => user.id === id)
+      return usuario.banned
+    }
   
     // Avoid a layout jump when reaching the last page with empty user.
     const emptyuser =
@@ -131,7 +140,7 @@ const {usersList} = useSelector((store) => store.admin)
       <NavBar />
       <Box sx={{ width: '100%' }}>
         <Paper sx={{ width: '100%', mb: 2 }}>
-          <EnhancedTableToolbar numSelected={selected.length} />  {/*ACA TENGO QUE VER COMO LE PASO EL ID PARA BANEARLO*/}
+          <EnhancedTableToolbar numSelected={selected.length} />  
           <TableContainer>
             <Table
               sx={{ minWidth: 750 }}
@@ -152,7 +161,7 @@ const {usersList} = useSelector((store) => store.admin)
                 {stableSort(usersList, getComparator(order, orderBy))
                   .slice(page * userPerPage, page * userPerPage + userPerPage)
                   .map((row, index) => {
-                    const isItemSelected = isSelected(row.username);
+                    const isItemSelected = isSelected(row.id);
                     const labelId = `enhanced-table-checkbox-${index}`;
                     
                     return (
