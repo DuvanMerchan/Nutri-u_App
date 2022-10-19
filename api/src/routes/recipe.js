@@ -2,6 +2,7 @@ const { Router } = require("express");
 const router = Router();
 const Recipe = require("../db");
 const { getApiRecipeByID, createRecipe, deleteRecipe, updateRecipe } = require("../controllers/recipecontrollers");
+const { recipeBanned } = require ("../controllers/usersControllers/admin.controllers")
 
 const auth = require('../middlewares/auth');
 const { countRanking, getRecipePost } = require("../controllers/usersControllers/PostRanking.controllers");
@@ -87,6 +88,9 @@ router.put("/:id",auth, async (req, res) => {
     res.send(e.message);
   }
 });
+
+
+
 
 
 module.exports = router;
