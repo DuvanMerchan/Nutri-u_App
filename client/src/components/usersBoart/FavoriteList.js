@@ -32,12 +32,12 @@ const FavoriteList = ({ list, onUpdate, onDelete, onRender }) => {
   }
   function RenderList() {
     return (
-      <div>
+      <div className="lists-container">
         <button className="buttonListName" onClick={() => onRender(list.id)}>
           {list.name}
         </button>
         <button
-          className="edit"
+          className="buttonEdit"
           aria-label="edit"
           onClick={() => setIsEdit(true)}
         >
@@ -52,7 +52,7 @@ const FavoriteList = ({ list, onUpdate, onDelete, onRender }) => {
           </svg>
         </button>
         <button
-          className="delete"
+          className="buttonDelete"
           aria-label="delete"
           onClick={() => onDelete(list.id)}
         >

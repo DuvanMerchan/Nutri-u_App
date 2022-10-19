@@ -18,7 +18,7 @@ if(banned.toString() == "false"){
         from: "nutri.u.contact@gmail.com",
         to: email,
         subject:"Your nutri-u account has been unbanned",
-        html:`<p>Your account has been unbanned for administrator<a href="nutri.u.contact@gmail.com">nutri.u.contact@gmail.com</a></p>`,
+        html:`<p>Your account has been unbanned for administrator  <a href="nutri.u.contact@gmail.com">nutri.u.contact@gmail.com</a></p>`,
     })
 }
 
@@ -27,7 +27,7 @@ if(banned.toString() == "true") {
         from: "nutri.u.contact@gmail.com",
         to: email,
         subject:"Your nutri-u account has been banned",
-        html:`<p>You were blocked by a Nutri-u administrator, if you see that this was an error, contact this email<a href="nutri.u.contact@gmail.com">nutri.u.contact@gmail.com</a></p>`,
+        html:`<p>You were blocked by a Nutri-u administrator, if you see that this was an error, contact this email  <a href="nutri.u.contact@gmail.com">nutri.u.contact@gmail.com</a></p>`,
     })
 }
 
@@ -58,9 +58,28 @@ if(email && token){
 
 }
 
+async function paymentNotification(email, recibo){
+    let transporter = nodemailer.createTransport({
+        host: `${HOST_EMAIL}`,
+        port:`${PORT_EMAIL}`,
+        secure:false,
+        auth:{
+            user:`${EMAIL}`,
+            pass:`${EMAIL_PASS}`
+        }
+    });
+    return transporter.sendMail({
+        from: "nutri.u.contact@gmail.com",
+        to: email,
+        subject:"Your suscription to Nutri-U has been successful!",
+        html:`<p>You are a Premium User now, enjoy!<br/> <br/>You can download your invoice here: <br/> ${recibo}<a href="nutri.u.contact@gmail.com">nutri.u.contact@gmail.com</a></p>`,
+    })
+    
+}
 
 module.exports = {
     //adminLogin,
     bannedUserNotification,
-    changePasswordNotification
+    changePasswordNotification,
+    paymentNotification
 }
