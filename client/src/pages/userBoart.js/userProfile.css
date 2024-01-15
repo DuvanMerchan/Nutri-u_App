@@ -1,0 +1,167 @@
+ .userprofile {
+    display: grid;
+    padding: 15px;
+    grid-auto-flow: column; /*
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 0fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+
+      "username1 username1 username1 username1 username1 userimage userimage userimage userimage userimage userimage"
+      "username1 username1 username1 username1 username1 userimage userimage userimage userimage userimage userimage"
+      ". . . . . userimage userimage userimage userimage userimage userimage"
+      "list list list list1 list1 userimage userimage userimage userimage userimage userimage"
+      "list list list list1 list1 userimage userimage userimage userimage userimage userimage"
+      "list list list list1 list1 userimage userimage userimage userimage userimage userimage"
+      "list list list list1 list1 . . . . . ."
+      "list list list list1 list1 . . . . . ."
+      "list list list list1 list1 . . . . . ."
+      "list list list list1 list1 . . . . . ."
+      "list list list list1 list1 upload1 upload1 upload1 upload1 upload1 upload1"; 
+
+      max-width: 1400px;
+      height: 1000px;
+      margin: 0 auto;
+      padding: 1em; 
+      background: #f9f9f9;
+      border: 1px solid #c1c1c1;
+      background-color: green;
+}
+.username1 { 
+    grid-area: username1;
+    margin-top: 50px;
+    margin-left: 170px;
+}*/
+ }
+
+ .profileprincipal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profilesecond{
+    display:flex;
+    justify-content: center;
+}
+
+.profiledetalles{
+    display: flex;
+    justify-content: center;
+}
+
+.profiledetalles h3 {
+    font-size: 16px;
+    padding: 5px;
+}
+
+.username1{
+    display: flex;
+    justify-content: center;
+}
+
+ .userimage1 {
+    min-width: 200px;
+    max-width: 200px;
+    min-height: 200px;
+    max-height: 200px;
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    border: solid 5px black;
+}
+
+.userimage h3{
+    min-width: 200px;
+    max-width: 200px;
+    min-height: 200px;
+    max-height: 200px;
+}
+
+.name-list{
+    display: flex;
+    width: 250px;
+    justify-content: space-around;
+}
+.list-container{
+    display: grid;
+    grid-template-columns: 300px 450px;
+}
+.lists-container{
+    background-color: none;
+}
+.buttonListName{
+    width: 180px;
+    color:#777777;
+    border-color:#dcdcdc;
+    box-shadow:inset 0px 1px 0px 0px #ffffff;
+    text-shadow:inset 0px 1px 0px #ffffff;
+    background:linear-gradient(#ededed, #dfdfdf);
+}
+
+.upload1 input{
+    background-color: blueviolet;
+    display: none;
+}
+
+.modifyibm{
+    display: flex;
+    justify-content: center;
+}
+/*
+.userimage1 {
+    min-width: 200px;
+    max-width: 200px;
+    min-height: 200px;
+    max-height: 200px;
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    border: solid 5px black;
+}
+
+.userimage h3{
+    min-width: 200px;
+    max-width: 200px;
+    min-height: 200px;
+    max-height: 200px;
+}
+
+.upload1 { 
+    
+    
+}
+*/
+.list { 
+    display: grid;
+    /* grid-area: list;
+    margin-left: 80px; */
+}
+
+.ButtonNewLIst, .buttonEdit, .buttonDelete{
+  color:#777777;
+  border-color:#dcdcdc;
+  font-weight:bold;
+  border-top-left-radius:6px;
+  border-top-right-radius:6px;
+  border-bottom-left-radius:6px;
+  border-bottom-right-radius:6px;
+  box-shadow:inset 0px 1px 0px 0px #ffffff;
+  text-shadow:inset 0px 1px 0px #ffffff;
+  background:linear-gradient(#ededed, #dfdfdf);
+}
+
+.buttonListName,.ButtonNewLIst, .buttonEdit, .buttonDelete:hover {
+    background: linear-gradient(#dfdfdf, #ededed);
+  }
+.post{
+    display: grid;
+    justify-content: center;
+    padding-bottom: 15px;
+}
+
+/*
+.list1 { 
+    grid-area: list1; 
+    margin-left: 30px;
+} */

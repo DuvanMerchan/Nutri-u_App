@@ -17,7 +17,6 @@ router.post('/newlist',auth ,async (req, res) =>{
 
 router.get('/allfavlist/:id', auth, async (req, res)=>{
     let {id} = req.params
-    console.log('userId2',id)
     let fav = await listFavorite(id)
     res.json(fav)
 })
@@ -29,9 +28,10 @@ router.post('/lists/:listId', auth, async (req, res)=>{
     res.json(favRecipe)
 })
 
-router.patch('/lists/:listId', auth, async (req, res)=>{
+router.patch('/lists/recipes/:listId', auth, async (req, res)=>{
     let {listId} = req.params
     let {recipeId} = req.body
+    console.log('listId',listId,'recipeId',recipeId)
     let favRecipe = await removingRecipe(listId , recipeId)
     console.log('favRecipe',favRecipe)
     res.json(favRecipe)
@@ -45,16 +45,19 @@ router.get('/lists/:id', auth, async (req, res)=>{
 
 router.delete('/lists', auth, async (req, res)=>{
     let {listId} = req.body
-    console.log(listId)
     let list = await deleteList(listId)
     res.json(list)
 })
 
-router.patch('/lists/:listId', auth, async (req, res)=>{
+router.patch('/lists/listName/:listId', auth, async (req, res)=>{
     let {listId} = req.params
-    let {listName} = req.body
-    let list = await updateList(listId, listName)
-    res.json(list)
+    let { listName} = req.body
+    try {
+        let list =  await updateList(listId, listName)
+        res.json(list)
+    } catch (error) {
+        console.log(error)
+    }
 })
 
 module.exports = router;

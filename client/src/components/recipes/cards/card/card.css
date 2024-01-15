@@ -1,18 +1,18 @@
-.card-title {
-    text-decoration: none;
-    color: #2E2E2E;;
-}
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital@1&family=Fraunces:opsz@9..144&family=Merriweather:ital,wght@0,300;1,300&family=Oswald:wght@300;400;700&family=Roboto+Serif:ital,opsz,wght@0,8..144,400;0,8..144,700;1,8..144,300&display=swap');
 
 .card-text {
     text-decoration: none;
     color: #2E2E2E;;
 }
 
-
+h5{
+    font-family: 'Merriweather:ital', serif;
+    color: rgb(5, 97, 43);
+}
 
 .card-title{
     width: 230px;
-    font-size: 15px;
+    font-size: 20px;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
@@ -20,6 +20,7 @@
 }
 
 .col:hover {
+    transition: 0.2s;
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.377);
     transform: translateY(-8px);
     opacity: 80%;

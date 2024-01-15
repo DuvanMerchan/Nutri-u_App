@@ -13,7 +13,7 @@ export const Cards = () => {
     const { diets } = useSelector((state) => state.diets)
     // console.log('diets', diets)
 
-
+    console.log('recipes',recipes)
 
     function handleSortRecipes(e) {
       e.preventDefault();
@@ -75,10 +75,10 @@ const paginado = (pageNumber) => {
 
 
 <div className="options-recipes">
-    <nav class="navbar bg-light">
+    <nav class="navbar bg">
   <div class="container-fluid">
     <form onSubmit={onSubmitSearchbar} class="d-flex" role="search">
-      <input onChange={onInputChangeSearchbar} value={inputSearchBar} class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+      <input onChange={onInputChangeSearchbar} value={inputSearchBar} class="form-control me-3" type="search" placeholder="Recipe" aria-label="Search"/>
       <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
   </div>
@@ -87,7 +87,7 @@ const paginado = (pageNumber) => {
 
             <div className="OrdenRankingRecipes">
         
-    <select class="form-select" aria-label="Default select example"
+    <select class="form-select me-3" aria-label="Default select example"
           onChange={(e) => {
             handleSortRecipes(e);
           }}

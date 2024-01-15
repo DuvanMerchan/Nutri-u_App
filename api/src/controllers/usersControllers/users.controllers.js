@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const authConfig = require("../config/auth.js");
 const nodemailer = require("nodemailer");
 const {changePasswordNotification} = require("./notifications/notifications")
-const { HOST_EMAIL, PORT_EMAIL, EMAIL, EMAIL_PASS, DB_HOST, DB_PORT, CLIENT_PORT } =
+const { HOST_EMAIL, PORT_EMAIL, EMAIL, EMAIL_PASS, DB_HOST, DB_PORT, CLIENT_PORT, URL_FRONT } =
   process.env;
 
 const userSingIn = async (req, res, next) => {
@@ -121,7 +121,7 @@ function sendConfirmationEmail(user) {
     },
   });
   var token = jwt.sign({ email: user.email }, authConfig.secret);
-  const urlConfirm = `http://${DB_HOST}:${CLIENT_PORT}/confirm-account/${token}`;
+  const urlConfirm = `http://${URL_FRONT}/confirm-account/${token}`;
 
   return transporter
     .sendMail({

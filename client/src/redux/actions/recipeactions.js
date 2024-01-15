@@ -1,20 +1,21 @@
 import axios from 'axios'
 import {getAllRecipes, orderByRating, getRecipesByName,
-    getRecipeById,createRecipe, filterByDiet, getDiets_Recipe
+    getRecipeById,createRecipe, filterByDiet, getDiets_Recipe, getAllPost, getRanking
 } from '../recipeSlice'
 
 //-------------------- RUTAS --------------------------
 
 //import {REACT_APP_HOST} from process.env
-require('dotenv').config()
-const url = process.env.REACT_APP_HOST || 'localhost:5001'
+import dotenv from 'dotenv'
+dotenv.config()
+const url = process.env.REACT_APP_HOST || 'http://localhost:5001'
 
 //-------------------- ACTIONS ------------------------
 export const getRecipes = ()=> async (dispatch) => {
     try{
-        let res = await axios.get(`http://${url}/recipes`)
+        let res = await axios.get(`${url}/recipes`)
         dispatch(getAllRecipes(res.data))
-        let res2 = await axios.get(`http://${url}/diets`)
+        let res2 = await axios.get(`${url}/diets`)
         dispatch(getDiets_Recipe(res2.data))
     }catch(e){
         console.log(e.message)
@@ -36,7 +37,7 @@ export const getRecipesName = (payload)=> async (dispatch)=>{
     try {
         let nodata = [{nodata:"Sorry, there are no recipes of this type"}]
 
-        let res = await axios.get(`http://${url}/recipes?name=${payload}`)
+        let res = await axios.get(`${url}/recipes?name=${payload}`)
         dispatch(getRecipesByName(res.data.length?res.data:nodata))
     } catch (error) {
         
@@ -45,7 +46,7 @@ export const getRecipesName = (payload)=> async (dispatch)=>{
 
 export const getRecipeDetail =(id)=> async (dispatch) => {
     try{
-        let res = await axios.get(`http://${url}/recipe/${id}`)
+        let res = await axios.get(`${url}/recipe/${id}`)
         console.log(res.data, 'RECIPE DESDE ACTIONS')
         dispatch(getRecipeById(res.data))
     }catch(e){
@@ -61,7 +62,22 @@ export const filterDiet =(payload)=>async (dispatch)=>{
     }
 }
 
-
+export const getRecipePost = (recipeId) => async (dispatch)=>{
+    try {
+        let res = await axios.get(`${url}/recipe/post/${recipeId}`)
+        dispatch(getAllPost(res.data))
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const getTotalRanking = (recipeId) => async (dispatch)=>{
+    try {
+        let res = await axios.get(`${url}/recipe/reciperank/${recipeId}`)
+        dispatch(getRanking(res.data))
+    } catch (error) {
+        console.log(error)
+    }
+}
 // export const getByName = async (dispatch) => {
 //     try{
 //         let res = await axios.get(`http://${url}/recipes?${name}`)
@@ -74,7 +90,7 @@ export const filterDiet =(payload)=>async (dispatch)=>{
 
 export const postRecipe = (payload) => async (dispatch) => {
     try{
-        let res = await axios.post(`http://${url}/recipe`, payload)
+        let res = await axios.post(`${url}/recipe`, payload)
         console.log(res.send, 'res')
         dispatch(createRecipe(res.data))
     }catch(e){
